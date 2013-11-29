@@ -1,0 +1,58 @@
+% Using makeindex explicitly
+% 
+% If you don't have Perl (or Java and MakeGlossariesGUI) installed you can run
+% makeindex explicitly. Let's suppose that your document is called myDoc.tex. If
+% you are using makeindex (that is, you haven't used the xindy package option)
+% then you need to use makeindex for each defined glossary. This includes the
+% list of acronyms if you have used the acronym package option. The above
+% example document has three glossaries: the main one, the list of acronyms and
+% the list of symbols.
+
+% The main glossary is created using:
+% makeindex -s myDoc.ist -t myDoc.glg -o myDoc.gls myDoc.glo
+%
+% The list of acronyms is created with:
+% makeindex -s myDoc.ist -t myDoc.alg -o myDoc.acr myDoc.acn
+%
+% The list of symbols is created with:
+% makeindex -s myDoc.ist -t myDoc.slg -o myDoc.sym myDoc.sbl
+
+\newacronym{TDMA}{TDMA}{Time Division Multiple Access}
+\newacronym{WPAN}{WPAN}{Wireless Personal Area Network}
+\newacronym{GSM}{GSM}{Global System for Mobile communication}
+\newacronym{FPGA}{FPGA}{Field Programmable Gate Array}
+\newacronym{IEEE}{IEEE}{Institute of Electrical and Electronics Engineers}
+\newacronym{CV}{CV}{Confidence Value}
+\newacronym{OSA-CBM}{OSA-CBM}{Open Systems Architecture for Condition-Based
+  Maintenance}
+\newacronym{ARMA}{ARMA}{Auto-Regressive Moving-Average}
+\newacronym{CWT}{CWT}{Continuous Wavelet Transform}
+\newacronym{DWT}{DWT}{Discrete Wavelet Transform}
+\newacronym{WPE}{WPE}{Wavelet Packet Energies}
+\newacronym{RL}{RL}{Regressão Logística}
+\newacronym{OASIS}{OASIS}{Organization for the Advancement of Structured
+  Information Standards}
+\newacronym{W3C}{W3C}{World Wide Web Consortium}
+\newacronym{SOA}{SOA}{Serice Oriented Architecture}
+\newacronym{SOAP}{SOAP}{Simple Object Access Protocol}
+\newacronym{JMEDS}{JMEDS}{Java Multi Edition DPWS Stack}
+\newacronym{UDP}{UDP}{User Datagram Protocol}
+\newacronym{TCP}{TCP}{Transmission Control Protocol}
+\newacronym{HTTP}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{DPWS}{DPWS}{Devices Profile for Web-Services}
+\newacronym{OSGi}{OSGi}{Open Service Gateway initiative}
+\newacronym{WSD}{WSD}{Web Service Description}
+\newacronym{WSDL}{WSDL}{Web Service Description Language}
+\newacronym{XML}{XML}{Extensible Markup Language}
+\newacronym{UPnP}{UPnP}{Universal Plug and Play}
+\newacronym{HAVi}{HAVi}{Home Audio/Video Interoperability}
+\newacronym{JINI}{JINI}{Java Intelligent Network Infrastructure}
+\newacronym{WSA}{WSA}{Web Service Architecture}
+\newacronym{QoS}{QoS}{Quality of Service}
+\newacronym{URL}{URL}{Uniform Resource Locator}
+\newacronym{URI}{URI}{Uniform Resource Identifier}
+\newacronym{IRI}{IRI}{Internationalized Resource Identifier}
+\newacronym{MTOM}{MTOM}{SOAP Message Transmission Optimization Mechanism}
+\newacronym{IP}{IP}{Internet Protocol}
+\newacronym{LAN}{LAN}{Local Area Network}
+\newacronym{WAN}{WAN}{Wide Area Network}

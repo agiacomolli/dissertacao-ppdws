@@ -1,0 +1,211 @@
+\documentclass[oneside,diss]{deletex}
+
+\usepackage[latin1]{inputenc}
+%\usepackage[brazilian]{babel}
+%\usepackage[hidelinks]{hyperref}
+%\usepackage{graphicx}
+\usepackage{float}
+\usepackage{url}
+%\usepackage{enumerate}
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{mathptmx}
+\usepackage{cleveref}
+\usepackage[acronym,nonumberlist]{glossaries}
+
+\newcommand{\crefpairconjunction}{ e }
+\newcommand{\crefmiddleconjunction}{, }
+\newcommand{\creflastconjunction}{ e }
+\newcommand{\crefrangeconjunction}{ a }
+
+\crefname{figure}{fig.}{figs.}
+\Crefname{figure}{Fig.}{Figs.}
+\crefname{table}{tab.}{tabs.}
+\Crefname{table}{Tab.}{Tabs.}
+\crefname{equation}{eq.}{eqs.}
+\Crefname{equation}{Eq.}{Eqs.}
+
+% TODO: Conferir os dados do PDF.
+\newcommand{\disstitle}{Proposta de arquitetura orientada a serviços para um
+sistema de manutenção inteligente
+}
+\newcommand{\dissauthor}{Anderson Antônio Giacomolli}
+\newcommand{\disssubject}{Resumo}
+\newcommand{\disskeywords}{Palavra-chave 1, Palavra-chave 2...}
+
+%%
+% Configuração do pacote para criação de links no PDF.
+\hypersetup{%
+  pdftitle={\disstitle},
+  pdfauthor={\dissauthor},
+  pdfproducer={\dissauthor},
+  pdfsubject={\disssubject},
+  pdfkeywords={\disskeywords},
+  bookmarks=true,
+  pdfmenubar=true,
+  pdfborder={0,0,0}
+}
+
+%%
+% Configuração do pacote para representação numérica.
+\sisetup{%
+  detect-all,
+  output-decimal-marker={,}
+}
+
+\newglossary{symbols}{sym}{sbl}{List of symbols}
+
+%%
+% Definição do padrão para a lista de abreviaturas.
+\newglossarystyle{ppgee}{%
+  \setlength{\glsdescwidth}{0.8\linewidth}%
+  \renewcommand*{\arraystretch}{1.5}%
+  \renewenvironment{theglossary}%
+    {\tablehead{}\tabletail{}%
+      \begin{supertabular}{lp{\glsdescwidth}}}%
+    {\end{supertabular}}%
+  \renewcommand*{\glsnamefont}[1]{{\mdseries ##1}}%
+  \renewcommand*{\glsgroupskip}{}%
+  \renewcommand*{\glossaryheader}{}%
+  \renewcommand*{\glspostdescription}{}%
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentryitem{##1}\glstarget{##1}{##2} & ##3\glspostdescription\space ##5\\}%
+  \renewcommand*{\glossarysubentryfield}[6]{%
+    &   
+    \glssubentryitem{##2}%
+    \glstarget{##2}{\strut}##4\glspostdescription\space ##6\\}%
+  %\renewcommand*{\glsgroupskip}{ & \\}%
+}
+
+%%
+% Título e autor do documento.
+\title{\disstitle}
+\author{Giacomolli}{Anderson Antônio}
+
+%%
+% Orientador.
+\advisor[Prof.~Dr.]{Pereira}{Carlos Eduardo}
+\advisorinfo{UFRGS}{Doutor pela Sttutgart University -- Sttutgart, Alemanha}
+\advisorwidth{0.56\textwidth}
+
+%%
+% Banca examinadora
+\examiner[Prof.~Dr.]{do professor)}{(nome}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
+  obteve o título -- Cidade, País)}
+\examiner[Prof.~Dr.]{do professor)}{(nome}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
+  obteve o título -- Cidade, País)}
+\examiner[Prof.~Dr.]{do professor)}{(nome}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
+  obteve o título -- Cidade, País)}
+
+%%
+% Data da defesa.
+%\date{fevereiro}{2004}
+
+%%
+% Área de concentração.
+\topic{\ca}
+
+%%
+% Palavras-chave.
+\keyword{Engenharia Elétrica}
+\keyword{Processamento de Sinais}
+\keyword{Automação e Controle}
+\keyword{Eletrônica e Instrumentação}
+
+%%
+% Cria os glossários.
+\makeglossaries
+
+%%
+% Inclui o arquivo com a lista de abreviaturas.
+\input{glossary/abreviaturas}
+\input{glossary/simbolos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% O comando \maketile gera a capa, a folha de rosto e a folha de aprovacao 
+% (se for o caso)
+% às vezes é necessário redefinir algum comando logo antes de produzir
+% a Capa, folha de rosto e folha de aprovacao:
+% \renewcommand{\coordname}{Coordenadora do Curso}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter*{Dedicatória}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter*{Agradecimentos}
+
+
+% Resumo no idioma do documento.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+\input{chapters/resumo}
+\end{abstract}
+
+% Abstract em inglês.
+\begin{englishabstract}{Electrical Engineering, Signal Processing, Automation
+  and Control, Electronic and Instrumentation}
+\input{chapters/abstract}
+\end{englishabstract}
+
+% Lista de ilustrações.
+\listoffigures
+
+% Lista de tabelas.
+\listoftables
+
+% Lista de abreviaturas e siglas.
+%\begin{listofabbrv}{OSA-CBM}
+%	\item[ABNT] Associação Brasileira de Normas Técnicas
+%	\item[GCAR] Grupo de Controle, Automação e Robótica
+%	\item[PPGEE] Programa de Pós-Graduação em Engenharia Elétrica
+%	\item[OSA-CBM] Programa de Pós-Graduação em Engenharia Elétrica
+%\end{listofabbrv}
+
+% Lista de abreviaturas e siglas.
+\setglossarysection{chapter}
+\printglossary[style=ppgee,type=\acronymtype,title=Lista de abreviaturas]
+
+% lista de símbolos é opcional
+%\begin{listofsymbols}{$\alpha\beta\pi\omega$}
+%       \item[$\sum$] Somatório
+%       \item[$\alpha\beta\pi\omega$] Fator de inconstância do resultado
+%\end{listofsymbols}
+
+% Lista de símbolos.
+%\setglossarysection{chapter}
+\printglossary[style=ppgee,type=symbols,title=Lista de símbolos]
+%\printglossaries
+
+% Sumário.
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{chapters/introducao}
+\input{chapters/sistemas-de-manutencao-inteligente}
+\input{chapters/arquiteturas-orientadas-a-servicos}
+\input{chapters/proposta-de-arquitetura}
+\input{chapters/implementacao-e-resultados}
+\input{chapters/conclusao}
+
+\bibliographystyle{abnt}
+\bibliography{bibliography/biblio}
+
+\end{document}
+
+
