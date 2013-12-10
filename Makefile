@@ -17,15 +17,7 @@ CHAPTERS = \
   chapters/implementacao-e-resultados.tex \
   chapters/conclusao.tex
 
-IMAGES = \
-  images/architecture-proposal.svg \
-  images/data-processing-plot.svg \
-  images/web-service-triangle.svg \
-  images/dpws-service-types.svg \
-  images/dpws-stack.svg \
-  images/proposal-equipment-services-stack.svg \
-  images/wsdl-concepts.svg \
-  images/mapa-conceitual.svg
+IMAGES = #\
 
 TABLES = #\
 
