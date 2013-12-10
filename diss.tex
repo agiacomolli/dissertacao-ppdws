@@ -15,6 +15,7 @@
 \usepackage{mathptmx}
 \usepackage{cleveref}
 \usepackage[acronym,nonumberlist]{glossaries}
+%\usepackage[alf]{abntex2cite} % Citações padrão ABNT
 
 \newcommand{\crefpairconjunction}{ e }
 \newcommand{\crefmiddleconjunction}{, }
@@ -29,9 +30,8 @@
 \Crefname{equation}{Eq.}{Eqs.}
 
 % TODO: Conferir os dados do PDF.
-\newcommand{\disstitle}{Proposta de arquitetura orientada a serviços para um
-sistema de manutenção inteligente
-}
+\newcommand{\disstitle}{Proposta de arquitetura orientada a serviços para um sistema de manutenção
+    inteligente}
 \newcommand{\dissauthor}{Anderson Antônio Giacomolli}
 \newcommand{\disssubject}{Resumo}
 \newcommand{\disskeywords}{Palavra-chave 1, Palavra-chave 2...}
@@ -75,11 +75,26 @@ sistema de manutenção inteligente
   \renewcommand*{\glossaryentryfield}[5]{%
     \glsentryitem{##1}\glstarget{##1}{##2} & ##3\glspostdescription\space ##5\\}%
   \renewcommand*{\glossarysubentryfield}[6]{%
-    &   
+    &
     \glssubentryitem{##2}%
     \glstarget{##2}{\strut}##4\glspostdescription\space ##6\\}%
   %\renewcommand*{\glsgroupskip}{ & \\}%
 }
+
+%%
+% Comando para inserção de uma imagem.
+\newcommand{\includefigure}[3]{%
+  \begin{figure}[H]
+    \centering
+    \includegraphics{#1}
+    \caption{#2}
+    \label{#3}
+  \end{figure}
+}
+
+%%
+% Comando para inserção de uma tabela.
+% TODO
 
 %%
 % Título e autor do documento.
@@ -95,18 +110,18 @@ sistema de manutenção inteligente
 %%
 % Banca examinadora
 \examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
-  obteve o título -- Cidade, País)}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
+  Cidade, País)}
 \examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
-  obteve o título -- Cidade, País)}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
+  Cidade, País)}
 \examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde
-  obteve o título -- Cidade, País)}
+\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
+  Cidade, País)}
 
 %%
 % Data da defesa.
-%\date{fevereiro}{2004}
+\date{março}{2014}
 
 %%
 % Área de concentração.
@@ -132,7 +147,7 @@ sistema de manutenção inteligente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-% O comando \maketile gera a capa, a folha de rosto e a folha de aprovacao 
+% O comando \maketile gera a capa, a folha de rosto e a folha de aprovacao
 % (se for o caso)
 % às vezes é necessário redefinir algum comando logo antes de produzir
 % a Capa, folha de rosto e folha de aprovacao:
@@ -153,13 +168,13 @@ sistema de manutenção inteligente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-\input{chapters/resumo}
+  \input{chapters/resumo}
 \end{abstract}
 
 % Abstract em inglês.
-\begin{englishabstract}{Electrical Engineering, Signal Processing, Automation
-  and Control, Electronic and Instrumentation}
-\input{chapters/abstract}
+\begin{englishabstract}{Electrical Engineering, Signal Processing, Automation and Control,
+    Electronic and Instrumentation}
+  \input{chapters/abstract}
 \end{englishabstract}
 
 % Lista de ilustrações.
@@ -207,5 +222,4 @@ sistema de manutenção inteligente
 \bibliography{bibliography/biblio}
 
 \end{document}
-
 
