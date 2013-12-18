@@ -1,33 +1,33 @@
 \documentclass[oneside,diss]{deletex}
 
 \usepackage[latin1]{inputenc}
-%\usepackage[brazilian]{babel}
-%\usepackage[hidelinks]{hyperref}
-%\usepackage{graphicx}
+\usepackage{parskip}
 \usepackage{float}
 \usepackage{url}
-%\usepackage{enumerate}
-%\usepackage{caption}
-%\usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{mathptmx}
 \usepackage{cleveref}
 \usepackage[acronym,nonumberlist]{glossaries}
-%\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+\usepackage[portuguese,shadow,textsize=footnotesize,backgroundcolor=yellow,bordercolor=black!50,
+    linecolor=red]{todonotes}
+\usepackage{setspace}
+
+\setlength{\parindent}{0.7cm}
+\setlength{\parskip}{1.5pt plus0mm minus0mm}
 
 \newcommand{\crefpairconjunction}{ e }
 \newcommand{\crefmiddleconjunction}{, }
 \newcommand{\creflastconjunction}{ e }
 \newcommand{\crefrangeconjunction}{ a }
 
-\crefname{figure}{fig.}{figs.}
-\Crefname{figure}{Fig.}{Figs.}
-\crefname{table}{tab.}{tabs.}
-\Crefname{table}{Tab.}{Tabs.}
-\crefname{equation}{eq.}{eqs.}
-\Crefname{equation}{Eq.}{Eqs.}
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{table}{tabela}{tabelas}
+\Crefname{table}{Tabela}{Tabelas}
+\crefname{equation}{equação}{equações}
+\Crefname{equation}{Equação}{Equações}
 
 % TODO: Conferir os dados do PDF.
 \newcommand{\disstitle}{Proposta de arquitetura orientada a serviços para um sistema de manutenção
@@ -211,15 +211,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{chapters/introducao}
-\input{chapters/sistemas-de-manutencao-inteligente}
-\input{chapters/arquiteturas-orientadas-a-servicos}
-\input{chapters/proposta-de-arquitetura}
-\input{chapters/implementacao-e-resultados}
-\input{chapters/conclusao}
+\begin{onehalfspace}
+  \input{chapters/introducao}
+  \input{chapters/sistemas-de-manutencao-inteligente}
+  \input{chapters/arquiteturas-orientadas-a-servicos}
+  \input{chapters/proposta-de-arquitetura}
+  \input{chapters/implementacao-e-resultados}
+  \input{chapters/conclusao}
+\end{onehalfspace}
 
 \bibliographystyle{abnt}
 \bibliography{bibliography/biblio}
 
 \end{document}
-
