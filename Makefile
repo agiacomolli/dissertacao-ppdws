@@ -17,7 +17,10 @@ CHAPTERS = \
   chapters/implementacao-e-resultados.tex \
   chapters/conclusao.tex
 
-IMAGES = #\
+IMAGES = \
+	images/soa-proposed-architecture.svg \
+	images/device-services-overview.svg \
+	images/uml-discovery-setup-devices.svg
 
 TABLES = #\
 
