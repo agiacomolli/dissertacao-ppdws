@@ -1,1 +1,303 @@
-\chapter{Proposta de arquitetura}
+%\chapter{Arquitetura proposta para um sistema de manutenção inteligente}
+\chapter{Arquitetura proposta}
+
+\todo[inline]{Introdução do capítulo}
+
+
+%%
+\section{Arquitetura orientada a serviços}
+
+A arquitetura proposta neste trabalho tem por objetivo a integração de sistemas de manutenção
+inteligente, dos diversos equipamentos que o utilizam além de outros componentes que auxiliam no
+funcionamento do sistema. Todos os elementos que compõem a arquitetura são abstraídos como serviços,
+o que facilita a integração, inserção e remoção de novos componentes no sistema. Para tanto, a
+especificação da arquitetura é definida utilizando os padrões \gls{SOA}. Uma visão geral das
+entidades que fazem parte da arquitetura proposta é apresentada na \cref{fig:soa-proposed-architecture}.
+
+\includefigure
+    {images/soa-proposed-architecture}
+    {Arquitetura orientada a serviços proposta para integração de um sistema de manutenção
+        inteligente.}
+    {fig:soa-proposed-architecture}
+
+Como observado na \cref{fig:soa-proposed-architecture}, a arquitetura proposta é composta de
+diversas entidades. Cada entidade tem uma função específica no sistema e o acesso às suas
+funcionalidades é realizado através de serviços. A seguir, para melhor entendimento, todos
+componentes da arquitetura são detalhados.
+
+
+%%%
+\subsection{Serviço}
+
+No contexto da arquitetura proposta neste trabalho, um serviço é um componente de software que
+encapsula uma funcionalidade acessível através dos padrões definidos pela tecnologia \gls{SOA}.
+Todos os componentes da arquitetura são definidos como serviços, possibilitando que a interação
+entre eles seja feita de forma transparente. Como parte do padrão \gls{SOA}, serviços podem ser
+descobertos e utilizados por clientes que desejam executar uma determinada tarefa. Também é possível
+a definição de serviços mais especializados com base em outros serviços, praticando a técnica da
+composição de serviços. Estas características se tornam inerentes à proposta, devido a utilização de
+\gls{SOA}.
+
+
+%%%
+\subsection{Dispositivo}
+
+Um dispositivo é um componente de software utilizado para encapsular um elemento da aplicação.
+Normalmente é denominado dispositivo lógico, por ser executado em um dispositivo físico,
+disponibilizando serviços para acesso à funcionalidades previamente definidas. As funcionalidades
+podem ser relativas ao dispositivo físico em que o componente está executando ou outras que auxiliam
+em alguma tarefa específica não relacionada diretamente com o hardware em questão.
+
+Do ponto de vista da aplicação, os dispositivos hospedam serviços. Dentre os serviços hospedados,
+alguns estão presentes em todos os dispositivos da arquitetura. Dessa forma, uma interface mínima
+para troca de informações entre as entidades do sistema é definida, facilitando a entrada de novos
+dispositivos.
+
+
+%%%
+\subsection{Aplicação orientada a serviços}
+
+A aplicação orientada a serviços nada mais é do que o resultado da utilização dos diversos serviços
+propostos na arquitetura. Através da composição ou utilização direta dos serviços de uma forma
+coordenada, a aplicação é construída. De um modo minimalista, a aplicação pode ser vista como a
+interação progressiva de funcionalidades simples provenientes de serviços básicos, resultando em um
+componente complexo de software. Visto que o produto final da composição dos elementos do sistema
+não é definido \textit{a priori}, a aplicação final pode resultar em
+qualquer construção ou interação entre os componentes.
+
+%%%
+\subsection{Implantador de serviços}
+
+Como forma de implantar novos serviços nos dispositivos físicos encontrados na rede, é necessário um
+software dedicado para esta tarefa. O implantador disponibiliza formas de alterar os dispositivos na
+rede, seja enviando novos serviços para serem executados ou modificando as informações do
+dispositivo. Como cada dispositivo do sistema possui alguns serviços padrão, entre eles o que
+permite o recebimento de novos serviços para serem executados no dispositivo, a integração das
+funcionalides do implantador pode ser feita de forma facilitada.
+
+
+%%%
+\subsection{Explorador de dispositivos}
+
+O explorador de dispositivos é um componente de software utilizado na análise e configuração dos
+dispositivos na aplicação orientada a serviços. De certa forma, também é utilizado na resolução de
+problemas encontrados durante a execução dos componentes do sistema. O explorador se enquadra na
+categoria de \gls{IHM}, possibilitando que a rede seja mapeada em busca de dispositivos ou serviços
+de forma interativa. Além disso, é possível obter o estado dos dispositivo, visulizar dados ou
+testar os serviços encontrados.
+
+A implantação de novos serviços em um dispositvo físico também pode ser feita utilizando o
+explorador. Ao buscar pelos dispositivos do sistema, também são encontrados os serviços que cada um
+disponibiliza. Com os serviços básicos oferecidos por todos os dispositivos da rede, como o de
+recebimento de novos serviços, o explorador pode também pode enviar e configurar novos serviços no
+dispositivo.
+
+A topologia dos componentes do sistema também pode ser obtida com o explorador. Em um sistema
+\gls{SOA} todos os serviços estão localizados no mesmo nível hierárquico. Essa característica pode
+ser considerada positiva do ponto de vista de integração e reuso de serviços. Em contrapartida, ao
+definir níveis hierárquicos entre componentes de um mesmo dispositivo físico, fica difícil
+estabelecer uma hierarquia lógica para representação das diferentes partes desse dispositivo.
+Contudo, ao aplicar um identificador único para cada dispositivo do sistema, torna-se possível
+definir e estabelecer uma relação hierárquica. O identificador pode ser uma \gls{URI}, por exemplo,
+onde cada parte do endereço define um nível hierárquico do dispositivo.
+
+
+%%%
+\subsection{Base de dados}
+
+A base de dados é utilizada para armazenar os dados relativos às análises de degradação dos
+componentes do sistema de manutenção inteligente. Isso também inclui os dados de treinamentos de
+cada equipamento e as análises intermediárias que são utilizadas para gerar o valor de confiança do
+equipamento. Dessa forma, toda a informação dos componentes do sistema que estão sob o monitoramento
+de degradação são armazenadas em um local centralizado.
+
+Por ser defina como um componente \gls{SOA}, o acesso aos dados é feito através de serviços. A
+inclusão, deleção e modificação dos dados são realizadas por sreviços especializados. Um dispositivo
+remoto pode acessar a base de dados a fim de obter um histórico dos últimos valores de confiança
+calculados ou valores de testes intermediários, utilizando-os para um novo tipo de análise.
+
+
+%%%
+\subsection{Gerenciador de análise de dados}
+
+O gerenciador de análise de dados é utilizado para analisar os dados dos equipamentos sob inspeção
+pelo \gls{IMS}. Nele estão contidos os algoritmos para análise, onde a interface de acesso é
+oferecida através de serviços. Definida uma ferramenta para análise de determinado equipamento, o
+gerenciador obtém os dados da base de dados e executa a ferramenta selecionada. A partir dos
+resultados, novos dados são gerados, os quais são inseridos na base de dados do equipamento em
+análise\todo{Precisa ser finalizada.}.
+
+
+%%%
+\subsection{Repositório de serviços}
+
+O repositório de serviços é uma entidade que armazena os dispositivos lógicos e seus serviços, os
+quais podem ser obtidos dinamicamente e implantados em dispositivos físicos. Essa entidade pode
+estar localizada na rede local ou remota, com acesso disponível para várias aplicações. Dessa forma,
+uma nova aplicação, isolada de outra já existente, pode ser construída com o reúso de componentes
+obtidos de um repositório de serviços compartilhado pelas duas. Esta abordagem também permite o
+compartilhamento de uma base de dados de componentes lógicos entre aplicações.
+
+
+%%
+\section{Casos de uso da arquitetura proposta}
+
+\todo[inline]{Introdução da seção com definição dos atores da aplicação.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Descoberta e configuração de dispositivos}
+
+A descoberta dos dispositivos e serviços \todo{Também falar sobre os serviços?} na rede pode ser
+feita a qualquer momento utilizando o explorador de dispositivos. Cada um dos dispositivos
+encontrados é identificado e colocado em uma lista de dispositivos ativos. Também são identificados
+os serviços hospedados em cada um dos dispositivos. Dessa forma, é possível determinar quais
+dispositivos estão atualmente disponíveis na rede e quais possuem serviços que poderão ser
+utilizados em determinada funcionalidade do sistema.
+
+A geração da hierarquia de recursos encontrados na rede também é possível. Aplicando um
+identificador único para cada recurso -- uma \gls{URI}, por exemplo --, a reconstrução dos
+componentes do sistema pode ser obtida agrupando-os em classes ou categorias. O identificador é
+utilizado com intuito de definir uma topologia para a interação entre os diferentes componentes do
+sistema.
+
+\includefigure
+    {images/uml-discovery-setup-devices}
+    {Diagrama UML para descoberta e configuração de dispositivos.}
+    {fig:uml-discovery-setup-devices}
+
+\todo[inline]{Adicionar exemplo com figura ilustrativa e explicação do funcionamento. Utilizar o
+atuador elétrico e seus componentes como exemplo.}
+\todo[inline]{E a configuração de novos dispositivos?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Busca de serviços nos dispositivos}
+
+\todo[inline]{Não faz referência direta à imagem que descreve a arquitetura}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Troca dinâmica de dispositivos}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Acesso à base de dados}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definição dos dispositivos do sistema}
+
+No contexto deste trabalho, um dispositivo é a entidade lógica principal que abstrai um elemento da
+aplicação. Pode representar uma entidade física, como um sensor ou atuador, ou lógica, como uma
+máquina, composta por diversas entidades de hardware mapeadas como entidades lógicas. Cada um dos
+dispositivo hospeda serviços, representando tarefas ou funcionalidades específicas possíveis de
+serem executadas. Tanto os dispositivos, bem como os serviços por eles hospedados, podem ser
+descobertos e identificados na rede. Os dispositivos podem descobrir outros dispositivos e utilizar
+os serviços do segundo, a fim de criar um serviço composto mais complexo para execução de
+determinada tarefa. A \cref{fig:device-services-overview} ilustra a topologia utilizada neste
+trabalho, onde os clientes utilizam os serviços hospedados pelos dispositivos. Um serviço também
+pode ser considerado um cliente caso utilize de uma funcionalidade remota para prover a sua
+funcionalidade ou tarefa. Além disso, da mesma forma, um dispositivo também pode ser considerado um
+cliente, o que flexibiliza a integração entre os componentes do sistema.
+
+\includefigure
+    {images/device-services-overview}
+    {Visão geral dos clientes, dispositivos e serviços hospedados.}
+    {fig:device-services-overview}
+
+O modelo de dispositivos empregados neste estudo é apresentado na figura\todo{Incluir figura}. Nela,
+o dispositivo físico é abstraído por um dispositivo lógico, identificado por\textit{XX*}. O
+dispositivo lógico inclui alguns serviços padrão, referenciando funcionalidades que podem ser
+encontradas em todos os dispositivos presentes na arquitetura proposta. Dentre os serviços padrão,
+tem-se o serviço de implantação de novos serviços. Este serviço permite que outros serviços sejam
+adicionados ao dispositivo físico. Além disso, é possível a implantação de novos dispositivos
+lógicos, a fim de abstrair componentes da aplicação, juntamente com serviços do
+usuário\todo{Melhorar o texto com base na imagem que será incluída.}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Serviços genéricos}
+
+\todo[inline]{Falar sobre os serviços built-in.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Serviços implantados}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estudo de caso}
+
+O objeto de estudo de caso deste trabalho é uma bacada de testes
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Componentes do estudo de caso}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{IMS}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Base de dados}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Válvulas}
+
+\todo[inline]{Dispositivos devem ser informados sobre a configuração da base de dados e das
+ferramentas que serão utilizadas para análise dos dados.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ferramentas de análise de dados}
+
+\subsubsection{Módulo de manipulação dos dados}
+
+\subsubsection{Módulo de avaliação da saúde do sistema}
+
+\subsubsection{Fusão de sensores}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Serviços de clientes (?)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface de acesso aos algoritmos de manutenção inteligente}
+
+As ferramentas de análise dos sinais são distribuídas através do pacote Watchdog~Agent.
+
+\iffalse
+Funcionalidade para carregar módulos de diagnóstico nos dispositivos. As ferramentas do Watchdog
+poderiam ser estendidas e embarcadas em um arquivo JAR. As ferramentas poderiam ser enviadas para os
+dispositivos através de serviços e utilizadas localmente, sem necessidade de acesso remoto ao
+Watchdog Agent.
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estruturação da base de dados}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Armazenamento das informações}
+
+\todo[inline]{Armazenamento das informações dos dispositivos e análises de degradação.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Resultados esperados}
+
+
+\iffalse
+Dados de treinamento e teste.
+Definição de alarmes para alteração do valor de confiança.
+\fi
