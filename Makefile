@@ -20,7 +20,8 @@ CHAPTERS = \
 IMAGES = \
 	images/soa-proposed-architecture.svg \
 	images/device-services-overview.svg \
-	images/uml-discovery-setup-devices.svg
+	images/uml-discovery-setup-devices.svg \
+	images/uml-analysis-create.svg
 
 TABLES = #\
 
