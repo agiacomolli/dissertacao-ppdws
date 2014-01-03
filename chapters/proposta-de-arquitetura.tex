@@ -5,15 +5,18 @@
 
 
 %%
-\section{Arquitetura orientada a serviços}
+\section{Arquitetura orientada a serviços proposta}
 
 A arquitetura proposta neste trabalho tem por objetivo a integração de sistemas de manutenção
-inteligente, dos diversos equipamentos que os utilizam além de outras entidades que auxiliam no
-funcionamento do sistema. Todos os elementos que compõem a arquitetura são abstraídos como serviços,
-o que facilita a integração, inserção e remoção de novas entidades no sistema. Para tanto, a
-especificação da arquitetura é definida utilizando os padrões \gls{SOA}. Uma visão geral das
-entidades que fazem parte da arquitetura proposta é apresentada na
-\cref{fig:soa-proposed-architecture}\todo{Alterar figura}.
+inteligente, dos diversos equipamentos que precisam ser monitorados, além de outras entidades que
+auxiliam no funcionamento do sistema. A troca de informações entre todos os elementos que compõem a
+arquitetura é abstraída na forma de serviços, o que facilita a integração, inserção e remoção de
+novas entidades no sistema. Dessa forma, a especificação da arquitetura é definida utilizando os
+padrões \gls{SOA}. Uma visão geral das entidades que fazem parte da arquitetura proposta é
+apresentada na \cref{fig:soa-proposed-architecture}\todo{Alterar figura. A aplicação SOA deve
+englobar mais entidades}. Na figura, nota-se que cada entidade tem uma função específica no sistema
+e o acesso às suas funcionalidades é realizado através de serviços. A seguir, para melhor
+entendimento, todos os elementos serão detalhados.
 
 \includefigure
     {images/soa-proposed-architecture}
@@ -21,147 +24,142 @@ entidades que fazem parte da arquitetura proposta é apresentada na
         inteligente.}
     {fig:soa-proposed-architecture}
 
-Como observado na \cref{fig:soa-proposed-architecture}, a arquitetura proposta é composta de
-diversas entidades. Cada entidade tem uma função específica no sistema e o acesso às suas
-funcionalidades é realizado através de serviços. A seguir, para melhor entendimento, todos os
-elementos serão detalhados.
-
 
 %%%
 \subsection{Serviço}
 
-No contexto da arquitetura proposta neste trabalho, um serviço é um componente de software que
+No contexto da arquitetura proposta neste trabalho, serviço é um componente de software que
 encapsula uma funcionalidade acessível através dos padrões definidos pela tecnologia \gls{SOA}.
-Todos os componentes da arquitetura são definidos como serviços, possibilitando que a interação
-entre eles seja feita de forma transparente. Como parte do padrão \gls{SOA}, serviços podem ser
-descobertos e utilizados por clientes que desejam executar uma determinada tarefa. Também é possível
-a definição de serviços mais especializados com base em outros serviços, praticando a técnica da
-composição de serviços. Estas características se tornam inerentes à proposta, devido a utilização do
-padrão \gls{SOA}.
+Todos os componentes da arquitetura expõem as suas funcionalidades na forma de serviços,
+possibilitando que a interação entre eles seja feita de forma transparente. Como parte do padrão
+\gls{SOA}, serviços podem ser descobertos e utilizados por clientes que desejam executar uma
+determinada tarefa. Neste contexto, também é possível a definição de serviços mais especializados
+com base em outros serviços, praticando a técnica da composição de serviços. Estas características
+se tornam inerentes à proposta, devido a utilização do padrão \gls{SOA}.
 
 
 %%%
 \subsection{Dispositivo}
 
-Um dispositivo é um componente de software utilizado para encapsular um elemento da aplicação.
-Normalmente é denominado dispositivo lógico, por ser executado em um dispositivo físico, que
+Um dispositivo é um componente de software utilizado para encapsular um elemento físico da aplicação
+proposta. Por ser executado em um dispositivo físico, o componente é denominado dispositivo lógico e
 disponibiliza serviços para acesso à funcionalidades previamente definidas. As funcionalidades podem
 ser relativas ao dispositivo físico em que o componente está executando ou outras que auxiliam em
 alguma tarefa específica não relacionada diretamente com o hardware hospedeiro.
 
-Do ponto de vista da aplicação, os dispositivos hospedam serviços. Dentre os serviços hospedados,
-alguns estão presentes em todos os dispositivos da arquitetura. Dessa forma, uma interface mínima
-para troca de informações entre as entidades do sistema é definida, facilitando a entrada de novos
-dispositivos\todo{Explicar melhor os serviços da interface compartilhada}.
+Do ponto de vista da aplicação, os dispositivos são entidades que hospedam serviços. Dentre os
+serviços hospedados, alguns estão presentes em todos os dispositivos da arquitetura, servindo de
+base para a comunicação entre todos os elementos desta classe. Dessa forma, conhecendo os serviços
+básicos, uma interface mínima para troca de informações entre as entidades do sistema é definida,
+facilitando a inserção de novos dispositivos.
+
+Além dos serviços base, outros podem ser executados no dispositivo. A arquitetura permite o envio de
+novos serviços para os dispositivos do sistema. O dispositivo recebe o novo serviço, que possui as
+mesmas funcionalidades de um serviço padrão, e o carrega para ser executado normalmente.
 
 
 %%%
 \subsection{Aplicação orientada a serviços}
 
-A aplicação orientada a serviços nada mais é do que o resultado da utilização dos diversos serviços
-propostos na arquitetura. Através da composição ou utilização direta dos serviços de uma forma
-coordenada, a aplicação é construída. De um modo minimalista, a aplicação pode ser vista como a
-interação progressiva de funcionalidades simples provenientes de serviços básicos, resultando em um
-componente complexo de software. Visto que o produto final da composição dos elementos do sistema
-não é definido \textit{a priori}, a aplicação final pode resultar em qualquer construção ou
-interação entre os componentes.
-
-%%%
-\iffalse
-\subsection{Implantador de serviços}
-
-Como forma de implantar novos serviços nos dispositivos físicos encontrados na rede, é necessário um
-software dedicado para esta tarefa. O implantador disponibiliza formas de alterar os dispositivos na
-rede, seja enviando novos serviços para serem executados ou modificando as informações do
-dispositivo. Como cada dispositivo do sistema possui alguns serviços padrão, entre eles o que
-permite o recebimento de novos serviços para serem executados no dispositivo, a integração das
-funcionalidades do implantador pode ser feita de forma facilitada.
-\fi
-
+A \todo{Alterar texto para englobar mais entidades da arquitetura}aplicação orientada a serviços
+nada mais é do que o resultado da utilização dos diversos serviços propostos na arquitetura. Através
+da composição ou utilização direta dos serviços de uma forma coordenada, a aplicação é construída.
+De um modo minimalista, a aplicação pode ser vista como a interação progressiva de funcionalidades
+simples provenientes de serviços básicos, resultando em um componente complexo de software. Visto
+que o produto final da composição dos elementos do sistema não é definido \textit{a priori}, o
+resultado da aplicação pode ser qualquer construção ou interação entre os componentes.
 
 
 %%%
 \subsection{Gerenciador de dispositivos}
 
-O Gerenciador de Dispositivos \todo{Enviar novos comportamentos para um grupo de dispositivos.} é um
-componente de software utilizado para obter a lista dos dispositivos encontrados na aplicação
-orientada a serviços. A entidade também possibilita configurar os dispositivos de forma individual
-ou em grupo. Como os dispositivos são entidades que mapeiam funcionalidades dos dispositivos físicos
-encontrados em um sistema de manutenção inteligente, o gerenciador pode obter a lista de sensores do
+Como o nome sugere, o Gerenciador de Dispositivos é um componente de software utilizado para
+gerenciar os dispositivos da arquitetura proposta. A configuração ou obtenção da lista dos
+dispositivos na aplicação orientada a serviços são exemplos de funcionalidades do gerenciador. Como
+os dispositivos são entidades que mapeiam funcionalidades dos dispositivos físicos encontrados em um
+sistema de manutenção inteligente, o gerenciador pode, por exemplo, obter a lista de sensores do
 equipamento e configurar alguns parâmetros, como a taxa de atualização dos dados dos sensores.
 Também é possível definir comportamentos adicionais para o caso do equipamento estar operando em
-diferentes níveis de degradação. Os diferentes comportamentos podem ser utilizados dependendo dos
-resultados obtidos com a análise dos dados e da saúde do equipamento.
+diferentes níveis de degradação. Os diferentes comportamentos podem ser utilizados quando há
+necessidade de operar o equipamento em condições onde manter os níveis de degradação estáveis é mais
+importante do que a operação a pleno. Portanto, pode-se manter o equipamento funcionando até que uma
+manutenção \textit{in loco} possa ser realizada.
 
-A topologia dos componentes do sistema também pode ser obtida com esta entidade. Em um sistema
-\gls{SOA} todos os serviços estão localizados no mesmo nível hierárquico. Essa característica pode
-ser considerada positiva do ponto de vista de integração e reuso de serviços. Em contrapartida, ao
-definir níveis hierárquicos entre componentes de um mesmo dispositivo físico, a complexidade para o
-estabelecimento de uma hierarquia lógica para representação das diferentes partes desse dispositivo
-aumenta. Contudo, ao aplicar um identificador único para cada dispositivo do sistema, torna-se
-possível definir e estabelecer uma relação hierárquica. O identificador pode ser uma \gls{URI}, por
-exemplo, onde cada parte do endereço é responsável pela definição de um dos níveis hierárquicos.
+Grupos de dispositivos podem ser criados e gerenciados. O Gerenciador de Dispositivos permite a
+criação de grupos, a fim de facilitar a alteração simultânea de vários dispositivos. Supondo que a
+aplicação é inerentemente escalável, o número de dispositivos tente a aumentar, o que dificulta o
+gerenciamento ou configuração de dispositivos similares. Considerando que as configurações aplicadas
+a uma mesma classe de dispositivos é muito parecida, o gerenciador permite que um grupo receba os
+mesmos parâmetros, automatizando o processo de customização dos dispositivos.
 
-De certa forma, o Gerenciador de Dispositivos também pode ser utilizado na resolução de problemas
-encontrados durante a execução dos componentes do sistema. A entidade se enquadra na categoria de
-\gls{IHM}, possibilitando que a rede seja mapeada em busca de dispositivos ou serviços de forma
-interativa. Além disso, é possível obter o estado dos dispositivo, visualizar dados ou testar os
-serviços encontrados.
+Outra funcionalidade que o gerenciador provê é a obtenção da topologia dos componentes do sistema.
+Em uma arquitetura \gls{SOA} todos os serviços estão localizados no mesmo nível hierárquico. Essa
+característica pode ser considerada positiva do ponto de vista de integração e reuso de serviços. Em
+contrapartida, ao definir níveis hierárquicos entre componentes de um mesmo dispositivo físico, a
+complexidade para o estabelecimento de uma hierarquia lógica para representação das diferentes
+partes desse dispositivo aumenta. Contudo, ao aplicar um identificador único para cada dispositivo,
+ou parte de dispositivo, do sistema, torna-se possível definir e estabelecer uma relação
+hierárquica. O identificador pode ser uma \gls{URI}, por exemplo, onde cada parte do endereço se
+refere a um dos níveis hierárquicos.
+
+O Gerenciador de Dispositivos também é utilizado na resolução de problemas encontrados durante a
+execução dos componentes do sistema. A entidade se enquadra na categoria de \gls{IHM},
+possibilitando que a rede seja mapeada em busca de dispositivos ou serviços de forma interativa.
+Além disso, é possível obter o estado dos dispositivo, visualizar dados ou testar os serviços
+encontrados.
 
 
 %%%
 \subsection{Gerenciador de análises}
 
 O Gerenciador de Análises é utilizado para definir o plano que será aplicado a determinado
-equipamento com vista a obter os níveis de degradação. Através desta entidade, pode-se selecionar e
-definir a ordem de execução das ferramentas de análise de dados em um plano a ser executado em
-intervalos de tempo definidos. Os planos podem ser gerenciados, possibilitando alteração e/ou
-exclusão.
+equipamento, ou grupo de equipamentos, \todo{Em ou com?}com vista a obter os níveis de degradação.
+Nesta entidade, é possível selecionar e definir a ordem em que serão executadas as ferramentas de
+análise de dados através de um plano. O gerenciador permite o agendamento dos planos e a execução
+periódica em intervalos de tempo. Os planos também podem ser gerenciados, possibilitando alteração
+e/ou exclusão.
 
-No plano também são definidos os comportamentos a serem adotados com base nos valores de degradação
-obtidos. O gerenciador obtém os comportamentos previamente definidos para o equipamento a ser
-analisado podendo mapeá-los para diferentes níveis de degradação. Dessa forma, o equipamento pode
-ser adaptado a diferentes condições, evitando o aumento da degradação até que uma manutenção possa
-ser realizada.
+No plano são definidos os comportamentos a serem adotados com base nos valores de degradação do
+equipamento. O gerenciador obtém os comportamentos previamente definidos para o equipamento a ser
+analisado, os quais podem ser mapeados pelo usuário para diferentes níveis de degradação. Dessa
+forma, o equipamento pode ser adaptado a diferentes condições, por exemplo, evitando o aumento da
+degradação até que uma manutenção possa ser realizada.
 
 Esta entidade também coordena as análises realizadas em um grupo de equipamentos similares. O
 processo de obtenção dos valores de confiança de um conjunto de equipamentos pode ser simplificado
-pelo fato de que, se são similares, os níveis de degradação se aproximam. Dessa maneira, é possível
-elaborar um plano de análise que seja aplicável a vários equipamentos.
+pelo fato de que, se são similares, o nível de degradação de um equipamento pode ser aproximado para
+o nível de degradação do grupo. Dessa maneira, é possível elaborar um plano de análise que seja
+aplicável a vários equipamentos.
 
 \todo[inline]{Utilização da base de dados para armazenamento dos planos.}
 
 
 %%%
-\subsection{Ferramenta de análise}
+\subsection{Analisador de dispositivos}
 
-\todo[inline]{Melhorar o título da seção.}
+O Analisador de Dispositivos concentra todas as ferramentas necessárias para a realização da análise
+dos dados de determinado dispositivo. A entidade opera com base nos planos criados e agendados pelo
+\todo{Operador do sistema?}usuário no Gerenciador de Análises. De posse do plano, o analisador
+executa as análises utilizando os algoritmos necessários para obtenção do resultado esperado. A
+execução de um mesmo plano é feita de forma automática.
 
-Para a análise dos dados dos dispositivos, a arquitetura conta com a Ferramenta de Análise. A
-entidade executa os planos criados e agendados no Gerenciador de Análises. É no analisador que as
-ferramentas de análise de dados estão contidas. Cada um dos algoritmos também pode ser acessado
-independentemente via serviço.
-
-Os dados utilizados em cada análise são obtidos da base de dados.
-
-\iffalse
-O gerenciador de análise de dados é utilizado para analisar os dados dos equipamentos sob inspeção
-pelo \gls{IMS}. Nele estão contidos os algoritmos para análise, onde a interface de acesso é
-oferecida através de serviços. Definida uma ferramenta para análise de determinado equipamento, o
-gerenciador obtém os dados da base de dados e executa a ferramenta selecionada. A partir dos
-resultados, novos dados são gerados, os quais são inseridos na base de dados do equipamento em
-análise\todo{Precisa ser finalizada.}.
-\fi
+O analisador permite verificar quais planos estão sendo executados ou na fila para execução. Sempre
+que um novo plano é encontrado, o analisador o coloca na fila de execução, a fim de que seja
+finalizado o mais breve possível. A entidade permite o monitoramento destes planos pelo usuário, o
+qual pode verificar se a execução está de acordo com o esperado.
 
 
 %%%
 \subsection{Base de dados}
 
-A base de dados é utilizada para armazenar os dados relativos às análises de degradação dos
-equipamentos. Isso também inclui os dados de treinamentos de cada equipamento e as análises
-intermediárias que são utilizadas para gerar os valores de confiança. Dessa forma, toda as
-informações dos componentes do sistema que estão sob o monitoramento de degradação são armazenadas
-na base de dados.
+A base de dados é utilizada para armazenar todos os dados relativos à aplicação. Desde os dados
+obtidos nas análises de degradação dos equipamentos como também os planos de análise agendados pelo
+usuário. A base centraliza as informações, mas não necessariamente faz com que a aplicação seja
+centralizada. Nada impede a utilização de diferentes \todo{Remotas e locais? Alterar figura}bases de
+dados e o compartilhamento de informações entre as entidade do sistema. Por exemplo, o armazenamento
+dos dados de treinamento de um equipamento, necessário para obtenção do nível de degradação, pode
+ser feito em diferentes bases de dados. O Analisador de Dispositivos pode combinar estas
+informações, a fim de melhorar o resultado esperado.
 
 Por ser defina como um componente \gls{SOA}, o acesso aos dados é feito através de serviços. A
 inclusão, deleção e modificação de dados são realizadas por serviços especializados. Um dispositivo
@@ -170,12 +168,8 @@ calculados ou valores de testes intermediários para determinado equipamento, ut
 novo tipo de análise.
 
 
-
 %%%
 \subsection{Repositório de serviços}
-
-\todo[inline]{Falar sobre os comportamentos que podem ser adotados para cada dispositivo. Os
-comportamentos podem ser armazenados como serviços. Também pode armazenar os dados de treinamentos.}
 
 O repositório de serviços é uma entidade que armazena os dispositivos lógicos e seus serviços, os
 quais podem ser obtidos dinamicamente e implantados em dispositivos físicos. Esta entidade pode
