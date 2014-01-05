@@ -2284,9 +2284,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7601332"
-     inkscape:cx="194.45043"
-     inkscape:cy="149.06114"
+     inkscape:zoom="2.4892042"
+     inkscape:cx="252.57188"
+     inkscape:cy="149.54152"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:window-width="1366"
@@ -3575,18 +3575,18 @@
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:center;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:middle;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-       x="237.74141"
-       y="961.84595"
+       x="238.07539"
+       y="961.0979"
        id="text33466"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="237.74141"
-         y="961.84595"
-         id="tspan33474">Ferramenta de</tspan><tspan
+         x="238.07539"
+         y="961.0979"
+         id="tspan6982">Analisador de</tspan><tspan
          sodipodi:role="line"
-         x="237.74141"
-         y="971.84595"
-         id="tspan4499">análise</tspan></text>
+         x="238.07539"
+         y="971.0979"
+         id="tspan6986">dispositivos</tspan></text>
     <path
        style="color:#000000;fill:none;stroke:#000000;stroke-width:2.50000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="m 61.480399,896.70668 264.847071,0"

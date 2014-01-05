@@ -11,7 +11,7 @@
 \usepackage{cleveref}
 \usepackage[acronym,nonumberlist]{glossaries}
 \usepackage{setspace}
-\usepackage[all]{hypcap}
+\usepackage{caption}
 \usepackage[portuguese,shadow,textsize=footnotesize,backgroundcolor=yellow,bordercolor=black!50,
     linecolor=red]{todonotes}
 
@@ -85,7 +85,7 @@
 %%
 % Comando para inserção de uma imagem.
 \newcommand{\includefigure}[3]{%
-  \begin{figure}[H]
+  \begin{figure}[h]
     \centering
     \includegraphics{#1}
     \caption{#2}
@@ -96,9 +96,9 @@
 %%
 % Comando para inserção de uma imagem temporária.
 \newcommand{\includefiguretmp}[2]{%
-  \begin{figure}[H]
+  \begin{figure}[h]
     \centering
-    \rule{10cm}{5cm}
+    \rule{12cm}{6cm}
     \caption{#1}
     \label{#2}
   \end{figure}

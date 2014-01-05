@@ -19,10 +19,10 @@ e o acesso às suas funcionalidades é realizado através de serviços. A seguir
 entendimento, todos os elementos serão detalhados.
 
 \includefigure
-    {images/soa-proposed-architecture}
-    {Arquitetura orientada a serviços proposta para integração de um sistema de manutenção
-        inteligente.}
-    {fig:soa-proposed-architecture}
+  {images/soa-proposed-architecture}
+  {Arquitetura orientada a serviços proposta para integração de um sistema de manutenção
+      inteligente.}
+  {fig:soa-proposed-architecture}
 
 
 %%%
@@ -108,6 +108,9 @@ possibilitando que a rede seja mapeada em busca de dispositivos ou serviços de 
 Além disso, é possível obter o estado dos dispositivo, visualizar dados ou testar os serviços
 encontrados.
 
+\todo[inline]{Falar sobre os valores de confiança. É interessante que o gerenciador de dispositivos
+forneça os históricos da saúde do equipamento.}
+
 
 %%%
 \subsection{Gerenciador de análises}
@@ -152,14 +155,15 @@ qual pode verificar se a execução está de acordo com o esperado.
 %%%
 \subsection{Base de dados}
 
-A base de dados é utilizada para armazenar todos os dados relativos à aplicação. Desde os dados
-obtidos nas análises de degradação dos equipamentos como também os planos de análise agendados pelo
-usuário. A base centraliza as informações, mas não necessariamente faz com que a aplicação seja
-centralizada. Nada impede a utilização de diferentes \todo{Remotas e locais? Alterar figura}bases de
-dados e o compartilhamento de informações entre as entidade do sistema. Por exemplo, o armazenamento
-dos dados de treinamento de um equipamento, necessário para obtenção do nível de degradação, pode
-ser feito em diferentes bases de dados. O Analisador de Dispositivos pode combinar estas
-informações, a fim de melhorar o resultado esperado.
+A entidade Base de Dados é utilizada como uma interface para um banco de dados. O software encapsula
+funcionalidades para  armazenar todos os dados relativos à aplicação. Desde os dados obtidos nas
+análises de degradação dos equipamentos como também os planos de análise agendados pelo usuário. A
+base centraliza as informações, mas não necessariamente faz com que a aplicação seja centralizada.
+Nada impede a utilização de diferentes \todo{Remotas e locais? Alterar figura}bases de dados e o
+compartilhamento de informações entre as entidade do sistema. Por exemplo, o armazenamento dos dados
+de treinamento de um equipamento, necessário para obtenção do nível de degradação, pode ser feito em
+diferentes bases de dados. O Analisador de Dispositivos pode combinar estas informações, a fim de
+melhorar o resultado esperado.
 
 Por ser defina como um componente \gls{SOA}, o acesso aos dados é feito através de serviços. A
 inclusão, deleção e modificação de dados são realizadas por serviços especializados. Um dispositivo
@@ -180,7 +184,7 @@ compartilhamento de uma base de dados de componentes lógicos entre aplicações
 
 
 %%
-\section{Casos de uso da arquitetura proposta}
+\section{Casos de uso para a arquitetura proposta}
 
 Os elementos que compõem a arquitetura proposta encaixam-se em alguns casos de uso no contexto de um
 sistema de manutenção inteligente. Os casos de uso propostos a seguir exemplificam a interação do
@@ -193,43 +197,205 @@ de amostragem dos equipamentos.\todo{Introdução da seção com definição dos
 \subsection{Descoberta e configuração de dispositivos}
 
 A descoberta dos dispositivos e serviços na rede pode ser feita a qualquer momento utilizando o
-explorador de dispositivos. Cada um dos dispositivos encontrados é identificado e colocado em uma
+Gerenciador de Dispositivos. Cada um dos dispositivos encontrados é identificado e colocado em uma
 lista de dispositivos ativos. Também são identificados os serviços hospedados em cada um dos
 dispositivos. Dessa forma, é possível determinar quais dispositivos estão atualmente disponíveis na
-rede e quais possuem serviços que poderão ser utilizados em determinada funcionalidade do sistema.
+rede e quais possuem serviços que poderão ser utilizados para suprir e executar determinada
+funcionalidade do sistema.
 
-A geração da hierarquia de recursos encontrados na rede também é possível. Aplicando um
-identificador único para cada recurso -- utilizando uma \gls{URI}, por exemplo --, a reconstrução
-dos componentes do sistema pode ser obtida agrupando-os em classes ou categorias. O identificador é
-utilizado para auxiliar a definir uma topologia para a interação entre os diferentes componentes do
-sistema.
+A geração da hierarquia de recursos encontrados na rede também é possível. Ao aplicar um
+identificador único para cada recurso, a reconstrução dos componentes do sistema pode ser obtida
+agrupando-os em classes ou categorias. O identificador é utilizado para auxiliar a definir uma
+topologia dos subdispositivos encontrados em um dispositivo lógico, facilitando a visualização e
+configuração dos componentes.
 
 O diagrama \gls{UML} de casos de uso para descoberta e configuração de dispositivos é apresentado na
-\cref{fig:uml-discovery-setup-devices}. O diagrama apresenta os casos de uso do explorador de
-dispositivos e a sua interação com os dispositivos que fazem parte da arquitetura orientada a
-serviços. Em vias gerais, o explorador será utilizado pelo operador do sistema para descobrir os
-dispositivos da rede, obter o estado ou realizar modificações.
+\cref{fig:uml-discovery-setup-devices}. São ilustradas as interações que o operador do sistema pode
+realizar nos dispositivos utilizando o Gerenciador de Dispositivos. Em vias gerais, o gerenciador
+será utilizado pelo operador do sistema para descobrir os dispositivos da rede, obter o estado ou
+realizar modificações nestes elementos.
 
 \includefigure
-    {images/uml-discovery-setup-devices}
-    {Diagrama de casos de uso para descoberta e configuração de dispositivos.}
-    {fig:uml-discovery-setup-devices}
+  {images/uml-discovery-setup-devices}
+  {Diagrama de casos de uso para descoberta e configuração de dispositivos.}
+  {fig:uml-discovery-setup-devices}
 
-\todo[inline]{Novo diagrama com o envio de novos comportamentos para o dispositivo ou inclusão de
-informações no mesmo.}
+Ao utilizar a descoberta de dispositivos, o gerenciador analisa todos dispositivos da aplicação
+orientada a serviços. Os que forem encontrados são retornados, permitindo ao operador do sistema
+verificar se a inclusão de um novo dispositivo foi concluída com êxito. Além disso, o gerenciador
+permite obter o estado de cada elemento encontrado, o qual está relacionado ao funcionamento do
+dispositivo, se está executando corretamente ou se está pronto para operação. Outras informações
+também são obtidas utilizando os metadados. Esta funcionalidade lista dados como modelo, versão ou
+fabricante do dispositivo.
+
+Outra funcionalidade que o Gerenciador de Dispositivos disponibiliza é a obtenção da topologia da
+distribuição dos dispositivos na rede. Dispositivos e serviços no padrão \gls{SOA} sempre estão
+localizados no mesmo nível hierárquico, o que dificulta o estabelecimento de uma hierarquia entre os
+componentes. No entanto, pode-se definir uma hierarquia utilizando para isso o identificador de cada
+dispositivo. O identificador -- uma \gls{URI}, por exemplo -- é único para cada dispositivo da
+aplicação, possibilitando que, na inclusão de subdispositivos, o identificador seja estendido para
+englobá-los. Além disso, pode-se criar classes e subclasses de dispositivos, organizando
+funcionalidades comuns para determinado dispositivo. A visualização das duas topologias possíveis é
+apresentada na \cref{fig:device-topology-visualization}. À esquerda, os dispositivos estão
+distribuídos como são encontrados pelo Gerenciador de Dispositivos. Na direita, o gerenciador
+reconstrói a topologia baseado nos identificadores únicos de cada dispositivo. Nota-se que os
+dispositivos, que na primeira topologia estão no mesmo nível hierárquico, agora são encontrados como
+subdispositivos de outros dispositivos.
+
+\includefiguretmp
+  {Possíveis visualizações da topologia dos dispositivos.}
+  {fig:device-topology-visualization}
+
+Tomando de exemplo a \cref{fig:device-topology-visualization}, os identificadores de cada
+dispositivo poderiam ser construídos com um dispositivo pai englobando outros dois subdispositivos.
+Tanto o dispositivo pai como os subdispositivos estão definidos dentro de escopos ou áreas e essas
+informações estão incluídas no identificador. A \cref{fig:device-topology-identification} demonstra
+os identificadores utilizados para cada dispositivo, obedecendo os níveis hierárquicos\todo{Terminar
+de falar sobre a figura, mencionando os componentes utilizados no exemplo (atuador elétrico)}.
+
+\includefiguretmp
+  {Identificação dos dispositivos na topologia hierárquica.}
+  {fig:device-topology-identification}
+
+Cada dispositivo pode armazenar diferentes comportamentos. Os comportamentos dizem respeito ao modo
+de operação que o equipamento vai assumir perante determinada situação, sendo definidos pelo
+operador do sistema. São diferentes tarefas que podem ser executadas pelo equipamento em situações
+específicas. No caso de verificação de degradação excessiva de um equipamento, é possível alterar o
+comportamento de funcionamento para outro que priorize a manutenção do estado de saúde atual,
+evitando o aumento da degradação. Dessa forma, o equipamento pode operar por um período maior de
+tempo até que uma manutenção possa ser realizada. Contudo, medidas que alteram o comportamento podem
+levar a perda de desempenho nas tarefas executadas. A \cref{fig:device-send-behavior} ilustra o
+envio de novos comportamentos pelo operador do sistema para um dispositivo. O dispositivo mantém uma
+lista de comportamentos e seleciona qual o mais adequado para a situação corrente. A situação é
+definida pelo nível de saúde obtido através das análises de dados e representa a degradação de todo
+ou parte do equipamento.
+
+\includefiguretmp
+  {Envio de comportamentos para o dispositivo.}
+  {fig:device-send-behavior}
 
 
 %%%
-%\subsection{Acesso à base de dados}
+\subsection{Envio de dados de treinamento}
 
+Para obter o índice de degradação dos equipamento, as ferramentas de análise necessitam comparar os
+dados obtidos durante o processo com dados de treinamento. Dentre os dados de treinamento, emergem
+duas categorias: normal e falha. Os dados de funcionamento normal são obtidos quando o equipamento
+está funcionando normalmente, enquanto que os dados de falha são obtidos quando o equipamento está
+funcionando com algum tipo de degradação. A aquisição de ambos os tipos de dados são feitas em lugar
+apropriado, tendo certeza das características de cada sinal.
+
+O envio de dados de treinamento é feito através do Gerenciador de Dispositivos. O gerenciador
+permite que o operador do sistema envie os dois tipo de dados, mapeando-os para um dispositivo ou
+para um grupo de dispositivos. A \cref{fig:uml-training-data-send} apresenta os casos de uso para o
+envio de dados de treinamento a um dispositivo.
+
+\includefiguretmp
+  {Diagrama de casos de uso para envio de dados de treinamento para um dispositivo.}
+  {fig:uml-training-data-send}
+
+
+%%%
 \subsection{Gerenciamento de análises}
 
+O gerenciamento de análises é feito pelo operador do sistema utilizando a entidade Gerenciador de
+Análises. As análises são definidas em planos, os quais apresentam informações sobre o dispositivo
+analisado, quais dados serão utilizados e as ferramentas empregadas na manipulação dos dados. É
+permitido o gerenciamento dos planos, como a criação, edição ou remoção, pelo operador do sistema.
+Como os planos são armazenadas em uma base de dados, facilmente podem ser compartilhados com outras
+instâncias do Gerenciador de Análises e utilizados por outros operadores do sistema.
 
-%%%
-\subsection{Análise dos dados}
+As informações contidas em um plano de análise ditam como determinado equipamento será analisado. Em
+um primeiro momento, o operador do sistema faz a busca pelos dispositivos utilizando o Gerenciador
+de Dispositivos. Com a lista de dispositivos ativos, o Gerenciador de Análises é utilizado para
+definir as operações a serem realizadas em um equipamento específico. Preenchendo o plano de
+análise, o operador seleciona quais dados do equipamento serão utilizados e quais as ferramentas
+utilizadas para analisá-los. O plano também permite definir o intervalo de execução de cada análise
+e por quanto tempo o equipamento será analisado. O diagrama \gls{UML} de casos de uso para algumas
+funcionalidades do Gerenciador de Análises é apresentado na \cref{fig:uml-analysis-management}. A
+estrutura do plano é armazenada na entidade Base de Dados, sendo acessível para as outras entidades
+que utilizam as informações do plano.
+
+\todo[inline]{Incluir o analisador de dispositivos na figura. Neles estão armazenadas as ferramentas
+que podem ser utilizadas.}
 
 \includefigure
-    {images/uml-analysis-create}
-    {Diagrama de casos de uso para a criação e execução de análise de um equipamento pelo operador
-        do sistema.}
-    {fig:uml-analysis-create}
+  {images/uml-analysis-management}
+  {Diagrama de casos de uso para o gerenciamento de análises pelo operador do sistema.}
+  {fig:uml-analysis-management}
+
+Na construção do plano de análise, os comportamentos de cada dispositivo são obtidos e incluídos na
+execução. Os diferentes comportamentos podem ser mapeados para intervalos de resultados esperados
+das análises. Juntamente com a \cref{fig:uml-analysis-management}, a \cref{fig:device-create-plan}
+ilustra a criação de um plano de análise de dispositivo. Após obter todas as informações do
+dispositivo a ser analisado, o plano é criado pelo operador do sistema. Na criação, são definidos os
+intervalos de reexecução do plano, bem como a ordem das ferramentas utilizadas na manipulação dos
+dados.
+
+\includefiguretmp
+  {Busca de dispositivo e criação de um plano de análise.}
+  {fig:device-create-plan}
+
+\todo[inline]{Falar da análise de um grupo de dispositivos.}
+
+%%%
+\subsection{Análise dos dados do dispositivo}
+
+As análises dos equipamentos do sistema, anteriormente agendadas na ferramentas de Gerenciamento de
+Análises, são executadas pela entidade Analisador de Dispositivos. O analisador obtém os planos e os
+executa conforme programado pelo operador do sistema. Conhecendo a frequência em que cada plano deve
+ser executado, uma tarefa periódica é definida. Dessa forma, chegada a hora da reexecução de um
+plano, a tarefa se comunica com o Gerenciador de Análises e o dispara. Os possíveis casos de uso
+para a tarefa periódica são apresentados no diagrama \gls{UML} da \cref{fig:uml-device-analysis}. A
+tarefa tem a possibilidade de obter os planos de análise ativos ou selecionar diretamente um plano
+conhecido. Após a carga, a tarefa pode iniciar a execução do plano. Na execução, o Analisador de
+Dispositivos seleciona as ferramentas de análise, busca os dados do equipamento e, ao final,
+armazena os resultados na Base de Dados.
+
+\includefigure
+  {images/uml-device-analysis}
+  {Diagrama de casos de uso para a obtenção e execução das análises.}
+  {fig:uml-device-analysis}
+
+A \cref{fig:analysis-plan-execution} apresenta o fluxo de dados quando da execução de um plano de
+análise pelo Analisador de Dispositivos.
+
+\includefiguretmp
+  {Diagrama de execução de uma análise de equipamento.}
+  {fig:analysis-plan-execution}
+
+O operador do sistema também pode interagir com o Analisador de Dispositivos. O diagrama de casos de
+uso da \cref{fig:uml-analysis-monitoring} ilustra essa interação.
+
+\includefiguretmp
+  {Diagrama de casos de uso para o monitoramento da execução das análises.}
+  {fig:uml-analysis-monitoring}
+
+
+%%%
+\subsection{Modos de operação do dispositivo}
+
+Os diferentes modos de operação dos dispositivos podem ser selecionados pelo operador do sistema e
+anexados ao plano de análise. O operador define, baseado nos níveis de degradação que podem ser
+obtidos, qual o melhor comportamento que o equipamento deve assumir. Com o plano, o Analisador de
+Dispositivos determina o índice de degradação do equipamento, verificando se está nos níveis
+desejados para determinado funcionamento. Dependendo do valor obtido na análise, o analisador pode
+alterar o funcionamento do equipamento, assumindo um dos comportamentos definidos anteriormente pelo
+operador do sistema. A \cref{fig:uml-device-operation-modes} apresenta o diagrama \gls{UML} de casos
+de uso para a seleção automática dos modos de operação do dispositivo baseado no plano de análise.
+
+\includefiguretmp
+  {Diagrama de casos de uso para seleção dos modos de operação suportados pelo dispositivo.}
+  {fig:uml-device-operation-modes}
+
+
+%%%
+\subsection{Relatórios de saúde}
+
+A arquitetura proposta permite a obtenção dos relatórios de saúde dos dispositivos executando sobre
+equipamentos monitorados pelo sistema de manutenção inteligente. Como todos os dados das análises
+são armazenados na entidade Base de Dados, é possível, a qualquer momento, resgatá-los.
+
+\includefiguretmp
+  {Diagrama de casos de uso para obtenção dos relatórios de saúde do dispositivo.}
+  {fig:uml-health-device-report}

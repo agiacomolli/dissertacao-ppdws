@@ -21,7 +21,9 @@ IMAGES = \
 	images/soa-proposed-architecture.svg \
 	images/device-services-overview.svg \
 	images/uml-discovery-setup-devices.svg \
-	images/uml-analysis-create.svg
+	images/uml-analysis-management.svg \
+	images/uml-device-analysis.svg \
+	images/uml-health-device-report.svg
 
 TABLES = #\
 
@@ -63,12 +65,13 @@ endif
 images: $(IMAGES:.svg=.pdf)
 
 %.pdf: %.svg
-	@echo Convertendo $^ para $@
+	@echo Convertendo imagem $^ para $@
 	@inkscape -D $^ -A $@
 
 clean:
-	@rm -rf $(IMAGES_DIR)/*.pdf
-	@find $(OUTPUT_DIR) -type f -not -name "$(OUTPUT).pdf" | xargs rm
+	@rm -rf $(IMAGES:.svg=.pdf)
+	@find $(OUTPUT_DIR) -type f -not -name "$(OUTPUT).pdf" | xargs rm -f
 
 distclean: clean
 	@rm -rf $(OUTPUT_DIR)
+
