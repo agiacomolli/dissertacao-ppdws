@@ -10,9 +10,10 @@
 \usepackage{mathptmx}
 \usepackage{cleveref}
 \usepackage[acronym,nonumberlist]{glossaries}
+\usepackage{setspace}
+\usepackage[all]{hypcap}
 \usepackage[portuguese,shadow,textsize=footnotesize,backgroundcolor=yellow,bordercolor=black!50,
     linecolor=red]{todonotes}
-\usepackage{setspace}
 
 \setlength{\parindent}{0.7cm}
 \setlength{\parskip}{1.5pt plus0mm minus0mm}
@@ -89,6 +90,17 @@
     \includegraphics{#1}
     \caption{#2}
     \label{#3}
+  \end{figure}
+}
+
+%%
+% Comando para inserção de uma imagem temporária.
+\newcommand{\includefiguretmp}[2]{%
+  \begin{figure}[H]
+    \centering
+    \rule{10cm}{5cm}
+    \caption{#1}
+    \label{#2}
   \end{figure}
 }
 
