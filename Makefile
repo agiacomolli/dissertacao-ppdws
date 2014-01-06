@@ -21,6 +21,8 @@ IMAGES = \
 	images/soa-proposed-architecture.svg \
 	images/device-services-overview.svg \
 	images/uml-discovery-setup-devices.svg \
+	images/uml-configure-device-acquisition.svg \
+	images/uml-send-training-data.svg \
 	images/uml-analysis-management.svg \
 	images/uml-device-analysis.svg \
 	images/uml-health-device-report.svg
