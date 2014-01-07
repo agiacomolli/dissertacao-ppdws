@@ -231,13 +231,14 @@ também são obtidas utilizando os metadados. Esta funcionalidade lista dados co
 fabricante do dispositivo.
 
 Na configuração, o operador do sistema também deve informar os serviços de monitoramento dos
-sensores do equipamento para enviar os dados para a base de dados. As leituras dos sensores dos
-equipamento é baseada no conceito de produtor e consumidor. Os dados dos sensores são produzidos e
-eventos são gerados. A entidade Base de Dados é inscrita para consumir os dados dos sensores. Dessa
-forma, em intervalos de tempo definidos, o dispositivo lê o valor do sensor e dispara o evento, o
-qual é consumido por um serviço da Base de Dados. A \cref{fig:uml-configure-device-acquisition}
-apresenta o diagrama \gls{UML} de casos de uso que ilustra a configuração do dispositivo para envio
-dos dados para a Base de Dados.
+sensores do equipamento para enviar os dados à base de dados. Com as informações de acesso à base de
+dados, o dispositivo pode enviar automaticamente os dados adquiridos dos sensores. Para evitar o
+excesso de acessos à base, um montante de dados é adquirido e armazenado localmente pelo
+dispositivo. Quando o montante estiver completo, é enviado diretamente para a base de dados. É
+possibilitado ao operador do sistema configurar o número de amostras que o dispositivo irá adquirir
+para compor o conjunto de dados. A \cref{fig:uml-configure-device-acquisition} apresenta o diagrama
+\gls{UML} de casos de uso que ilustra a configuração do dispositivo para envio dos dados para a Base
+de Dados.
 
 \includefigure
   {images/uml-configure-device-acquisition}
