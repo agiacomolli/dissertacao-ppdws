@@ -8,13 +8,12 @@ ACRONYMS      = glossary/abreviaturas.tex
 SYMBOLS       = glossary/simbolos.tex
 
 CHAPTERS = \
-  chapters/resumo.tex \
-  chapters/abstract.tex \
   chapters/introducao.tex \
-  chapters/sistemas-de-manutencao-inteligente.tex \
-  chapters/arquiteturas-orientadas-a-servicos.tex \
-  chapters/proposta-de-arquitetura.tex \
-  chapters/implementacao-e-resultados.tex \
+  chapters/conceituacao-teorica.tex \
+  chapters/analise-estado-arte.tex \
+  chapters/arquiteturas-orientadas-servicos.tex \
+  chapters/arquitetura-proposta.tex \
+  chapters/implementacao-resultados.tex \
   chapters/conclusao.tex
 
 IMAGES = \
