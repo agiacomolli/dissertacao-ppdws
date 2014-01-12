@@ -6,7 +6,11 @@ uma arquitetura para um sistema de manutenção inteligente. São apresentadas a
 e a interligação entre elas através da utilização do padrão \gls{SOA}. As entidades que compõem a
 arquitetura são descritas e inseridas no contexto de uma aplicação através de casos de uso. Através
 dos casos de uso, são abordadas diferentes situações onde as entidades da arquitetura se encaixam
-para resolver algum dos problemas
+para resolver algum dos problemas.
+
+\blindtext
+
+\todo[inline]{Falar sobre o estudo de caso e programação dos experimentos.}
 
 
 %%
@@ -280,16 +284,18 @@ específicas. No caso de verificação de degradação excessiva de um equipamen
 comportamento de funcionamento para outro que priorize a manutenção do estado de saúde atual,
 evitando o aumento da degradação. Dessa forma, o equipamento pode operar por um período maior de
 tempo até que uma manutenção possa ser realizada. Contudo, medidas que alteram o comportamento podem
-levar a perda de desempenho nas tarefas executadas. A \cref{fig:device-send-behavior} ilustra o
-envio de novos comportamentos pelo operador do sistema para um dispositivo. O dispositivo mantém uma
-lista de comportamentos e seleciona qual o mais adequado para a situação corrente. A situação é
-definida pelo nível de saúde obtido através das análises de dados e representa a degradação de todo
-ou parte do equipamento.
+levar a perda de desempenho nas tarefas executadas.
+
+\iffalse
+A \cref{fig:device-send-behavior} ilustra o envio de novos comportamentos pelo operador do sistema
+para um dispositivo. O dispositivo mantém uma lista de comportamentos e seleciona qual o mais
+adequado para a situação corrente. A situação é definida pelo nível de saúde obtido através das
+análises de dados e representa a degradação de todo ou parte do equipamento.
 
 \includefiguretmp
   {Envio de comportamentos para o dispositivo.}
   {fig:device-send-behavior}
-
+\fi
 
 %%%
 \subsection{Envio de dados de treinamento}
@@ -415,3 +421,232 @@ diagrama \gls{UML} da \cref{fig:uml-health-device-report}.
   {images/uml-health-device-report}
   {Diagrama de casos de uso para obtenção dos relatórios de saúde do dispositivo.}
   {fig:uml-health-device-report}
+
+
+%%
+\section{Estudo de caso}
+
+\todo[inline]{Introdução da seção mostrando que a sistema será simulado com os dados obtidos em
+trabalhos anteriores.}
+
+
+%%%
+\subsection{Visão geral do objeto de estudo de caso}
+
+O objeto de estudo de caso deste trabalho é um conjunto atuador elétrico e válvula. Um atuador
+elétrico permite a abertura e fechamento motorizado de válvulas através da movimentação de uma
+haste. Dessa forma, válvulas são encontradas em diversas aplicações onde seja necessário o controle
+de fluxo de fluidos, como, por exemplo, água, esgoto ou petróleo. Para cada aplicação, é indicado um
+tipo diferente de válvula. Os tipos mais comuns são esfera, gaveta e
+globo~\cite{campos2006controles}.
+
+O conjunto atuador elétrico e válvula, utilizado no trabalho em questão, é utilizado para controle
+de fluxo em redes de distribuição de petróleo\todo{Modelo do atuador}. É possível a obtenção do
+torque mecânico exercido pelo atuador sobre as engrenagens de comando da haste bem como a posição do
+obturador. O acionamento do conjunto pode ser feito localmente, através de uma interface de
+programação local, sendo que todos os elementos de controle estão incorporados no próprio
+equipamento. O atuador utilizado é dito de comando inteligente, pois, além de estar instrumentado,
+possui a capacidade de detecção de alguns problemas, como sobreaquecimento, torque excessivo ou
+falta de fase.
+
+Durante o funcionamento, os valores de torque e posição da haste são armazenados em uma memória
+interna do atuador, sendo possível registrar até \num{500} operações de fechamento ou abertura. No
+entanto, as medidas obtidas pelo atuador não são suficientes para utilização em um sistema de
+detecção de falhas. Uma das causas é a baixa resolução com que os dados são adquiridos, sendo de
+\SI{1}{\newton\meter} e a cada 5\% de abertura para um fundo de escala de \SI{60}{\newton\meter}.
+Além disso, como forma de detectar facilmente o início e o fim do movimento do atuador, o torque é
+truncado para \SI{10}{\newton\meter} quando os valores forem menores que \SI{10}{\newton\meter} e,
+quando não há movimento, assume o valor de \SI{0}{\newton\meter}~\cite{lazzaretti2012avaliacao}.
+
+\includefigure
+  {images/csr6-device}
+  {Atuador elétrico modelo CSR6.}
+  {fig:csr6-device}
+
+O atuador foi montado em uma bancada de testes onde é possível a simulação das condições de desgaste
+do conjunto e a instrumentação de partes que não são verificadas por padrão. Dessa forma, na
+bancada, o atuador está instrumentado com mais três sensores, visando a obtenção dos níveis de
+vibração da estrutura. Os sensores são acelerômetros, posicionados no eixo do motor do atuador, na
+ponta do sem-fim e na pinça do freio. A \cref{fig:study-case} apresenta a bancada de testes
+utilizada no estudo de caso enquanto que a \cref{fig:sensors-localization} ilustra o posicionamento
+dos sensores instalados e a estrutura interna do atuador.
+
+\todo[inline]{Modelo do atuador elétrico no SolidWorks.}
+
+\includefiguretmp
+  %{images/study-case}
+  {Bancada de testes utilizada no estudo de caso.}
+  {fig:study-case}
+
+\includefiguretmp
+  %{images/sensors-localization}
+  {Diagrama da localização dos sensores instalados no atuador elétrico.}
+  {fig:sensors-localization}
+
+A bancada também conta com um sistema de freio a disco instalado no eixo do atuador, o que
+possibilita a simulação dos esforços mecânicos exercidos pelo fluxo de fluido durante a abertura e
+fechamento da válvula. A simulação do desgaste é feita pela troca de engrenagens com diferentes
+níveis de degradação. No total são três engrenagens, uma em estado normal e outras duas apresentando
+falha. Das engrenagens com falha, uma está desgastada e a outra possui uma parte quebrada. As três
+engrenagens utilizadas no estudo de caso são ilustradas na \cref{fig:test-gears}.
+
+\includefiguretmp
+  %{images/test-gears}
+  {Engrenagens utilizadas no estudo de caso.}
+  {fig:test-gears}
+
+As engrenagens fazem parte do conjunto de engrenagens satélite do atuador. Este conjunto é
+responsável pela transmissão do movimento do motor para a haste da válvula. A posição do conjunto de
+engrenagens satélite é apresentada na \cref{fig:sattelite-gears-location}. O sensor de torque, que
+faz parte do conjunto sem necessidade de modificação na estrutura, está acoplado ao eixo de
+acionamento do torque e também está identificado na mesma figura.
+
+\includefigure
+  {images/sattelite-gears-location}
+  {Localização das engrenagens satélite no atuador elétrico.}
+  {fig:sattelite-gears-location}
+
+
+%%%
+\subsection{Definição dos dispositivos}
+
+O conjunto utilizado como estudo de caso foi mapeado para a representação de dispositivos da
+arquitetura proposta.
+
+No contexto deste trabalho, um dispositivo é a entidade lógica principal que abstrai um elemento da
+aplicação. Pode representar uma entidade física, como um sensor ou atuador, ou lógica, como uma
+máquina, composta por diversas entidades de hardware mapeadas como entidades lógicas. Cada um dos
+dispositivo hospeda serviços, representando tarefas ou funcionalidades específicas possíveis de
+serem executadas. Tanto os dispositivos, bem como os serviços por eles hospedados, podem ser
+descobertos e identificados na rede. Os dispositivos podem descobrir outros dispositivos e utilizar
+os serviços do segundo, a fim de criar um serviço composto mais complexo para execução de
+determinada tarefa. A \cref{fig:device-services-overview} ilustra a topologia para os dispositivos
+utilizada neste trabalho. Os clientes utilizam os serviços hospedados pelos dispositivos
+diretamente. Um serviço também pode ser considerado um cliente caso utilize de uma funcionalidade
+remota para prover a sua funcionalidade ou tarefa. Além disso, da mesma forma, um dispositivo também
+pode ser considerado um cliente, o que flexibiliza a integração entre os componentes do sistema.
+
+\includefigure
+    {images/device-services-overview}
+    {Visão geral dos clientes, dispositivos e serviços hospedados.}
+    {fig:device-services-overview}
+
+\iffalse
+O modelo de dispositivos empregados neste estudo é apresentado na figura\todo{Incluir figura}. Nela,
+o dispositivo físico é abstraído por um dispositivo lógico, identificado por\textit{XX*}. O
+dispositivo lógico inclui alguns serviços padrão, referenciando funcionalidades que podem ser
+encontradas em todos os dispositivos presentes na arquitetura proposta. Dentre os serviços padrão,
+tem-se o serviço de implantação de novos serviços. Este serviço permite que outros serviços sejam
+adicionados ao dispositivo físico. Além disso, é possível a implantação de novos dispositivos
+lógicos, a fim de abstrair componentes da aplicação, juntamente com serviços do
+usuário\todo{Melhorar o texto com base na imagem que será incluída.}.
+\fi
+
+\includetable
+  {tables/device-metadata}
+  {Metadados disponíveis para configuração em cada dispositivo.}
+  {tab:device-metadata}
+
+
+\includetable
+  {tables/sensor-info}
+  {Parâmetros configuráveis dos sensores.}
+  {tab:sensor-info}
+
+
+
+%%%
+\subsection{Aquisição dos dados}
+
+Os dados foram obtidos de acordo com os trabalhos de~\cite{boesch2011deteccao} e
+\cite{faccin2011manutencao}. Segundo os autores, a aquisição dos dados foi feita através de um
+sistema desenvolvido em LabVIEW utilizando o chassis {cRIO-9104} e o módulo para aquisição dos dados
+de vibração {NI-9233}. Os dados foram coletados durante seis situações distintas, onde, para cada
+situação, foram obtidos \num{25} conjuntos de dados de abertura e \num{25} de fechamento da válvula,
+o que representa um total de \num{300} curvas de experimentos. As situações foram: utilização de
+engrenagens em perfeito estado e sem acionamento do freio mecânico; engrenagens em perfeito estado e
+acionamento do freio mecânico com pressão de \SI{1}{\bar}; engrenagens em perfeito estado e
+acionamento do freio mecânico com pressão de \SI{3}{\bar}; utilização de uma engrenagem desgastada
+sem acionamento do freio; três engrenagens desgastadas sem acionamento do freio; uma das engrenagens
+com dentes quebrados sem acionamento do freio mecânico.
+
+Os dados de cada experimento foram amostrados a uma taxa de \SI{2048}{S\per\second}. Dessa forma,
+cada conjunto de abertura ou fechamento da válvula tem duração aproximada de \SI{45}{\second}. Para
+tornar o processamento dos dados menos custoso, uma subamostragem para a taxa de
+\SI{1024}{S\per\second} foi realizada. Segundo~\cite{faccin2011manutencao}, a subamostragem dos
+dados não prejudica o resultado da análise, porém torna o processamento menos custoso.
+
+
+%%%
+\subsection{Análise de degradação}
+
+A análise de degradação do atuador é feita utilizando somente um dos três sensores citados
+anteriormente. De acordo com os trabalhos de~\cite{boesch2011deteccao} e
+\cite{faccin2011manutencao}, o acelerômetro acoplado ao eixo do motor é o que apresenta melhores
+resultados para a detecção na degradação das engrenagens do atuador. Como apresentado
+em~\cite{lazzaretti2012avaliacao}, os dados que apresentam melhores resultados para a obtenção dos
+níveis de degradação são as curvas de abertura da válvula, devido a maior força que é exercida na
+sede da válvula.
+
+Os sinais de vibração não são estacionários. Para analisá-los, obtendo as características variantes
+no tempo, técnicas de processamento de tempo e frequência são as mais indicadas. Portanto, a
+extração das características dos sinais pode ser feita utilizando \gls{WPE}. A eficácia do uso deste
+método para obtenção das características de sinais variantes no tempo é descrita no trabalho
+de~\cite{qiu2006wavelet}.
+
+Considerando a forma como os dados foram obtidos, pode-se supor que o atuador opera em três
+situações distintas: em falha, em funcionamento normal e em teste. O funcionamento em falha se
+refere à operação utilizando uma das engrenagens com dentes quebrados sem acionamento do freio
+mecânico. O modo normal é definido com a operação quando é sabido que nenhuma das engrenagens
+apresenta estado de degradação e o freio mecânico não é utilizado. Por fim, o modo de teste é aquele
+onde o equipamento está sendo analisado, a fim de determinar o nível de degradação.
+
+Os três tipos de situações definidas pela extração dos dados podem ser utilizadas para treinamento
+do equipamento. Dessa forma, como apontado em~\cite{lazzaretti2012avaliacao}, uma das forma de se
+fazer o treinamento do equipamento é utilizando o método da Regressão Logística.
+
+%%
+\section{Definição dos experimentos}
+
+Os experimentos a serem realizados tem por base validar a proposta apresentada neste trabalho.
+
+
+%%%
+\subsection{Comparação da proposta em relação aos métodos tradicionais}
+
+
+%%%
+\subsection{Comparação dos métodos em relação a escalabilidade}
+
+
+\iffalse
+%%
+\section{Definição das entidades}
+
+
+%%%
+\subsection{Gerenciador de dispositivos}
+
+
+%%%%
+\subsubsection{Dados de treinamento}
+
+\todo[inline]{Configurar o dispositivo para enviar os dados de treinamento automaticamente.}
+
+
+%%%
+\subsection{Gerenciador de análises}
+
+
+%%%
+\subsection{Analisador de dispositivos}
+
+
+%%%
+\subsection{Base de dados}
+
+\includefiguretmp
+  %{images/database-schema}
+  {Esquema utilizado na base de dados.}
+  {fig:database-schema}
+\fi
