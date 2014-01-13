@@ -1,1 +1,128 @@
 \chapter{Análise do estado da arte}
+
+\todo[inline]{Introdução do capítulo.}
+
+
+%%
+\section{Sistemas de manutenção inteligente}
+
+\todo[inline]{Introdução da seção.}
+
+O trabalho de~\cite{lee2006intelligent} introduz os conceitos de \textit{e-maintenance}, emergentes
+à época, e os elementos críticos que o compõem. Considerando que o mercado global está mais
+competitivo a cada ano, os autores afirmam que o uso de técnicas que minimizem os custos com a
+produção é de fundamental importância. Entre os custos citados, estão em destaque os que dizem
+respeito à falhas e quebras não programadas de maquinário. Também é sugerida a mudança de paradigma,
+da tradicional \emph{falha e conserto} para \emph{predição e manutenção}. Para contornar estes
+problemas, o artigo sugere o uso de técnicas computacionais, que, juntamente com o advento da
+Internet, possibilitam o monitoramento da condição dos equipamento, ao invés de somente detectar os
+equipamento em falha.
+
+As ferramentas utilizadas para o monitoramento da condição dos equipamentos também são discutidas no
+artigo de~\cite{lee2006intelligent}. Ferramentas de avaliação da condição e predição de falhas são
+analisadas, a fim de se obter um monitoramento contínuo do equipamento. Além disso, são apresentados
+os últimos avanços em relação às ferramentas utilizadas para este tipo de cenário e estudos de caso
+para validação das técnicas empregadas.
+
+Dando continuidade aos trabalhos na área de manutenção, o artigo de~\cite{muller2008concept} aponta
+que a importância da manutenção em sistemas, a fim de aumentar a disponibilidade e segurança, bem
+como a qualidade dos produtos, está em vias de crescimento. Como o artigo anterior, o trabalho
+também ilustra os conceitos de \textit{e-maintenance}, provendo uma visão geral sobre os estudos e
+desafios presentes neste campo de estudo. São apresentados os diferentes sistemas de manutenção
+disponíveis, além de uma comparação entre as diferentes características de cada um. Como pontos
+importantes, os autores veem grande potencial na adoção de novas tecnologias que auxiliem nas
+tarefas de manutenção, os quais são definidos em termos de \emph{dispositivos inteligentes}. Além
+disso, defendem a criação de padrões internacionais para integração entre os sistemas discutidos. E,
+como contribuição maior, está a proposta da organização das ações no setor, em prol do avanço dos
+estudos e definição de novos conceitos, apoiando o surgimento de uma nova disciplina.
+
+\iffalse
+Em~\cite{iung2009conceptual}, um \textit{framework} conceitual para integração entre as diferentes
+tecnologias de \textit{e-maintenance} é proposto.
+\fi
+
+No trabalho de~\cite{goncalves2009design}, a detecção de falhas em um atuador eletromecânico é feita
+através de um sistema composto por um microprocessador Microblaze sintetizado em um \gls{FPGA}. No
+\gls{FPGA}, os sinais são processados e mapas auto-organizáveis são utilizados para detecção,
+classificação e predição de falhas. O treinamento dos algoritmos é realizado em um computador
+pessoal, enquanto que o monitoramento dos sinais é feito no \gls{FPGA}. O trabalho é estendido
+em~\cite{goncalves2011desenvolvimento} com a implementação de um filtro adaptativo no \gls{FPGA}. A
+expansão é em função da comparação das técnicas utilizadas para embarque na plataforma proposta,
+onde são determinados a eficiência da identificação das falhas, a área de ocupação do \gls{FPGA} e o
+tempo de execução dos algoritmos.
+
+No trabalho de \cite{hua2013mobile}, é proposta uma arquitetura de manutenção inteligente baseada em
+agentes móveis para monitoramento das condições dos equipamentos através de um sistema que imita o
+sistema imunológico humano. Esta técnica é conhecida como sistemas imunológicos artificiais e foi
+escolhida pelo fato de que muitos processos industriais, como mineração, óleo e gás, estão
+geograficamente localizados em áreas remotas e de difícil acesso. Baseado no fato de que alocar
+equipes de profissionais para inspeção destes processos demanda tempo e custo elevados, os autores
+propõem uma arquitetura descentralizada para automatizar o processo de monitoramento das condições
+dos equipamentos. O resultado dos experimentos visam determinar o desempenho do sistema proposto em
+termos da acurácia na detecção de falhas e alocação de banda de comunicação. Os autores avaliam que
+o sistema proposto não provê somente uma ferramenta viável para detecção de falhas, mas também
+flexível e confiável com redução do uso da rede e dos recursos computacionais.
+
+
+%%
+\section{Arquiteturas orientadas a serviços}
+
+\todo[inline]{Introdução da seção.}
+
+Os desafios desta nova abordagem visam prover meios de interconexão entre dispositivos e aplicação.
+Neste contexto, vários projetos foram iniciados. O projeto
+\glsdisp{SIRENA}{SIRENA~(\glsdesc{SIRENA})}, foi a primeira iniciativa a aplicar os conceitos de
+orientação a serviços em dispositivo físicos de chão de fábrica, com foco na implementação
+distribuída de arquiteturas \gls{SOA} em ambientes heterogêneos~\cite{jammes2005service}. O projeto
+investigou os diferentes domínios de aplicação, como automotivo, residencial e telefônico. A partir
+deste projeto, diversos outros utilizaram os conceitos \gls{SOA} para integração entre equipamentos
+em infraestruturas orientadas a serviços~\cite{zeeb2007service}.
+
+Um dispositivo que possui recursos para utilização em ambientes \gls{SOA} apresenta ganhos em
+interoperabilidade, autonomia além de se tornar uma importante peça na construção da aplicação em
+que for baseado~\cite{candido2010industrial}. Dessa forma, a tecnologia empregada não só provê um
+padrão de comunicação entre os componentes do sistema, mas também adiciona a capacidade de novas
+aplicações serem construídas rapidamente mantendo a agilidade em relação às modificações impostas
+por sistemas que apresentam muitas alterações durante o ciclo de vida.
+
+O trabalho de~\cite{ribeiro2008generic} mostra o sucesso encontrado em pesquisas anteriores em
+aplicações que trocam informações na forma de serviços, escondendo a complexidade dos componentes e
+provendo interfaces limpas de comunicação. No entanto, os autores ilustram cenários onde são
+inseridas desvantagens com o uso de \gls{SOA} em sistemas altamente configuráveis, onde a
+reconfiguração dos dispositivos deve ser feita periodicamente. De acordo com o artigo, a
+periodicidade da reconfiguração dos dispositivos acontece tipicamente em ambientes heterogêneos, o
+que acarreta em perda de desempenho do sistema e alto tráfego nas redes de comunicação. Como solução
+para este problema, é apresentado um modelo de comunicação genérica que minimiza os problemas
+encontrados nestes sistemas.
+
+Também é visto em~\cite{nagorny2013engineering} que o paradigma \gls{SOA} é uma alternativa
+promissora na implementação e controle de ambientes ditos sistemas de sistemas. Sistemas de sistemas
+são coleções de tarefas ou sistemas dedicados que unem seus recursos ou aptidões para desempenhar
+determinada tarefa a fim de possibilitar a criação de um novo sistema que ofereça mais recursos e
+possibilidades de desempenhar outras tarefas mais complexas. Como mostra o trabalho, utilizando uma
+arquitetura orientada a serviços, é possível a integração de sistemas diferentes do ponto de vista
+estrutural e dinâmico, como, por exemplo, sistema de aquecimento urbano e distribuição de energia.
+Novamente, o uso e composição dos serviços existentes é feito de forma facilitada, o que contribui
+para o sucesso da aplicação.
+
+
+%%
+\section{Uso de arquiteturas orientadas a serviços em sistemas de manutenção inteligente}
+
+Nos últimos anos, a adoção de sistemas baseados em serviços na indústria está em constante
+crescimento.
+
+\todo[inline]{Introdução da seção.}
+
+O trabalho de \cite{zhao2010soabased} apresenta o desenvolvimento de uma arquitetura baseada em
+\gls{SOA} para monitoramento remoto de condição e diagnóstico de falhas em equipamentos. A
+arquitetura proposta é construída sobre o conceito de Web Services, clientes inteligentes e
+\gls{XML}. O artigo apresenta uma comparação entre programação orientada a objetos, baseada em
+componentes e \gls{SOA}, como diferentes técnicas empregadas para construção de aplicações
+distribuídas. Os autores confirmam o sucesso e vantagens no uso de \gls{SOA}, verificando a
+possibilidade de integração de diferentes recursos de software, aumentando a disponibilidade e
+escalabilidade do sistema e diminuindo o tempo de desenvolvimento.
+
+\cite{arnaiz2010information}
+
+\cite{lee2009informatics}
