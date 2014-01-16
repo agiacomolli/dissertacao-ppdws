@@ -14,6 +14,11 @@
 \usepackage{caption}
 \usepackage[portuguese,shadow,textsize=footnotesize,backgroundcolor=yellow,bordercolor=black!50,
     linecolor=red]{todonotes}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{blindtext}
+
+\definecolor{table-green}{rgb}{0.07,0.5,0.18}
 
 \setlength{\parindent}{0.7cm}
 \setlength{\parskip}{1.5pt plus0mm minus0mm}
@@ -54,7 +59,8 @@
 % Configuração do pacote para representação numérica.
 \sisetup{%
   detect-all,
-  output-decimal-marker={,}
+  output-decimal-marker={,},
+  inter-unit-product=\ensuremath{{}}
 }
 
 \newglossary{symbols}{sym}{sbl}{List of symbols}
@@ -103,6 +109,18 @@
     \label{#2}
   \end{figure}
 }
+
+%%
+% Comando para inserção de uma tabela.
+\newcommand{\includetable}[3]{%
+  \begin{table}[H]
+    \centering
+    \caption{#2}
+    \input{#1}
+    \label{#3}
+  \end{table}
+}
+
 
 %%
 % Comando para inserção de uma tabela.
@@ -227,7 +245,7 @@
   \input{chapters/introducao}
   \input{chapters/conceituacao-teorica}
   \input{chapters/analise-estado-arte}
-  \input{chapters/arquiteturas-orientadas-servicos}
+  %\input{chapters/arquiteturas-orientadas-servicos}
   \input{chapters/arquitetura-proposta}
   \input{chapters/implementacao-resultados}
   \input{chapters/conclusao}

@@ -11,7 +11,6 @@ CHAPTERS = \
   chapters/introducao.tex \
   chapters/conceituacao-teorica.tex \
   chapters/analise-estado-arte.tex \
-  chapters/arquiteturas-orientadas-servicos.tex \
   chapters/arquitetura-proposta.tex \
   chapters/implementacao-resultados.tex \
   chapters/conclusao.tex
@@ -24,7 +23,9 @@ IMAGES = \
 	images/uml-send-training-data.svg \
 	images/uml-analysis-management.svg \
 	images/uml-device-analysis.svg \
-	images/uml-health-device-report.svg
+	images/uml-health-device-report.svg \
+	images/csr6-device.svg \
+	images/sattelite-gears-location.svg
 
 TABLES = #\
 
