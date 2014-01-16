@@ -16,6 +16,10 @@ CHAPTERS = \
   chapters/conclusao.tex
 
 IMAGES = \
+	images/maintenance-strategies.svg \
+	images/data-processing-plot.svg \
+	images/confidence-value-concept.svg \
+	images/osa-cbm-model.svg \
 	images/soa-proposed-architecture.svg \
 	images/device-services-overview.svg \
 	images/uml-discovery-setup-devices.svg \

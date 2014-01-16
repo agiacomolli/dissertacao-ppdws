@@ -1,1 +1,169 @@
 \chapter{Conceituação teórica}
+
+\section{Sistemas de manutenção inteligente}
+
+Manutenção, no âmbito geral, consiste em uma série de medidas de prevenção, correção e predição de
+falhas~\cite{lee2006intelligent}. Durante o uso, equipamentos ou máquinas tendem a deteriorar e
+alterar o seu padrão de funcionamento devido a diversos fatores, como, por exemplo, desgaste,
+rachaduras, corrosão e sujeira. Nestas condições, a restauração do sistema é de suma importância,
+visto que, com o passar do tempo, podem apresentar defeitos e levar à falhas e indisponibilidades.
+De acordo com~\cite{marcal2005detectando}, manutenção pode ser definida como todas as atividades
+técnicas e organizacionais que garantam a operação das máquinas e equipamentos dentro da
+confiabilidade esperada.
+
+Tradicionalmente, são encontrados na literatura três tipos de estratégias de manutenção: corretiva,
+preventiva e preditiva~\cite{goncalves2011desenvolvimento}. A manutenção corretiva visa
+reestabelecer os sistemas danificados; a preventiva tem por objetivo manter os sistemas em
+funcionamento, realizando pequenas correções; e a manutenção preditiva tem por base o monitoramento
+do estado do sistema, detectando falhas insipientes e fornecendo subsídios para o planejamento de
+ações de prevenção ou correção. Em termos gerais, a manutenção corretiva é aplicada somente quando
+há falha e o sistema necessita de reposição de peças ou componentes para continuar operando
+corretamente, enquanto que a manutenção preventiva visa o agendamento programado de intervenções no
+sistema, afim de manter o funcionamento pelo maior tempo possível. Por outro lado, a manutenção
+preditiva tem como foco o monitoramento do sistema continuamente e, desta forma, a intervenção é
+feita somente quando necessário.
+
+Nas três estratégias, pode-se citar vantagens e desvantagens. Na manutenção corretiva, a principal
+vantagem está na dispensabilidade de realização de acompanhamentos ou inspeções no sistema. Isso
+evita a geração de custos na alocação de pessoas ou equipamentos para desempenharem tarefas de
+verificação do sistema, além da parada da linha de produção em intervalos agendados. Por outro lado,
+a parada inesperada da linha de produção para uma manutenção emergencial pode gerar transtornos e
+custos não programados. A manutenção preventiva visa sanar os problemas de paradas inesperadas,
+utilizando-se de um modelo de agendamento das inspeções. O que para muitas situações é considerado
+suficiente, se não for bem planejado, pode acarretar em custos excessivos devido às paradas
+programadas e alocação de equipes de manutenção. Nesta situação, a estratégia de manutenção
+preditiva busca o meio termo, utilizando-se da predição do estado do sistema, como análise de
+tendências ou avaliações probabilísticas do estado de degradação dos equipamentos, para os
+agendamentos de novas intervenções.
+
+Mesmo com a programação das intervenções, as máquinas podem falhar de modo repentino, pondo em risco
+os equipamentos e pessoas envolvidas com o processo produtivo~\cite{goncalves2011desenvolvimento}. A
+falha no intervalo entre intervenções não é possível de prever através dos métodos clássicos de
+manutenção. Logo, nos últimos anos, o que tem se visto é a substituição da estratégia de manutenção
+preventiva por um novo paradigma: a manutenção proativa~\cite{lee2009informatics}. Esta nova
+estratégia visa não somente a predição do estado do sistema, mas também o diagnóstico das falhas e,
+em casos onde é aplicado, a intervenção de forma automática. Por intervenção, entende-se que o
+padrão de funcionamento dos equipamentos monitorados pode ser alterado, visando minimizar os
+possíveis agravantes até a realização da manutenção.
+
+Neste cenário, emergem os sistemas de manutenção inteligente. Também conhecidos como sistemas de
+manutenção baseados no conhecimento, visam capturar o conhecimento de um determinado sistema sob a
+forma de regras e utilizá-las para construir um novo sistema baseado nestas regras. O novo sistema
+é, então, utilizado para realização de um correto diagnóstico ou tomada de ação no caso da
+ocorrência de algum defeito. Como exemplo, em~\cite{shikari2004automation} o padrão de vibração de
+uma máquina de indução, de um atuador e de uma prensa são analisados e, realizado o diagnóstico
+automático através de um sistema de manutenção inteligente, é determinado o motivo da falha, podendo
+ser os rolamentos ou desalinhamentos.
+
+\includefigure
+    {images/maintenance-strategies}
+    {Classificação das estratégias de manutenção.}
+    {fig:maintenance-strategies}
+\todo{Referenciar figura no texto.}
+
+Com o intuito de auxiliar na migração do paradigma de conserto após falha para o paradigma de
+predição e prevenção, foi criado, nos Estados Unidos, um centro de parceria entre universidades e
+empresas, denominado \gls{IMSCenter}. Dentre as empresas integrantes da parceria \gls{IMSCenter},
+pode-se citar, por exemplo, Boeing, Siemens, AMD, Toyota e Caterpillar. Entre as universidades,
+fazem parte do consórcio a de Cincinnatti, Missouri-Rolla e Michigan.
+
+
+%%%%%%%%
+%\section{A ferramenta Watchdog Agent}
+
+Um dos objetivos da parceria \gls{IMSCenter} foi o desenvolvimento de uma metodologia para abordagem
+dos problemas de manutenção utilizando predição e prevenção. Para tanto, foi desenvolvido um
+conjunto de ferramentas de análise denominado Watchdog Agent. Em termos gerais, o Watchdog Agent é
+uma ferramenta de análise de desempenho. Aplicado a determinado equipamento, visa analisar sinais de
+diversas partes da máquina, a fim de obter um índice de desempenho.
+
+A extração das informações contidas nos sinais analisados são extraídas através das ferramentas
+implementadas no Watchdog Agent. Primeiramente os dados dos sensores do equipamento são adquiridos.
+Em um segundo momento, os dados são classificados com o auxílio de algoritmos. Com os dados
+classificados, é possível determinar o índice de desempenho para a situação analisada. Estas etapas
+são ilustradas na \cref{fig:data-processing-plot}.
+
+\includefigure
+    {images/data-processing-plot}
+    {Processamento das informações utilizando a estratégia proposta pelo IMS~Center.}
+    {fig:data-processing-plot}
+
+A medida que o equipamento degrada, o índice de desempenho é alterado em comparação com o mesmo
+indicador obtido com o equipamento em funcionamento normal. Um indicador normalmente utilizado para
+identificação do estado de um equipamento é o valor de confiança. Este indicador é definido como uma
+grandeza que varia no intervalo~${[0,1]}$. Valores próximos a~\num{1} representam funcionamento
+normal do sistema, enquanto que valores próximos a~\num{0} equivalem a um funcionamento em falha. A
+\cref{fig:confidence-value-concept} ilustra o conceito de valor de confiança. As duas curvas da
+esquerda apresentam o comportamento normal e o comportamento recente de um determinado equipamento.
+Ao cruzar as duas informações, é possível obter o valor de confiança, exemplificado no gráfico da
+direita. À medida que o valor de confiança decai, a probabilidade de redução do desempenho do
+sistema aumenta~\cite{djurdjanovic2003watchdog}.
+
+\includefigure
+    {images/confidence-value-concept}
+    {Representação do conceito de valor de confiança.}
+    {fig:confidence-value-concept}
+
+%\missingfigure{Estrutura do Watchdog Agent.}
+
+%\todo[inline]{Uma das vantagens no uso de técnicas proativas...}
+
+Em comparação com estratégias de manutenção preventiva, um ponto importante a ser citado é aumento
+da vida útil de peças de equipamentos~\cite{lazzaretti2012avaliacao}. Peças que poderiam ser
+descartadas em função de uma intervenção preventiva.
+
+
+%%%%%%%%
+\section{Modelo OSA-CBM}
+
+Como proposta de padronização de uma arquitetura aberta para troca de informações em um sistema
+baseado em condição, surge o modelo \gls{OSACBM}~\cite{thurston2001open}. A arquitetura \gls{OSACBM}
+visa facilitar a integração e interoperabilidade entre componentes e equipamentos de diferentes
+fabricantes. Definida em sete camadas, possibilita a abstração de várias partes envolvidas em um
+sistema de manutenção inteligente. A \cref{fig:osa-cbm-model} apresenta uma visão geral das camadas
+do modelo juntamente com as suas interações. As camadas são numeradas de 1~(aquisição de dados) a
+7~(apresentação).
+
+%\todo[color=yellow, inline]{Outro todo.}
+
+\includefigure
+    {images/osa-cbm-model}
+    {Modelo OSA-CBM.}
+    {fig:osa-cbm-model}
+
+A definição das funcionalidades de cada camada é apresentada por~\cite{thurston2001open}. Na camada
+de aquisição de dados, as grandezas físicas são convertidas para sinais elétricos e digitalizadas. O
+módulo consiste, normalmente, de um elemento sensor e um elemento de aquisição de dados. Além da
+conversão física, a camada também pode armazenar os dados coletados em um banco de dados. A primeira
+etapa de cálculos sob os dados obtidos é feita na camada de manipulação dos dados. Através do uso de
+ferramentas de processamento de sinais, os dados adquiridos na camada anterior são manipulados,
+podendo gerar resultados no domínios tempo, frequência ou tempo-frequência. Eventualmente, os
+resultados das operações também podem ser armazenados em um banco de dados. O módulo de detecção do
+estado do sistema analisa continuamente os indicadores de cada sistema, subsistema ou componente. De
+posse dos dados processados pelas camadas anteriores, ao calcular os indicadores de estado, o módulo
+de detecção pode gerar alarmes respeitando condições previamente estabelecidas. Novamente os dados
+obtidos podem ser armazenados para uso posterior. Na camada de avaliação da saúde do sistema, o
+resultado dos indicadores, obtidos no módulo de detecção do estado do sistema, são inseridos no
+contexto das operações. A saúde do sistema monitorado é avaliada pelo uso dos indicadores atuais e
+passados. Dessa forma, também é possível armazenar os resultados formando um histórico do
+equipamento monitorado. Na camada de prognóstico, a saúde futura do sistema é estimada. Através de
+um modelo estimado do sistema e dos dados obtidos nas camadas anteriores, o tempo de vida útil ou a
+probabilidade de falha em um horizonte de predição são estimados. Como nas camadas anteriores, os
+resultados podem ser armazenados em um banco de dados. O módulo de tomada de decisão utiliza os
+dados obtidos na camada de prognóstico, além de outras informações, para sugerir ações recomendadas
+de acordo com as implicações das decisões. São integrados, juntamente com os dados da camada de
+prognóstico, informações de restrições externas, requisitos de funcionalidades do equipamento ou
+sistema, condições financeiras, entre outros. No nível mais alto do modelo, está a camada de
+aplicação. Definida como a interface homem-máquina do sistema, visa a apresentação dos dados obtidos
+no processamento das informações. Nesta camada também podem ser utilizadas técnicas de realidade
+aumentada~\cite{espindola2010visualizacao}.
+
+
+%%%%%%%%
+\section{Algoritmos de processamento da ferramenta Watchdog Agent}
+
+Como mencionado anteriormente, o Watchdog Agent é um conjunto de algoritmos para processamento de sinais e extração de características.
+
+\subsection{Energias da transformada Wavelet Packet}
+
+
