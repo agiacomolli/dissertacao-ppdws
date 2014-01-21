@@ -20,6 +20,8 @@ IMAGES = \
 	images/data-processing-plot.svg \
 	images/confidence-value-concept.svg \
 	images/osa-cbm-model.svg \
+	images/soa-elements.svg \
+	images/dpws-stack.svg \
 	images/soa-proposed-architecture.svg \
 	images/device-services-overview.svg \
 	images/uml-discovery-setup-devices.svg \
