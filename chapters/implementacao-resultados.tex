@@ -1,3 +1,412 @@
 \chapter{Implementação e resultados}
 
-\Blindtext[5][10]
+\todo[inline]{Introdução do capítulo.}
+
+\todo[inline]{Falar sobre a linguagem utilizada e biblioteca JMEDS. Também sobre a escolha do DPWS
+como implementação SOA.}
+
+\todo[inline]{Introdução dos experimentos realizados.}
+
+
+%%
+\section{Implementação das entidades da arquitetura proposta}
+
+\todo[inline]{Introdução da seção.}
+\todo[inline]{Falar sobre as tecnologias utilizadas (Java, HTTP, JMEDS etc).}
+
+
+%%%
+\subsection{Implementação do Gerenciador de Dispositivos}
+
+Como visto na \cref{sub:proposta-gerenciador-dispositivos}, o Gerenciador de Dispositivos se trata
+de um componente de software responsável pelo gerenciamento dos dispositivos na arquitetura
+proposta. De forma geral, o gerenciador é utilizado pelo operador do sistema para obter os
+dispositivos presentes na rede e configurá-los. A \cref{fig:device-manager-main-screen} ilustra a
+tela principal do Gerenciador de Dispositivos.
+
+\includefiguretmp
+  %{images/device-manager-main-screen}
+  {Tela principal do Gerenciador de Dispositivos.}
+  {fig:device-manager-main-screen}
+
+
+%%%%
+\subsubsection{Obtenção da lista de dispositivos e serviços}
+
+Uma das funcionalidades do gerenciador é a obtenção da lista de dispositivos presentes na rede. O
+conjunto de ferramentas \gls{JMEDS} implementa a especificação {WS-Discovery}, permitindo a
+descoberta de serviços através de um protocolo padronizado. Dessa forma, toda a busca e troca de
+mensagens para a descoberta e identificação dos serviços é disponibilizada de forma transparente
+para o desenvolvedor da aplicação.
+
+\todo[inline]{Falar sobre o processo de busca utilizando a biblioteca JMEDS.}
+
+Com a lista de dispositivos, é possível saber o estado de cada um. Ainda conforme a
+\cref{fig:device-manager-main-screen}, é possível observar que o gerenciador apresenta uma área onde
+são exibidas as informações pertinentes do dispositivo, como fabricante, nome e número do modelo,
+número serial uma descrição sobre o dispositivo e o seu \gls{URI}. Estas informações são
+apresentadas quando o operador do sistema seleciona um dos elementos da lista de dispositivos
+encontrados, podendo ser um dispositivo ou subdispositivo, e referem-se à \cref{tab:device-metadata}.
+
+A lista de serviços de cada dispositivo é obtida pelo usuário através do botão localizado na área de
+informações do dispositivo. Ao ser pressionado, um novo diálogo é aberto, listando cada um dos
+serviços. Em complementação às informações do dispositivo, apresentadas na tela principal do
+gerenciador, o novo diálogo exibe informações mais detalhadas, como uma \gls{URL} para o número do
+modelo e outra para o endereço eletrônico do fabricante. A fim de atualizar estas informações, o
+operador do sistema poderá editá-las utilizando outro botão. Ao ser pressionado, um novo diálogo é
+aberto, possibilitando a inserção, edição ou atualização de todas as informações do dispositivo
+selecionado. A \cref{fig:device-manager-services-dialog} ilustra a janela de diálogo contendo as
+informações do dispositivo, a lista de serviços e os botões mencionados anteriormente.
+
+\includefiguretmp
+  %{images/device-manager-services-dialog}
+  {Diálogo com informações detalhadas sobre o dispositivo e lista de serviços disponíveis.}
+  {fig:device-manager-services-dialog}
+
+Dentre os serviços listados no diálogo de informações do dispositivo, estão aqueles comuns a todos
+os dispositivos da arquitetura proposta juntamente com os específicos. Os serviços específicos são
+aqueles que diferem entre os dispositivos, como, por exemplo, o serviço para obtenção de dados de um
+determinado sensor. É possível listar somente os serviços específicos do dispositivo através de uma
+caixa de seleção. Dessa forma, lista presente no diálogo da
+\cref{fig:device-manager-services-dialog} exibirá somente os serviços não padronizados.
+
+Informações detalhadas sobre cada um dos serviços também podem ser obtidas através do Gerenciador de
+Dispositivos. No diálogo de informações do dispositivo, após a seleção de determinado serviço, é
+habilitado um botão que possibilita obter mais informações sobre o componente. O diálogo lista as
+operações do serviço selecionado. Também lista as informações de cada uma das operações, bastando o
+operador do sistema selecioná-las na lista. A \cref{fig:device-manager-service-dialog} apresenta o
+diálogo com informações adicionais sobre determinado serviço selecionado pelo operador do sistema.
+
+\includefiguretmp
+  %{images/device-manager-service-dialog}
+  {Diálogo com informações adicionais sobre o serviço selecionado.}
+  {fig:device-manager-service-dialog}
+
+
+%%%%
+\subsubsection{Topologia da rede e configuração da base de dados}
+
+A topologia da rede é obtida pelo Gerenciador de Dispositivos no momento em que o operador do
+sistema realiza uma nova busca de dispositivos. Como anteriormente apresentado na
+\cref{fig:device-manager-main-screen}, a tela principal do gerenciador lista todos os dispositivos
+encontrados, bem como os subdispositivos, localizados em níveis hierárquicos inferiores. Isso é
+possível pelo fato de que cada dispositivo da arquitetura proposta deve apresentar um identificador
+único. O identificador, no caso implementado, uma \gls{URL}, é utilizada para construir a hierarquia
+dos dispositivos da rede.
+
+Na \gls{URL} de identificação de cada dispositivo, estão codificadas informações para que o
+gerenciador possa criar a topologia da rede. Como apresentado na
+\cref{sub:proposta-descoberta-configuracao-dispositivos}, os dispositivos são codificados seguindo
+um padrão de nomes, os quais são separados pelo caractere "/". A convenção utilizada facilita a
+definição de dispositivos que fazem parte de dispositivos com nível hierárquico maior. Também é
+possível a definição de um nome para a representação de um grupo de dispositivos ou área onde os
+dispositivos estão localizados.
+
+A configuração da base de dados é fundamental para o correto funcionamento do sistema proposto. A
+base pode ser configurada através da tela principal do Gerenciador de Dispositivos, sendo que, após
+este procedimento, todos os dispositivos serão informados de como o acesso a base deve ser
+realizado. O gerenciador também a utiliza para manter uma referência dos dispositivos encontrados na
+rede. Caso um dos dispositivos encontrados não apresentar registro na base de dados, o gerenciador
+deve criá-lo. Além do dispositivo, também são criados os registros de subdispositivos ou sensores.
+
+
+%%%%
+\subsubsection{Configuração dos dispositivos}
+
+A configuração dos dispositivos é realizada pelo operador do sistema também através do Gerenciador
+de Dispositivos. A configuração inclui o mapeamento dos sensores, para armazenar os dados de
+interesse, a definição de comportamentos, que influenciam no modo de operação do equipamento, e o
+envio de dados de treinamento. Na \cref{fig:device-config-dialog} é apresentado o diálogo de
+configuração de um dispositivo. O diálogo é acessível através da tela principal do Gerenciador de
+Dispositivos. Para ativá-lo, é necessário que o operador do sistema selecione um dos dispositivos da
+lista antes do processo de configuração.
+
+\includefiguretmp
+  %{images/device-config-dialog}
+  {Diálogo de configuração do dispositivo.}
+  {fig:device-config-dialog}
+
+No diálogo de configuração, além de outras informações pertinentes ao dispositivo selecionado, estão
+a lista de sensores que o equipamento possui. As informações de um determinado sensor são exibidas
+no momento em que o usuário o seleciona na lista de sensores. Dentre as informações, estão o
+fabricante, modelo e versão do sensor, além de uma descrição e a unidade de medida utilizada na
+aquisição dos dados. A interface também disponibiliza algumas configurações para o sensor
+selecionado, como a taxa de amostragem e o número de dados que necessitam ser amostrados para envio
+à base de dados. Estas configurações estão disponíveis em um outro diálogo, acessível através do
+botão de configuração dos sensores.
+
+A configuração dos comportamentos do equipamento, conforme descrito na
+\cref{sub:proposta-gerenciador-dispositivos}, também é feita no Gerenciador de Dispositivos. Os
+diferentes comportamentos definidos para um equipamento possibilitam que ele opere de diferentes
+maneiras dependendo do nível de degradação. Os comportamentos configurados estão acessíveis através
+de uma lista no diálogo de configuração do dispositivo (\cref{fig:device-config-dialog}). Ao
+selecionar um dos elementos da lista, as informações adicionais são preenchidas. O diálogo permite
+ainda o gerenciamento dos comportamentos, como o envio ou exclusão de um elemento existente. O envio
+é feito através de um botão, que, quando acionado, abre um novo diálogo para a criação de um
+comportamento. O operador deverá definir um nome para o novo comportamento e anexar um arquivo
+contendo o código executável no formato \gls{JAR}. Dessa forma, o comportamento é enviado para o
+dispositivo e poderá ser executado em alguma situação, dependendo do tipo de degradação observado.
+
+Os dados de treinamento são enviados pelo mesmo dialogo de configuração. O diálogo apresenta um
+sumário com informações pertinentes sobre o número de dados de treinamento disponíveis para o
+dispositivo e possibilita que o usuário envie outros novos. Ao pressionar o botão de envio, um novo
+diálogo é aberto, onde o operador poderá escolher para qual sensor os dados serão mapeados e qual o
+tipo dos dados, conforme apresentado na \cref{fig:device-config-training-dialog}. O tipo de dados
+pode ser normal ou falha, os quais representam, respectivamente, uma situação em que o equipamento
+está se comportando conforme o esperado e quando existe algum comportamento indesejado. Também é
+necessária a inclusão de informação sobre a origem dos dados, no campo denominado de descrição. O
+diálogo aceita arquivos de dados no formato \gls{CSV}.
+
+\includefiguretmp
+  %{images/device-config-training-dialog}
+  {Diálogo de envio de dados de treinamento.}
+  {fig:device-config-training-dialog}
+
+
+%%%%
+\subsubsection{Definindo grupos de dispositivos}
+
+A configuração ou envio de dados para um conjunto de dispositivos de mesma natureza é possível
+através da criação de grupos de dispositivos. Dessa forma, dispositivos podem vir a ser agrupados
+tendo em comum o modelo ou fabricante, por exemplo. A configuração dos grupos é acessível através de
+um botão presente na tela principal do Gerenciador de Dispositivos, ilustrado na
+\cref{fig:device-manager-main-screen}. Ao ser pressionado, um novo diálogo é aberto. Este diálogo é
+apresentado na \cref{fig:device-config-groups-dialog}. Nele estão presentes a lista de grupos
+criados pelo operador do sistema e as possibilidades de gerenciamento (criar, editar e/ou excluir).
+Ao selecionar um grupo existente, na lista à esquerda da figura em questão, os dispositivos que o
+compõe são apresentados. Pode-se adicionar ou remover dispositivos através da funcionalidade de
+edição de grupos.
+
+\includefiguretmp
+  %{images/device-config-groups-dialog}
+  {Diálogo de definição e configuração de grupos de dispositivos.}
+  {fig:device-config-groups-dialog}
+
+Um grupo de dispositivos é configurado através de um novo diálogo, disponível pelo pressionamento do
+botão de configuração de dispositivos, o qual é apresentado na
+\cref{fig:device-config-group-dialog}. O diálogo apresenta a lista de dispositivos e seus sensores
+em árvore, possibilitando que o operador visualize estas informações de forma facilitada. Também é
+possível a definição de novos comportamentos para o grupo de dispositivos e o envio de dados de
+treinamento. O envio de novos comportamentos utiliza o mesmo mecanismo apresentado anteriormente,
+quando abordado do diálogo de configuração de um dispositivo, exceto que, no caso de grupos, um
+mesmo comportamento é enviado para um conjunto de dispositivos.
+
+\includefiguretmp
+  %{images/device-config-group-dialog}
+  {Diálogo de configuração de um grupo de dispositivos.}
+  {fig:device-config-group-dialog}
+
+O envio de dados de treinamento também segue o mesmo padrão apresentado anteriormente na descrição
+da configuração de somente um dispositivo. O caso particular se encontra no que diz respeito a
+escolha do sensor que usufruirá dos novos dados. O Gerenciador de Dispositivos agrupa
+automaticamente os sensores de mesmo nome, dessa forma, o envio de dados de treinamento é feito com
+base no nome do sensor. Ao acessar o diálogo de envio de dados de comportamento, os sensores de
+todos os dispositivos do grupo estarão disponíveis. Será ignorado o sensor escolhido para envio dos
+dados que não estiver presente em nenhum dos dispositivos.
+
+
+%%%%
+\subsubsection{Obtenção de relatórios de saúde}
+
+Os relatórios de saúde podem ser obtidos pelo operador do sistema através do diálogo apresentado na
+\cref{fig:device-health-report-dialog}, acessível na tela inicial do Gerenciador de Dispositivos. O
+diálogo permite definir o intervalo para geração do relatório, o qual contém os valores de confiança
+obtidos para cada lote de dados. Os dados são obtidos diretamente da base de dados e o relatório é
+fornecido ao operador do sistema em arquivo texto no formato \gls{CSV}.
+
+\includefiguretmp
+  %{images/device-health-report-dialog}
+  {Diálogo para obtenção de relatórios de saúde.}
+  {fig:device-health-report-dialog}
+
+
+%%%
+\subsection{Implementação do Gerenciador de Análises}
+
+Como apresentado na \cref{sub:proposta-gerenciador-analises}, o Gerenciador de Análises é um dos
+componentes de software presentes na arquitetura proposta que auxilia no processo de criação de
+planos de análise para os diversos dispositivos presentes no sistema. Através dele, o operador do
+sistema pode gerenciar o processo de análise de um equipamento, definindo as ferramentas utilizadas
+para manipulação dos dados, bem como a origem dos dados utilizados. Além disso, é possível que o
+equipamento assuma diferentes comportamentos baseado no resultado das análises realizadas. A tela
+principal do Gerenciador de Análises é apresentada na \cref{fig:analysis-manager-main-screen}.
+
+\includefiguretmp
+  %{images/analysis-manager-main-screen}
+  {Tela principal do Gerenciador de Análises.}
+  {fig:analysis-manager-main-screen}
+
+As análises cadastradas anteriormente são exibidas em uma lista na tela principal do Gerenciador de
+Análises. Quando da seleção de um dos elementos da lista, informações adicionais, como nome,
+descrição e número de dispositivos que utilizam a mesma análise, são fornecidas. Também são
+fornecidas informações sobre a periodicidade de execução da análise, a data da última execução, a
+data agendada para a próxima execução e se a análise está ativa ou não. As análises e respectivas
+informações são obtidas diretamente da base de dados.
+
+
+%%%%
+\subsubsection{Definição de um plano de análise}
+
+O operador do sistema poderá definir novas análises ou gerenciar as existentes, conforme
+\cref{fig:analysis-manager-main-screen}. Na definição de uma nova análise, o diálogo, ilustrado na
+\cref{fig:analysis-create-dialog}, é aberto. Através do diálogo, o operador deve definir um nome e
+descrição para o plano de análise, bem como quais dispositivos e sensores farão parte dela. Também
+deve definir as ferramentas computacionais utilizadas e, se pertinente, configurar quais
+comportamentos os dispositivos devem assumir frente a diferentes situações de degradação. A
+periodicidade da execução da análise também pode ser configurada.
+
+\includefiguretmp
+  %{images/analysis-create-dialog}
+  {Diálogo de criação de uma nova análise.}
+  {fig:analysis-create-dialog}
+
+A configuração de dispositivos e sensores é realizada em um novo diálogo. O diálogo permite ao
+operador configurar quais dispositivos serão analisados. Conjuntamente, ao selecionar os
+dispositivos, também é possível definir quais sensores serão utilizados na análise de degradação. O
+princípio de escolha dos dispositivos é herdado do Gerenciador de Dispositivos, exceto por não ser
+possível a criação de novos grupos de dispositivos através do Gerenciador de Análises. O operador
+pode optar pela escolha de somente um dispositivo, bem como de um grupo de dispositivos. No entanto,
+o grupo de dispositivos deve ter sido criado previamente através do Gerenciador de Dispositivos.
+
+As ferramentas de análise dizem respeito aos algoritmos utilizados para analisar os dados obtidos. O
+processo de escolha é apresentado no diálogo da \cref{fig:analysis-tools-dialog}. Dois conjuntos de
+ferramentas estão disponíveis na implementação do Gerenciador de Análises: processamento de sinais e
+extração de características e avaliação do desempenho do sistema. Transformada rápida de Fourier,
+análise tempo-frequência e energias da transformada wavelet packet fazem parte do primeiro conjunto.
+Por conseguinte, regressão logística e reconhecimento estatístico de padrões fazem parte do segundo
+conjunto de ferramentas.
+
+Se implementado, as ferramentas permitem a configuração dos algoritmos. Após a seleção de uma delas,
+o operador poderá optar por configurá-la. Para tanto, estão disponíveis botões na interface com o
+usuário. Ao clicá-los, novos diálogos são abertos com as configurações específicas da ferramenta
+selecionada.
+
+\includefiguretmp
+  %{images/analysis-tools-dialog}
+  {Diálogo para escolha das ferramentas utilizadas na análise.}
+  {fig:analysis-tools-dialog}
+
+O operador poderá também definir os comportamentos utilizados como resposta aos níveis de degradação
+obtidos. O diálogo da \cref{fig:analysis-behavior-dialog} ilustra alguns comportamentos e as
+informações pertinentes àquele que foi selecionado. No procedimento para seleção dos comportamentos
+utilizados pelo dispositivo, o operador deverá indicar, através das caixas de seleção, quais
+comportamentos quer utilizar e definir as faixas de variação do valor de confiança onde o algoritmo
+estará ativo. Como o valor de confiança pode assumir valores no intervalo ${[0; 1]}$, são
+disponibilizados dois campos para a seleção do valor mínimo e máximo empregado na definição do
+comportamento, os quais podem assumir valores dentro desse mesmo intervalo.
+
+\includefiguretmp
+  %{images/analysis-behavior-dialog}
+  {Diálogo para a configuração dos comportamentos dos dispositivos.}
+  {fig:analysis-behavior-dialog}
+
+A configuração da periodicidade em que a tarefa será executada também pode ser acessada pelo diálogo
+da \cref{fig:analysis-create-dialog}. Um novo diálogo é aberto, onde o operador poderá definir as
+propriedades de repetição da análise. É possível definir um intervalo fechado, onde, após um
+determinado período, as análises são interrompidas, ou a execução permanente, onde as análises
+sempre serão executadas. A periodicidade da execução, ou seja, o intervalo entre uma execução e
+outra, é definido pelo número de amostras coletadas dos sensores. Como apresentado no Gerenciador de
+Dispositivos, o operador deve definir o tamanho de um lote de dados que será enviado à base de
+dados. O dispositivo armazena estes dados e, quando o lote estiver completo, o envia a base de
+dados. A base de dados é monitorada para a execução de uma análise sobre o novo lote de dados, a fim
+de gerar o novo valor de confiança.
+
+
+%%%
+\subsection{Implementação do Analisador de Dispositivos}
+
+O Analisador de Dispositivos é a entidade responsável por executar os planos de análise definidos
+pelo operador do sistema no Gerenciador de Análises. Conforme definido na
+\cref{sub:proposta-analisador-dispositivos}, o Analisador de Dispositivos concentra as ferramentas
+necessárias para análise dos dados e obtenção dos níveis de degradação dos equipamentos. A tela
+inicial do analisador é apresentada na \cref{fig:analyzer-main-screen}.
+
+\includefiguretmp
+  %{images/analyzer-main-screen}
+  {Tela principal do Analisador de Dispositivos.}
+  {fig:analyzer-main-screen}
+
+O analisador mantém uma fila das análises ativas agendadas pelo operador do sistema. O Analisador de
+Dispositivos implementa uma tarefa periódica que verifica a base de dados em busca de novos lotes de
+dados relativos às análises ativas. Quando novos lotes são encontrados, os respectivos planos de
+análise são postos em uma fila e executados sequencialmente. Os resultados gerados são armazenados
+na base de dados.
+
+A tela principal do Analisador de Dispositivos (\cref{fig:analyzer-main-screen}) apresenta algumas
+informações úteis para o operador do sistema. São listados os planos atualmente enfileirados e
+estatísticas sobre as execuções, como o número de planos agendados e quantas análises estão
+pendentes para execução. Informações adicionais sobre um determinado plano podem ser obtidas pelo
+operador através da seleção do elemento na lista da tela principal.
+
+
+%%%%
+\subsubsection{Ferramentas para análise dos dados e interoperabilidade entre diferentes
+    fornecedores}
+
+As ferramentas de análise dos dados disponíveis no analisador são construídas em forma de interface
+para os algoritmos presentes no software Watchdog Agent, versão 3.3\todo{referencia}. Os algoritmos
+são distribuídos na forma de \textit{scripts} integrados em um software que executa em ambiente
+MATLAB. A solução empregada no desenvolvimento do analisador foi a de isolar os \textit{scripts} que
+implementam as ferramentas desejadas e executá-los individualmente através do novo software. Dessa
+forma, não foi necessária a reescrita dos algoritmos utilizando a linguagem Java.
+
+A execução dos \textit{scripts} MATLAB foi possível utilizando a biblioteca
+\emph{matlabcontrol}\todo{referencia}, versão 4.1.0. A biblioteca possibilita uma ponte para troca
+de dados entre um programa escrito em Java e o MATLAB. O mecanismo empregado na solução encontrada é
+ilustrado na \cref{fig:analyzer-matlab-interface}. Após a coleta dos dados, obtidos da base de
+dados, para a execução de uma nova análise, o Analisador de Dispositivos seleciona a ferramenta que
+deve ser empregada, a qual foi definida no plano de análise. Como a ferramenta é um \textit{script}
+MATLAB, o analisador carrega os dados e executa o algoritmo utilizando a biblioteca
+\emph{matlabcontrol}. Do mesmo modo, ao final da execução do algoritmo, o analisador utiliza
+novamente a biblioteca para recuperar os resultados gerados. O processo é repetido se o plano
+estipular que os resultados anteriores necessitam de uma nova análise. Tanto os resultados
+intermediários como o resultado final são armazenados novamente na base de dados.
+
+\includefiguretmp
+  %{images/analyzer-matlab-interface}
+  {Diagrama de interoperabilidade entre o Analisador de Dispositivos e os \textit{scripts} do
+      Watchdog Agent.}
+  {fig:analyzer-matlab-interface}
+
+A forma com que o Analisador de Dispositivos foi construído permite a utilização de ferramentas de
+análise de outros fornecedores. Como exemplo, existe uma versão do Watchdog Agent que executa em
+conjunto com o software LabVIEW. Devido a uma camada de abstração empregada na separação da
+definição das ferramentas e na sua implementação, é possível a troca ou mesmo a execução simultânea
+de ferramentas disponibilizadas por diferentes fornecedores, desde que uma nova interface seja
+provida. A \cref{fig:class-matlab-interface} ilustra o diagrama de classes utilizado na definição da
+interface de abstração entre as ferramentas\todo{explicar figura}.
+
+\includefiguretmp
+  %{images/class-matlab-interface}
+  {Diagrama de classes para abstração das ferramentas de análise.}
+  {fig:class-matlab-interface}
+
+
+%%%%
+\subsubsection{Alteração do comportamento do dispositivo}
+
+
+%%%
+\subsection{Implementação da camada de acesso a base de dados e definição da estrutura}
+
+\todo[inline]{Apresentar a estrutura básica da base de dados.}
+\todo[inline]{Camada de acesso a base de dados baseada em serviços.}
+\todo[inline]{Grupos de dispositivos na base de dados.}
+\todo[inline]{Dispositivos e subdispositivos (campo parent).}
+
+\includefiguretmp
+  %{images/database-schema}
+  {Esquema básico utilizado na base de dados.}
+  {fig:database-schema}
+
+
+%%%
+\subsection{Implementação dos dispositivos}
+
+\todo[inline]{Introdução da subseção.}
+
+
+%%
+\section{Resultados obtidos com a arquitetura proposta}
+
+\todo[inline]{Introdução da seção.}

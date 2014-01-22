@@ -15,6 +15,7 @@ para resolver algum dos problemas.
 
 %%
 \section{Arquitetura orientada a serviços proposta}
+\label{sec:arquitetura-proposta}
 
 A arquitetura proposta neste trabalho tem por objetivo a integração de sistemas de manutenção
 inteligente, dos diversos equipamentos que precisam ser monitorados, além de outras entidades que
@@ -80,7 +81,8 @@ resultado da aplicação pode ser qualquer construção ou interação entre os 
 
 
 %%%
-\subsection{Gerenciador de dispositivos}
+\subsection{Gerenciador de Dispositivos}
+\label{sub:proposta-gerenciador-dispositivos}
 
 Como o nome sugere, o Gerenciador de Dispositivos é um componente de software utilizado para
 gerenciar os dispositivos da arquitetura proposta. A configuração ou obtenção da lista dos
@@ -119,7 +121,8 @@ encontrados.
 
 
 %%%
-\subsection{Gerenciador de análises}
+\subsection{Gerenciador de Análises}
+\label{sub:proposta-gerenciador-analises}
 
 O Gerenciador de Análises é utilizado para definir o plano que será aplicado a determinado
 equipamento, ou grupo de equipamentos, \todo{Em ou com?}com vista a obter os níveis de degradação.
@@ -142,16 +145,17 @@ aplicável a vários equipamentos.
 
 
 %%%
-\subsection{Analisador de dispositivos}
+\subsection{Analisador de Dispositivos}
+\label{sub:proposta-analisador-dispositivos}
 
 O Analisador de Dispositivos concentra todas as ferramentas necessárias para a realização da análise
 dos dados de determinado dispositivo. A entidade opera com base nos planos criados e agendados pelo
-\todo{Operador do sistema?}usuário no Gerenciador de Análises. De posse do plano, o analisador
-executa as análises utilizando os algoritmos necessários para obtenção do resultado esperado. A
-execução de um mesmo plano é feita de forma automática.
+operador do sistema no Gerenciador de Análises. De posse do plano, o analisador executa as análises
+utilizando os algoritmos necessários para obtenção do resultado esperado. A execução de um mesmo
+plano é feita de forma automática.
 
 O analisador permite verificar quais planos estão sendo executados ou na fila para execução. Sempre
-que um novo plano é encontrado, o analisador o coloca na fila de execução, a fim de que seja
+que um novo plano é gerado, o analisador o coloca na fila de execução, a fim de que seja
 finalizado o mais breve possível. A entidade permite o monitoramento destes planos pelo usuário, o
 qual pode verificar se a execução está de acordo com o esperado.
 
@@ -201,6 +205,7 @@ amostragem dos equipamentos, uma tarefa periódica é vista como ator do caso de
 
 %%%
 \subsection{Descoberta e configuração de dispositivos}
+\label{sub:proposta-descoberta-configuracao-dispositivos}
 
 A descoberta dos dispositivos e serviços na rede pode ser feita a qualquer momento utilizando o
 Gerenciador de Dispositivos. Cada um dos dispositivos encontrados é identificado e colocado em uma
@@ -468,14 +473,15 @@ do conjunto e a instrumentação de partes que não são verificadas por padrão
 bancada, o atuador está instrumentado com mais três sensores, visando a obtenção dos níveis de
 vibração da estrutura. Os sensores são acelerômetros, posicionados no eixo do motor do atuador, na
 ponta do sem-fim e na pinça do freio. A \cref{fig:study-case} apresenta a bancada de testes
-utilizada no estudo de caso enquanto que a \cref{fig:sensors-localization} ilustra o posicionamento
-dos sensores instalados e a estrutura interna do atuador.
+utilizada para obtenção dos dados utilizados no estudo de caso enquanto que a
+\cref{fig:sensors-localization} ilustra o posicionamento dos sensores instalados e a estrutura
+interna do atuador elétrico.
 
 \todo[inline]{Modelo do atuador elétrico no SolidWorks.}
 
 \includefiguretmp
   %{images/study-case}
-  {Bancada de testes utilizada no estudo de caso.}
+  {Bancada de testes utilizada para obtenção dos dados do estudo de caso.}
   {fig:study-case}
 
 \includefiguretmp
@@ -618,35 +624,3 @@ Os experimentos a serem realizados tem por base validar a proposta apresentada n
 %%%
 \subsection{Comparação dos métodos em relação a escalabilidade}
 
-
-\iffalse
-%%
-\section{Definição das entidades}
-
-
-%%%
-\subsection{Gerenciador de dispositivos}
-
-
-%%%%
-\subsubsection{Dados de treinamento}
-
-\todo[inline]{Configurar o dispositivo para enviar os dados de treinamento automaticamente.}
-
-
-%%%
-\subsection{Gerenciador de análises}
-
-
-%%%
-\subsection{Analisador de dispositivos}
-
-
-%%%
-\subsection{Base de dados}
-
-\includefiguretmp
-  %{images/database-schema}
-  {Esquema utilizado na base de dados.}
-  {fig:database-schema}
-\fi
