@@ -1,18 +1,43 @@
 \chapter{Implementação e resultados}
 
-\todo[inline]{Introdução do capítulo.}
+Este capítulo descreve a implementação e resultados obtidos com o sistema proposto. A implementação
+faz referências diretas sobre o que foi apresentado no capítulo anterior, onde a proposta geral do
+trabalho foi definida. A forma como as entidades que fazem parte da arquitetura orientada a serviços
+foram implementadas é descrita e são apresentados resultados.
 
-\todo[inline]{Falar sobre a linguagem utilizada e biblioteca JMEDS. Também sobre a escolha do DPWS
-como implementação SOA.}
-
-\todo[inline]{Introdução dos experimentos realizados.}
+Alguns experimentos visam comprovar as vantagens na utilização da proposta definida neste estudo.
+São analisadas questões como a facilidade no gerenciamento das análises e equipamentos, bem como a
+escalabilidade da solução. Também são testadas as entidades implementadas, verificando a
+interoperabilidade entre os diferentes softwares desenvolvidos.
 
 
 %%
 \section{Implementação das entidades da arquitetura proposta}
 
-\todo[inline]{Introdução da seção.}
-\todo[inline]{Falar sobre as tecnologias utilizadas (Java, HTTP, JMEDS etc).}
+Para a implementação de todas as entidades de software utilizou-se a linguagem de programação
+Java~\cite{java2013homepage}. Aplicativos construídos utilizando esta linguagem executam em uma
+máquina virtual. Dessa forma, é possível a execução em diferentes sistemas operacionais sem a
+necessidade de reescrita ou reimplementação de partes do software. A única premissa é que exista uma
+versão compatível da máquina virtual para o sistema operacional alvo.
+
+Neste trabalho, a especificação \gls{SOA} escolhida foi a \gls{DPWS}. Conforme visto na
+\cref{sec:arquiteturas-orientadas-servicos}, como \gls{SOA} é um padrão que não define a forma de
+implementação, é possível encontrar diversas. Dentre as várias opções, algumas são voltadas para o
+cenário corporativo, para a integração entre grandes empresas, e que estão focadas na manipulação e
+gerência de um grande volume de dados e operações. Outras são empregadas em cenários mais simples do
+ponto de vista de número de tarefas e conjunto diferenciado de serviços. Dentre as várias
+especificações, o \gls{DPWS} foi o mais indicado para este trabalho devido às funcionalidades
+disponibilizadas, as quais cumprem com os requisitos estipulados no projeto da arquitetura.
+
+A especificação \gls{DPWS} possui algumas diferentes implementações em meio à diferentes projetos.
+Dentre os projetos, pode-se citar WS4D, SOA4D e .Net Microframework~\cite{marcelo2013analise}. Os
+dois primeiros contemplam implementações em linguagens Java, C e C++, o que reduz a dependência por
+um sistema operacional específico. A terceira faz parte de um conjunto de ferramentas desenvolvido
+pela Microsoft para sistemas embarcados, possuindo implementações em C\#. Neste trabalho optou-se
+pela utilização da implementação \gls{JMEDS}, que faz parte do projeto
+WS4D~\cite{jmeds2013homepage}. Esta escolha partiu do fato de que o projeto em questão conta com
+grande atividade e contribuidores e, como as entidades de software são implementadas em Java, a
+integração entre a biblioteca se dá de forma facilitada.
 
 
 %%%
@@ -34,12 +59,12 @@ tela principal do Gerenciador de Dispositivos.
 \subsubsection{Obtenção da lista de dispositivos e serviços}
 
 Uma das funcionalidades do gerenciador é a obtenção da lista de dispositivos presentes na rede. O
-conjunto de ferramentas \gls{JMEDS} implementa a especificação {WS-Discovery}, permitindo a
-descoberta de serviços através de um protocolo padronizado. Dessa forma, toda a busca e troca de
-mensagens para a descoberta e identificação dos serviços é disponibilizada de forma transparente
-para o desenvolvedor da aplicação.
+conjunto de ferramentas \gls{JMEDS}~\cite{jmeds2013homepage} implementa a especificação
+{WS-Discovery}, permitindo a descoberta de serviços através de um protocolo padronizado. Dessa forma,
+toda a busca e troca de mensagens para a descoberta e identificação dos serviços é disponibilizada
+de forma transparente para o desenvolvedor da aplicação.
 
-\todo[inline]{Falar sobre o processo de busca utilizando a biblioteca JMEDS.}
+%\todo[inline]{Falar sobre o processo de busca utilizando a biblioteca JMEDS.}
 
 Com a lista de dispositivos, é possível saber o estado de cada um. Ainda conforme a
 \cref{fig:device-manager-main-screen}, é possível observar que o gerenciador apresenta uma área onde
@@ -351,12 +376,13 @@ implementam as ferramentas desejadas e executá-los individualmente através do 
 forma, não foi necessária a reescrita dos algoritmos utilizando a linguagem Java.
 
 A execução dos \textit{scripts} MATLAB foi possível utilizando a biblioteca
-\emph{matlabcontrol}\todo{referencia}, versão 4.1.0. A biblioteca possibilita uma ponte para troca
-de dados entre um programa escrito em Java e o MATLAB. O mecanismo empregado na solução encontrada é
-ilustrado na \cref{fig:analyzer-matlab-interface}. Após a coleta dos dados, obtidos da base de
-dados, para a execução de uma nova análise, o Analisador de Dispositivos seleciona a ferramenta que
-deve ser empregada, a qual foi definida no plano de análise. Como a ferramenta é um \textit{script}
-MATLAB, o analisador carrega os dados e executa o algoritmo utilizando a biblioteca
+\emph{matlabcontrol}~\cite{matlabcontrol2013homepage}, versão 4.1.0. A biblioteca possibilita uma
+ponte para troca de dados entre um programa escrito em Java e o MATLAB. O mecanismo empregado na
+solução encontrada é ilustrado na \cref{fig:analyzer-matlab-interface}. Após a coleta dos dados,
+obtidos da base de dados, para a execução de uma nova análise, o Analisador de Dispositivos
+seleciona a ferramenta que deve ser empregada, a qual foi definida no plano de análise. Como a
+ferramenta é um \textit{script} MATLAB, o analisador carrega os dados e executa o algoritmo
+utilizando a biblioteca
 \emph{matlabcontrol}. Do mesmo modo, ao final da execução do algoritmo, o analisador utiliza
 novamente a biblioteca para recuperar os resultados gerados. O processo é repetido se o plano
 estipular que os resultados anteriores necessitam de uma nova análise. Tanto os resultados
@@ -385,28 +411,241 @@ interface de abstração entre as ferramentas\todo{explicar figura}.
 %%%%
 \subsubsection{Alteração do comportamento do dispositivo}
 
+Se definido no plano de análise, o dispositivo pode alterar o modo de operação dependendo do nível
+de degradação obtido com a análise. Como visto anteriormente, o operador do sistema pode definir
+comportamentos para o dispositivo, a fim de alterar o modo de operação em diferentes situações de
+degradação. Os comportamentos são definidos através do Gerenciador de Dispositivos e ficam
+disponíveis no dispositivo configurado. Após a análise de um plano, o nível de degradação expresso
+pelo valor de confiança do equipamento é obtido e comparado com as faixas definidas para cada
+comportamento. Se o valor calculado estiver em alguma das faixas cobertas por um dos comportamentos,
+o Analisador de Dispositivos automaticamente informa para o dispositivo qual comportamento deve
+utilizar.
+
 
 %%%
-\subsection{Implementação da camada de acesso a base de dados e definição da estrutura}
+\subsection{Implementação da camada de acesso a base de dados e definição da estrutura interna}
 
 \todo[inline]{Apresentar a estrutura básica da base de dados.}
 \todo[inline]{Camada de acesso a base de dados baseada em serviços.}
 \todo[inline]{Grupos de dispositivos na base de dados.}
 \todo[inline]{Dispositivos e subdispositivos (campo parent).}
 
+Como apresentado na \cref{sub:proposta-base-dados}, é necessária a implementação de uma entidade de
+software para abstrair o acesso a base de dados através de serviços. O software implementa, para
+cada componente que necessite de persistência de dados, serviços com operações pertinentes. Por
+exemplo, a busca ou manipulação de dispositivos pode ser feita com o uso de serviços especializados
+que manipulam a tabela onde estão armazenadas as informações destes elementos. No entanto, a fim de
+evitar a redefinição de todas as operações para acesso às diferentes tabelas, o acesso também pode
+ser feito pelos métodos tradicionais.
+
+Neste trabalho foi utilizada uma base de dados SQLite~\cite{sqlite2013homepage}. A base de dados
+SQLite é baseada em arquivos, não necessitando de servidor dedicado, tampouco de um cliente
+especializado. O conteúdo da base de dados é armazenado em um único arquivo, facilitando a
+manipulação e distribuição. A escolha por esta base partiu do fato da simplicidade na sua utilização
+e manutenção, visto que implementa todas as funcionalidades necessárias ao projeto.
+
+Na definição do esquema das tabelas da base de dados, as as informações sobre dispositivos e dados
+para análise foram separados de modo a facilitar a utilização pelas entidades da arquitetura
+proposta. O esquema da base se dados, com algumas das entidades principais, é apresentado na
+\cref{fig:database-schema}.
+
 \includefiguretmp
   %{images/database-schema}
-  {Esquema básico utilizado na base de dados.}
+  {Esquema simplificado utilizado na base de dados.}
   {fig:database-schema}
 
 
 %%%
 \subsection{Implementação dos dispositivos}
 
-\todo[inline]{Introdução da subseção.}
+Os dispositivos implementados neste trabalho se referem a atuadores elétricos. Os atuadores,
+operando em conjunto com válvulas, como comentado na \cref{sec:estudo-caso}, são do modelo CSR6,
+fabricados pela empresa Coester. Os equipamentos foram instrumentados e feitas simulações de
+degradação em diferentes situações. Os dados da simulação das condições foram coletados, sendo
+possível utilizá-los para simular o comportamento do equipamento sem a necessidade de montagem de
+novos experimentos físicos em bancada de testes. No caso do embarque físico de um dispositivo no
+atuador, a técnica utilizada apresenta vantagem, pois o software do dispositivo necessita de
+modificações somente em pontos específicos, como a forma de obtenção dos dados dos sensores.
+
+Através dos dados dos experimentos armazenados, fez-se necessário o desenvolvimento de uma entidade
+de software para simular o comportamento do conjunto atuador elétrico e válvula. A entidade é
+encarregada de obter os dados prévios e gerá-los nas mesmas condições em que foram obtidos. O
+software tem por objetivo simular um dispositivo \gls{SOA} embarcado no equipamento, mas com dados
+reais, facilitando o teste e validação do sistema. A \cref{fig:device-main-screen} apresenta a tela
+principal da entidade para simulação dos dispositivos. A tela ilustra algumas informações sobre o
+dispositivo, como nome, modelo, fabricante e número serial. Estas informações dizem respeito às
+descritas na \cref{tab:device-metadata} e podem ser configuradas pelo operador do sistema. Outras
+informações gerais, como qual experimento está sendo simulado e as ferramentas utilizadas para a
+avaliação dos dados, também são apresentadas.
+
+\includefiguretmp
+  %{images/device-main-screen}
+  {Tela principal do software para simulação dos dispositivos.}
+  {fig:device-main-screen}
+
+Para cada uma das situações apresentadas na \cref{tab:device-metadata}, estão disponíveis \num{50}
+curvas. Desse total, metade são referentes ao fechamento e a outra parte ao processo de abertura da
+válvula. O dispositivo simula o processo de abertura da válvula indefinidamente, gerando os dados
+coletados nos experimentos de forma sequencial. Ao término da geração do conjunto de dados, o
+dispositivo gera os mesmos dados inciais continuamente.
+
+
+%%%%
+\subsubsection{Definição das situações de simulação}
+
+As diferentes situações possíveis de simulação estão definidas como apresentado na
+\cref{sub:estudo-caso-aquisicao-dados}. De acordo com a descrição do estudo de caso, são possíveis
+seis experimentos, sendo um deles referente a operação em condições ditas normais, sem interferência
+no funcionamento, e outras cinco onde o equipamento é submetido a alterações de comportamento. Ao
+selecionar um dos experimentos, são exibidas informações adicionais, como nome, descrição e as
+condições a que o equipamento foi submetido. Dentre as condições, estão o acionamento do freio e o
+uso de engrenagens defeituosas.
+
+
+%%%%
+\subsubsection{Geração dos dados de simulação}
+
+Em cada um dos casos, os dados dos sensores simulados são gerados de acordo com o que foi definido
+no Gerenciador de Dispositivos. O operador pode definir o número de dados que serão armazenados
+antes do envio para a base de dados configurada. Neste caso, evitando o acesso contínuo ao serviço
+de envio de dados da base.
+
+O lote de dados é definido pela quantidade de amostras. Após a aquisição do número de amostras
+estipulado pelo operador do sistema, o software de simulação agrupa-os em um arquivo \gls{CSV}. Um
+arquivo específico para cada sensor é criado. No arquivo, estão discriminados, em colunas, a data e
+hora de aquisição de cada uma das amostras e o valor amostrado.
+
+
+%%%%
+\subsubsection{Obtenção do valor de confiança}
+
+Como forma de verificação do funcionamento do equipamento simulado, o software disponibiliza
+informações sobre os valores de confiança obtidos. É possível a visualização do valor de confiança
+atual, bem como do valor máximo e mínimo obtidos durante o experimento. A data e hora na qual os
+valores foram gerados também é informada.
+
+O valor de confiança é obtido pela entidade diretamente da base de dados. Dessa forma, fica claro
+que é possível o próprio equipamento tomar decisões a partir da condição calculada. Em contraste com
+os comportamentos definidos pelo operador do sistema no Gerenciador de Dispositivos, o equipamento
+pode apresentar algoritmos padronizados para assumir diferentes comportamentos em situações
+específicas de degradação.
 
 
 %%
 \section{Resultados obtidos com a arquitetura proposta}
 
-\todo[inline]{Introdução da seção.}
+Os resultados obtidos com este trabalho são analisados de forma subjetiva e têm por base as questões
+levantadas na \cref{sec:experimentos-definicao}. De uma forma geral são analisados quesitos como a
+interoperabilidade das entidades propostas e a comparação do sistema implementado com métodos
+tradicionais usualmente utilizados. A interoperabilidade entre as ferramentas é analisada, onde
+testes são realizados para verificar o correto funcionamento das entidades projetadas. Por fim, a
+proposta é comparada com os métodos tradicionais de análise de degradação, além da verificação das
+dificuldades e vantagens encontradas na utilização do sistema para monitoramento de um conjunto de
+equipamentos.
+
+
+%%%
+\subsection{Verificação da interoperabilidade entre as entidades}
+
+Em um primeiro momento, todas as entidades foram executadas para verificar a interoperabilidade
+entre elas conforme sugerido na \cref{sub:experimentos-interoperabilidade}. O Gerenciador de
+Dispositivos foi iniciado e colocado em modo de monitoramento. Colocado em mondo de monitoração da
+rede, o gerenciador verifica quando novos dispositivos são iniciados, possibilitando obter maiores
+informações sobre cada um.
+
+Após o Gerenciador de Dispositivos, um dispositivo foi iniciado. O dispositivo representa um atuador
+elétrico. Verificou-se que é possível a alteração das informações do dispositivo, tanto pelo
+gerenciador, como também pela interface gráfica da entidade de simulação. Este fator aponta o
+sucesso encontrado na comunicação entre as entidades.
+
+Com o dispositivo configurado e iniciado, criou-se um plano de análise utilizando o Gerenciador de
+Análises. A análise foi criada obedecendo as condições apresentadas na
+\cref{sub:estudo-caso-analise-degradacao}. Dessa forma, o módulo de processamento de sinais e
+extração de características foi configurado para utilizar a transformada de wavelet packet, enquanto
+que, no módulo de avaliação de desempenho do sistema, utilizou-se a ferramenta de regressão
+logística.
+
+Também foi iniciado o Analisador de Dispositivos. Após a sua inicialização, o plano criado
+anteriormente é apresentado para execução na lista de planos ativos e agendados. O analisador
+apresenta as informações detalhadas corretamente, o que novamente comprovou que as entidades se
+comunicam de forma coerente. Por conseguinte, o analisador foi iniciado, entrando no modo de espera
+pelos dados do dispositivo.
+
+Com as ferramentas configuradas, foi iniciada a simulação do dispositivo. Utilizando a tela gráfica
+criada para interface do simulador do atuador elétrico, testou-se as seis situação de teste,
+conforme apontadas na \cref{tab:data-description}. Como os algoritmos para análise de degradação não
+foram treinados, o dispositivo não atualizou as informações sobre o valor de confiança calculado em
+nenhuma das situações testadas.
+
+Para que o dispositivo possa ser analisado corretamente, os algoritmos necessitam passar por um
+treinamento. Este fato é apontado na \cref{sub:estudo-caso-analise-degradacao}. Para o treinamento,
+foram utilizados alguns dos dados obtidos com os testes nas situações de funcionamento normal e
+falha. Os dados para treinamento correspondem ao movimento de abertura da válvula. Do total dos dois
+conjuntos de curvas de abertura, representados por comportamentos normal e em falha, utilizou-se
+\num{12} curvas em falha e \num{12} em funcionamento normal para treinar os algoritmos. Como falha,
+foram utilizadas as curvas com o pior nível de degradação, obtidas na situação envolvendo uma
+engrenagem quebrada (\cref{tab:data-description}). Dessa forma, \num{24} curvas foram utilizadas
+para o treinamento dos algoritmos.
+
+As curvas de treinamento foram anexadas ao dispositivo através da interface disponibilizada pelo
+Gerenciador de Dispositivos. Conforme apresentado anteriormente na
+\cref{fig:device-config-training-dialog}, os dados de treinamento podem ser enviados através de uma
+interface de configuração, sendo possível selecionar para qual sensor os dados serão mapeados e qual
+o tipo (normal ou falha). Dessa forma, os arquivos de cada uma das curva descritas anteriormente
+foram enviados e configurados para o respectivo sensor. No experimento, como descito na
+\cref{sub:estudo-caso-analise-degradacao}, utilizou-se o acelerômetro acoplado ao eixo do motor, o
+qual registra as variações de vibração.
+
+
+%%%
+\subsection{Comparação da proposta com métodos tradicionais}
+
+A proposta de comparação com os métodos tradicionais é apresentada e ilustrada na
+\cref{sub:experimentos-metodos-tradicionais}. São levantadas hipóteses sobre a facilidade de
+configuração da análise de dispositivos utilizando a arquitetura proposta em comparação com os
+métodos usuais. Por métodos usuais, entende-se aqueles que se utilizam de um software específico, o
+qual concentra as ferramentas de análise de dados e é manipulado por operador especializado. Um
+exemplo deste tipo de software é o Watchdog Agent.
+
+Como anteriormente apresentado nas seções que mostram a implementação do sistema, foram definidos
+softwares especializados para as tarefas identificadas no processo de obtenção dos níveis de
+degradação utilizando um sistema de manutenção inteligente. Cada um dos softwares é empregado um uma
+tarefa distinta na aplicação. Por exemplo, o Analisador de Dispositivos é a entidade que concentra
+as ferramentas para análise de dados e obtém os níveis de degradação do equipamento analisado. Uma
+vez que o plano de análise foi criado, o analisador o executa automaticamente conforme planejado.
+Neste ponto existe a vantagem, em relação ao método tradicional, de que não é mais necessária a
+obtenção dos dados por parte do operador, tampouco a configuração das ferramentas de análise.
+
+Quanto a aquisição dos dados, o sistema proposto necessita de implementações específicas que não
+estão disponíveis em todos os equipamentos. No método tradicional, os dados são obtidos diretamente
+por sensores posicionados estrategicamente pelo fabricante do equipamento ou através de
+instrumentação posterior por equipe especializada. Com os sensores interligados em placas de
+aquisição, os dados são amostrados diretamente, sem a necessidade de uma camada de abstração que, no
+caso da arquitetura proposta, é representada por serviços. Do ponto de vista da aquisição dos dados,
+os serviços \gls{DPWS} representam um grande consumo de recursos em um dispositivo. Porém, com a
+evolução da tecnologia e diminuição dos custos na construção de dispositivos embarcados, o uso de
+padrões \gls{SOA} mostra-se viável. Se os dispositivos utilizarem-se desta tecnologia para o
+fornecimento dos dados, a integração com o sistema de análise será facilitada, o que representa
+novamente ponto positivo na utilização da arquitetura proposta.
+
+
+%%%
+\subsection{Verificação da escalabilidade da proposta}
+
+Este experimento se refere à \cref{sub:experimentos-escalabilidade} e presume que, nos métodos
+tradicionais, o aumento de dispositivos em um processo de análise de dados fica prejudicado. Também
+é dada como hipótese o fato da utilização de um mesmo processo de análise para diferentes
+equipamentos. Utilizando-se os métodos convencionais, a configuração de diversos equipamento pode
+representar uma dificuldade.
+
+O Gerenciador de Análises permite a criação de planos que são aplicados para mais de um dispositivo.
+De certo modo, a análise de mais de um dispositivo pelo método tradicional não representa grande
+empecilho. O fator principal é a reconfiguração das ferramentas e injeção de dados diferentes de
+forma manual a cada nova análise, o que demanda, principalmente, tempo. Mesmo com equipamentos de
+mesma natureza, a cada nova análise o operador precisa definir manualmente o processo que será
+executado. Na maioria das vezes, somente é possível a execução dos testes de forma \textit{offline}.
+A vantagem na utilização da arquitetura proposta reside no fato do processo automatizado criado. Com
+o Analisador de Dispositivos executando automaticamente os planos, fica evidente a facilidade da
+análise dos dados. Em adendo, um mesmo plano pode ser empregado para um conjunto de dispositivos, o
+que, de certo modo, soluciona o problema de reconfiguração das ferramentas e injeção de dados de
+teste para cada nova análise.

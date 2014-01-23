@@ -71,6 +71,8 @@ mesmas funcionalidades de um serviço padrão, e o carrega para ser executado no
 %%%
 \subsection{Aplicação orientada a serviços}
 
+\todo{inline}[Remover (também da figura)!]
+
 A \todo{Alterar texto para englobar mais entidades da arquitetura}aplicação orientada a serviços
 nada mais é do que o resultado da utilização dos diversos serviços propostos na arquitetura. Através
 da composição ou utilização direta dos serviços de uma forma coordenada, a aplicação é construída.
@@ -162,6 +164,7 @@ qual pode verificar se a execução está de acordo com o esperado.
 
 %%%
 \subsection{Base de dados}
+\label{sub:proposta-base-dados}
 
 A entidade Base de Dados é utilizada como uma interface para um banco de dados. O software encapsula
 funcionalidades para  armazenar todos os dados relativos à aplicação. Desde os dados obtidos nas
@@ -430,6 +433,7 @@ diagrama \gls{UML} da \cref{fig:uml-health-device-report}.
 
 %%
 \section{Estudo de caso}
+\label{sec:estudo-caso}
 
 \todo[inline]{Introdução da seção mostrando que a sistema será simulado com os dados obtidos em
 trabalhos anteriores.}
@@ -553,16 +557,15 @@ usuário\todo{Melhorar o texto com base na imagem que será incluída.}.
   {Metadados disponíveis para configuração em cada dispositivo.}
   {tab:device-metadata}
 
-
 \includetable
   {tables/sensor-info}
   {Parâmetros configuráveis dos sensores.}
   {tab:sensor-info}
 
 
-
 %%%
 \subsection{Aquisição dos dados}
+\label{sub:estudo-caso-aquisicao-dados}
 
 Os dados foram obtidos de acordo com os trabalhos de~\cite{boesch2011deteccao} e
 \cite{faccin2011manutencao}. Segundo os autores, a aquisição dos dados foi feita através de um
@@ -574,7 +577,13 @@ engrenagens em perfeito estado e sem acionamento do freio mecânico; engrenagens
 acionamento do freio mecânico com pressão de \SI{1}{\bar}; engrenagens em perfeito estado e
 acionamento do freio mecânico com pressão de \SI{3}{\bar}; utilização de uma engrenagem desgastada
 sem acionamento do freio; três engrenagens desgastadas sem acionamento do freio; uma das engrenagens
-com dentes quebrados sem acionamento do freio mecânico.
+com dentes quebrados sem acionamento do freio mecânico. A \cref{tab:data-description} ilustra as
+seis situações de coleta dos dados.
+
+\includetable
+  {tables/data-description}
+  {Situações definidas para coleta dos dados.}
+  {tab:data-description}
 
 Os dados de cada experimento foram amostrados a uma taxa de \SI{2048}{S\per\second}. Dessa forma,
 cada conjunto de abertura ou fechamento da válvula tem duração aproximada de \SI{45}{\second}. Para
@@ -585,10 +594,11 @@ dados não prejudica o resultado da análise, porém torna o processamento menos
 
 %%%
 \subsection{Análise de degradação}
+\label{sub:estudo-caso-analise-degradacao}
 
 A análise de degradação do atuador é feita utilizando somente um dos três sensores citados
-anteriormente. De acordo com os trabalhos de~\cite{boesch2011deteccao} e
-\cite{faccin2011manutencao}, o acelerômetro acoplado ao eixo do motor é o que apresenta melhores
+anteriormente. De acordo com os trabalhos de~\cite{boesch2011deteccao}
+e~\cite{faccin2011manutencao}, o acelerômetro acoplado ao eixo do motor é o que apresenta melhores
 resultados para a detecção na degradação das engrenagens do atuador. Como apresentado
 em~\cite{lazzaretti2012avaliacao}, os dados que apresentam melhores resultados para a obtenção dos
 níveis de degradação são as curvas de abertura da válvula, devido a maior força que é exercida na
@@ -596,31 +606,97 @@ sede da válvula.
 
 Os sinais de vibração não são estacionários. Para analisá-los, obtendo as características variantes
 no tempo, técnicas de processamento de tempo e frequência são as mais indicadas. Portanto, a
-extração das características dos sinais pode ser feita utilizando \gls{WPE}. A eficácia do uso deste
-método para obtenção das características de sinais variantes no tempo é descrita no trabalho
-de~\cite{qiu2006wavelet}.
+extração das características dos sinais pode ser feita utilizando a transformada de wavelet packet.
+A eficácia do uso deste método para obtenção das características de sinais variantes no tempo é
+descrita no trabalho de~\cite{qiu2006wavelet}.
 
 Considerando a forma como os dados foram obtidos, pode-se supor que o atuador opera em três
 situações distintas: em falha, em funcionamento normal e em teste. O funcionamento em falha se
 refere à operação utilizando uma das engrenagens com dentes quebrados sem acionamento do freio
-mecânico. O modo normal é definido com a operação quando é sabido que nenhuma das engrenagens
+mecânico. O modo normal é definido como a operação quando é sabido que nenhuma das engrenagens
 apresenta estado de degradação e o freio mecânico não é utilizado. Por fim, o modo de teste é aquele
 onde o equipamento está sendo analisado, a fim de determinar o nível de degradação.
 
 Os três tipos de situações definidas pela extração dos dados podem ser utilizadas para treinamento
 do equipamento. Dessa forma, como apontado em~\cite{lazzaretti2012avaliacao}, uma das forma de se
-fazer o treinamento do equipamento é utilizando o método da Regressão Logística.
+fazer o treinamento do equipamento é utilizando o método da Regressão Logística. Para utilização, o
+método necessita tanto de dados de funcionamento em falha, como de funcionamento normal. Dessa
+forma, a Regressão Logística pode ser utilizada.
+
 
 %%
 \section{Definição dos experimentos}
+\label{sec:experimentos-definicao}
 
-Os experimentos a serem realizados tem por base validar a proposta apresentada neste trabalho.
+Os experimentos a serem realizados tem por base validar a proposta apresentada neste trabalho. Uma
+das formas de validação é a verificação do correto funcionamento de todas as entidades após a
+implementação. Esta validação engloba o teste de comunicação entre as entidades e o correto
+funcionamento dos serviços implementados.
+
+Outro ponto importante aplicado à validação da arquitetura proposta é a comparação com os métodos
+tradicionais empregados em trabalhos sobre manutenção inteligente. Conforme apresentado na
+\cref{sec:arte-manutencao-inteligente}, os trabalhos relacionados com manutenção inteligente visam a
+resolução de um problema específico. Dessa forma, a utilização das ferramentas de análise de dados
+são desenvolvidas ou implementadas especialmente para o caso de uso proposto. Contudo, é possível
+avaliar o impacto da utilização do sistema proposto para resolução deste tipo de problema.
+
+Além da comparação com os métodos tradicionais, é possível a verificação do comportamento do sistema
+proposto com o aumento do número de dispositivos monitorados por parte do operador do sistema. Por
+premissa, pelo sistema apresentar entidade que possibilitam a configuração e análise automática dos
+dados dos dispositivos, tem-se que o aumento de estações monitoradas não dificulta o processo de
+análise. Porém, o aumento excessivo pode ocasionar outros problemas, como indisponibilidade da rede
+ou das entidades de configuração e análise de dados.
 
 
 %%%
-\subsection{Comparação da proposta em relação aos métodos tradicionais}
+\subsection{Verificação da interoperabilidade entre as entidades}
+\label{sub:experimentos-interoperabilidade}
+
+Como forma de validar o correto funcionamento dos componentes da arquitetura proposta, propõe-se um
+teste de interoperabilidade. O teste visa verificar se todas as entidades estão operando
+corretamente. Também permite identificar a troca de mensagens entre as entidades e o correto
+funcionamento dos serviços implementados.
+
+Para validação, o teste deve iniciar e executar uma aplicação mínima. Além da configuração das
+entidades básicas, como o Gerenciador de Dispositivos e o Gerenciador de Análises, o teste proposto
+visa validar a análise de um dispositivo. Dessa forma, o dispositivo deve ser corretamente
+configurado através do Gerenciador de Dispositivos e analisado através do Analisador de
+Dispositivos. Para a análise, um plano deve ser criado e dados de treinamento enviados.
+
+Com o dispositivo configurado, deve-se verificar os resultados do nível de degradação. O valor de
+confiança deve ser calculado através da análise dos dados simulados. Os dados são processados pelas
+ferramentas de análise juntamente com os dados de treinamento.
 
 
 %%%
-\subsection{Comparação dos métodos em relação a escalabilidade}
+\subsection{Comparação da proposta com métodos tradicionais}
+\label{sub:experimentos-metodos-tradicionais}
 
+O experimento visa comparar o método tradicional empregado na análise de degradação de um
+equipamento com a arquitetura proposta. Nos métodos tradicionais, um software contendo as
+ferramentas necessárias para a aplicação é utilizado para análise dos dados. Neste caso, é
+necessário um operador especializado para realizar coleta dos dados, a configuração das ferramentas
+de análise e a interpretação dos resultados obtidos. Normalmente, em cada nova verificação do
+coeficiente de degradação, o processo deve ser repetido de forma manual ou semi-automática. Um
+exemplo deste tipo de software é o Watchdog Agent.
+
+Com a arquitetura proposta e a utilização dos componentes de software apresentados anteriormente, o
+método de análise dos dados é possível de ser melhorado em comparação com os métodos tradicionais. O
+experimento visa verificar qual a influência na configuração de uma análise de dados de um
+equipamento e a forma como os resultados são obtidos.
+
+
+%%%
+\subsection{Verificação da escalabilidade da proposta}
+\label{sub:experimentos-escalabilidade}
+
+Com o aumento do número de dispositivos monitorados, utilizando os métodos tradicionais, é possível
+que exista aumento da dificuldade de monitoração de todos. Dessa forma, o experimento visa
+determinar qual a influência no aumento do número de equipamentos que necessitam de monitoramento no
+método tradicional e com a utilização da arquitetura proposta.
+
+Também é objetivo do teste verificar as formas de configuração e definição dos planos de análise
+para um conjunto de equipamentos. Em métodos tradicionais, para cada novo equipamento que necessita
+ser testado, os dados precisam ser analisados individualmente pelo operador do sistema. Como forma
+de melhorar esta condição, o sistema proposto pode apresentar um ganho na configuração e
+monitoramento de mais de um equipamento de forma simultânea.
