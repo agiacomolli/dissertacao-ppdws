@@ -8,9 +8,10 @@ arquitetura são descritas e inseridas no contexto de uma aplicação através d
 dos casos de uso, são abordadas diferentes situações onde as entidades da arquitetura se encaixam
 para resolver algum dos problemas.
 
-\blindtext
-
-\todo[inline]{Falar sobre o estudo de caso e programação dos experimentos.}
+Juntamente com a arquitetura proposta, é apresentada a programação dos experimentos e o estudo de
+caso. O experimentos visam validar o sistema proposto, bem como todas as entidades aqui descritas.
+Para validação, o estudo de caso, envolvendo um conjunto atuador elétrico e válvula, é proposto e
+hipóteses sobre são levantadas.
 
 
 %%
@@ -23,10 +24,9 @@ auxiliam no funcionamento do sistema. A troca de informações entre todos os el
 arquitetura é abstraída na forma de serviços, o que facilita a integração, inserção e remoção de
 novas entidades no sistema. Dessa forma, a especificação da arquitetura é definida utilizando os
 padrões \gls{SOA}. Uma visão geral das entidades que fazem parte da arquitetura proposta é
-apresentada na \cref{fig:soa-proposed-architecture}\todo{Alterar figura. A aplicação SOA deve
-englobar mais entidades}. Na figura, nota-se que cada entidade tem uma função específica no sistema
-e o acesso às suas funcionalidades é realizado através de serviços. A seguir, para melhor
-entendimento, todos os elementos serão detalhados.
+apresentada na \cref{fig:soa-proposed-architecture}. Na figura, nota-se que cada entidade tem uma
+função específica no sistema e o acesso às suas funcionalidades é realizado através de serviços. A
+seguir, para melhor entendimento, todos os elementos serão detalhados.
 
 \includefigure
   {images/soa-proposed-architecture}
@@ -69,17 +69,15 @@ mesmas funcionalidades de um serviço padrão, e o carrega para ser executado no
 
 
 %%%
-\subsection{Aplicação orientada a serviços}
-
-\todo{inline}[Remover (também da figura)!]
-
-A \todo{Alterar texto para englobar mais entidades da arquitetura}aplicação orientada a serviços
-nada mais é do que o resultado da utilização dos diversos serviços propostos na arquitetura. Através
-da composição ou utilização direta dos serviços de uma forma coordenada, a aplicação é construída.
-De um modo minimalista, a aplicação pode ser vista como a interação progressiva de funcionalidades
-simples provenientes de serviços básicos, resultando em um componente complexo de software. Visto
-que o produto final da composição dos elementos do sistema não é definido \textit{a priori}, o
-resultado da aplicação pode ser qualquer construção ou interação entre os componentes.
+%\subsection{Aplicação orientada a serviços}
+%
+%A aplicação orientada a serviços nada mais é do que o resultado da utilização dos diversos serviços
+%propostos na arquitetura. Através da composição ou utilização direta dos serviços de uma forma
+%coordenada, a aplicação é construída. De um modo minimalista, a aplicação pode ser vista como a
+%interação progressiva de funcionalidades simples provenientes de serviços básicos, resultando em um
+%componente complexo de software. Visto que o produto final da composição dos elementos do sistema
+%não é definido \textit{a priori}, o resultado da aplicação pode ser qualquer construção ou
+%interação entre os componentes.
 
 
 %%%
@@ -265,14 +263,16 @@ dispositivo. O identificador -- uma \gls{URI}, por exemplo -- é único para cad
 aplicação, possibilitando que, na inclusão de subdispositivos, o identificador seja estendido para
 englobá-los. Além disso, pode-se criar classes e subclasses de dispositivos, organizando
 funcionalidades comuns para determinado dispositivo. A visualização das duas topologias possíveis é
-apresentada na \cref{fig:device-topology-visualization}. À esquerda, os dispositivos estão
-distribuídos como são encontrados pelo Gerenciador de Dispositivos. Na direita, o gerenciador
-reconstrói a topologia baseado nos identificadores únicos de cada dispositivo. Nota-se que os
-dispositivos, que na primeira topologia estão no mesmo nível hierárquico, agora são encontrados como
-subdispositivos de outros dispositivos.
+apresentada na \cref{fig:device-topology-visualization}. Em~(a), os dispositivos estão distribuídos
+como são encontrados pelo Gerenciador de Dispositivos. Esta visão pode ser considerada a visão do
+ponto de vista da rede. Em~(b), o gerenciador reconstrói a topologia baseado nos identificadores
+únicos de cada dispositivo. Esta visão pode ser considerada a visão lógica do sistema. Nota-se que
+os dispositivos, que na primeira topologia estão no mesmo nível hierárquico, agora são encontrados
+como subdispositivos de outros dispositivos.
 
-\includefiguretmp
-  {Possíveis visualizações da topologia dos dispositivos.}
+\includefigure
+  {images/device-topology-visualization}
+  {Possíveis visualizações da topologia dos dispositivos: (a)~visão da rede; (b)~visão lógica.}
   {fig:device-topology-visualization}
 
 Tomando de exemplo a \cref{fig:device-topology-visualization}, os identificadores de cada
@@ -294,16 +294,15 @@ evitando o aumento da degradação. Dessa forma, o equipamento pode operar por u
 tempo até que uma manutenção possa ser realizada. Contudo, medidas que alteram o comportamento podem
 levar a perda de desempenho nas tarefas executadas.
 
-\iffalse
-A \cref{fig:device-send-behavior} ilustra o envio de novos comportamentos pelo operador do sistema
-para um dispositivo. O dispositivo mantém uma lista de comportamentos e seleciona qual o mais
-adequado para a situação corrente. A situação é definida pelo nível de saúde obtido através das
-análises de dados e representa a degradação de todo ou parte do equipamento.
+%A \cref{fig:device-send-behavior} ilustra o envio de novos comportamentos pelo operador do sistema
+%para um dispositivo. O dispositivo mantém uma lista de comportamentos e seleciona qual o mais
+%adequado para a situação corrente. A situação é definida pelo nível de saúde obtido através das
+%análises de dados e representa a degradação de todo ou parte do equipamento.
+%
+%\includefiguretmp
+%  {Envio de comportamentos para o dispositivo.}
+%  {fig:device-send-behavior}
 
-\includefiguretmp
-  {Envio de comportamentos para o dispositivo.}
-  {fig:device-send-behavior}
-\fi
 
 %%%
 \subsection{Envio de dados de treinamento}
@@ -355,12 +354,24 @@ que utilizam as informações do plano.
 Na construção do plano de análise, os comportamentos de cada dispositivo são obtidos e incluídos na
 execução. Os diferentes comportamentos podem ser mapeados para intervalos de resultados esperados
 das análises. Como descrito pelo diagrama de casos de uso da \cref{fig:uml-analysis-management}, a
-\cref{fig:device-create-plan} ilustra a criação de um plano de análise de dispositivo. Após obter
-todas as informações do dispositivo a ser analisado, o plano é criado pelo operador do sistema. Na
-criação, são definidos os intervalos de reexecução do plano, bem como a ordem das ferramentas
-utilizadas na manipulação dos dados.
+\cref{fig:device-create-plan} ilustra a criação de um plano de análise de dispositivo.
+Primeiramente, o operador do sistema deve utilizar o Gerenciador de Análises~(1). Após a execução do
+gerenciador, é possível realizar a busca pelos dispositivos na rede~(2). Os dispositivos encontrados
+são listados para o operador, bem como outros subdispositivos que o compõe. No exemplo, fazem parte
+da rede os dispositivos \emph{Atuador elétrico}, \emph{Sensor freio}, \emph{Sensor engrenagem} e
+\emph{Sensor motor}. Contudo, os sensores, que na topologia de rede estão no mesmo nível
+hierárquico, fazem parte do atuador.
 
-\includefiguretmp
+Ao obter os dispositivos da rede, o operador do sistema pode criar um plano de análise~(3). O plano
+é criado também utilizando o Gerenciador de Análises, como ilustrado ainda na
+\cref{fig:device-create-plan}. No plano, é definido qual dispositivo será analisado, quais sensores
+serão monitorados e as ferramentas utilizadas na análise dos dados. Após a criação do plano, o
+operador tem a possibilidade de armazená-lo~(4). Sendo assim, o plano é enviado para a base de
+dados, onde estará visível para utilização pelo Analisador de Dispositivos ou mesmo para
+visualização ou modificação posterior por parte do operador.
+
+\includefigure
+  {images/device-create-plan}
   {Busca de dispositivo e criação de um plano de análise.}
   {fig:device-create-plan}
 
@@ -384,16 +395,19 @@ armazena os resultados na Base de Dados.
   {Diagrama de casos de uso para a obtenção e execução das análises.}
   {fig:uml-device-analysis}
 
-A \cref{fig:analysis-plan-execution} apresenta o fluxo de dados quando da execução de um plano de
-análise pelo Analisador de Dispositivos. O dispositivo é identificado e os seus dados são obtidos da
-base de dados. As ferramentas de análise são selecionadas de acordo com o plano e os dados brutos
-são analisados. O resultado da análise é novamente enviado para a base de dados. Se necessário,
-novas análises são realizadas sobre os dados que já foram manipulados. Com o índice de degradação,
-que é o resultado final da análise, o Analisador de Dispositivos seleciona um dos comportamentos
-definidos no plano. O equipamento é então posto para executar a tarefa monitorada de acordo com o
-novo comportamento.
+A \cref{fig:analysis-plan-execution} apresenta o procedimento utilizado quando da execução de um
+plano de análise pelo Analisador de Dispositivos. O analisador verifica a base de dados em busca dos
+planos ativos~(1). Ao encontrá-los, o analisador os analisa verificando para qual dispositivo o
+plano deve ser empregado~(2). Com o plano, o Analisador de Dispositivos busca novamente os dados dos
+sensores do dispositivo, indicados no plano e que estão armazenados na base de dados~(3). Ao término
+da busca, os dados são analisados e o resultado da análise é novamente enviado para a base de
+dados~(4). Se necessário, novas análises são realizadas sobre os dados que já foram manipulados. Com
+o índice de degradação, que é o resultado final da análise, o Analisador de Dispositivos seleciona
+um dos comportamentos definidos no plano. O equipamento é então posto para executar a tarefa
+monitorada de acordo com o novo comportamento~(5).
 
-\includefiguretmp
+\includefigure
+  {images/analysis-plan-execution}
   {Diagrama de execução de uma análise de equipamento.}
   {fig:analysis-plan-execution}
 
@@ -406,11 +420,13 @@ novo comportamento.
 %obtidos, qual o melhor comportamento que o equipamento deve assumir. Com o plano, o Analisador de
 %Dispositivos determina o índice de degradação do equipamento, verificando se está nos níveis
 %desejados para determinado funcionamento. Dependendo do valor obtido na análise, o analisador pode
-%alterar o funcionamento do equipamento, assumindo um dos comportamentos definidos anteriormente pelo
-%operador do sistema. A \cref{fig:uml-device-operation-modes} apresenta o diagrama \gls{UML} de casos
-%de uso para a seleção automática dos modos de operação do dispositivo baseado no plano de análise.
+%alterar o funcionamento do equipamento, assumindo um dos comportamentos definidos anteriormente
+%pelo operador do sistema. A \cref{fig:uml-device-operation-modes} apresenta o diagrama \gls{UML} de
+%casos de uso para a seleção automática dos modos de operação do dispositivo baseado no plano de
+%análise.
 %
 %\includefiguretmp
+%  %{images/uml-device-operation-modes}
 %  {Diagrama de casos de uso para seleção dos modos de operação suportados pelo dispositivo.}
 %  {fig:uml-device-operation-modes}
 
@@ -435,8 +451,19 @@ diagrama \gls{UML} da \cref{fig:uml-health-device-report}.
 \section{Estudo de caso}
 \label{sec:estudo-caso}
 
-\todo[inline]{Introdução da seção mostrando que a sistema será simulado com os dados obtidos em
-trabalhos anteriores.}
+O estudo de caso utilizado neste trabalho consiste de um conjunto atuador elétrico e válvula. O
+atuador é utilizado para controle de fluxo em redes de distribuição de petróleo. Os atuadores
+permitem a abertura e fechamento dos dutos através do movimento da haste pelo acionamento de um
+motor. Devido a natureza do equipamento, é inerente a predisposição à degradação.
+
+Como parte do trabalho, o atuador é definido como um dispositivo da arquitetura proposta. São
+mapeadas as informações pertinentes e traduzidas para o projeto de um cliente. O cliente será um
+software para simulação de dados, não sendo embarcado no equipamento físico.
+
+Para o projeto do software de simulação do atuador, foram utilizados dados de funcionamento do
+equipamento real. Os dados foram obtidos através de instrumentação feita nos trabalhos anteriores
+de~\cite{boesch2011deteccao} e \cite{faccin2011manutencao}. Com os dados reais, o software deve
+utilizá-los para simular a aquisição de dados do equipamento em funcionamento.
 
 
 %%%
@@ -450,13 +477,18 @@ tipo diferente de válvula. Os tipos mais comuns são esfera, gaveta e
 globo~\cite{campos2006controles}.
 
 O conjunto atuador elétrico e válvula, utilizado no trabalho em questão, é utilizado para controle
-de fluxo em redes de distribuição de petróleo\todo{Modelo do atuador}. É possível a obtenção do
-torque mecânico exercido pelo atuador sobre as engrenagens de comando da haste bem como a posição do
-obturador. O acionamento do conjunto pode ser feito localmente, através de uma interface de
-programação local, sendo que todos os elementos de controle estão incorporados no próprio
-equipamento. O atuador utilizado é dito de comando inteligente, pois, além de estar instrumentado,
-possui a capacidade de detecção de alguns problemas, como sobreaquecimento, torque excessivo ou
-falta de fase.
+de fluxo em redes de distribuição de petróleo, modelo CSR6, fabricado pela empresa Coester Automação
+Ltda. A \cref{fig:csr6-device} ilustra o atuador utilizado. É possível a obtenção do torque mecânico
+exercido pelo atuador sobre as engrenagens de comando da haste bem como a posição do obturador. O
+acionamento do conjunto pode ser feito localmente, através de uma interface de programação local,
+sendo que todos os elementos de controle estão incorporados no próprio equipamento. O atuador
+utilizado é dito de comando inteligente, pois, além de estar instrumentado, possui a capacidade de
+detecção de alguns problemas, como sobreaquecimento, torque excessivo ou falta de fase.
+
+\includefigure
+  {images/csr6-device}
+  {Atuador elétrico modelo CSR6.}
+  {fig:csr6-device}
 
 Durante o funcionamento, os valores de torque e posição da haste são armazenados em uma memória
 interna do atuador, sendo possível registrar até \num{500} operações de fechamento ou abertura. No
@@ -467,29 +499,20 @@ Além disso, como forma de detectar facilmente o início e o fim do movimento do
 truncado para \SI{10}{\newton\meter} quando os valores forem menores que \SI{10}{\newton\meter} e,
 quando não há movimento, assume o valor de \SI{0}{\newton\meter}~\cite{lazzaretti2012avaliacao}.
 
-\includefigure
-  {images/csr6-device}
-  {Atuador elétrico modelo CSR6.}
-  {fig:csr6-device}
-
 O atuador foi montado em uma bancada de testes onde é possível a simulação das condições de desgaste
 do conjunto e a instrumentação de partes que não são verificadas por padrão. Dessa forma, na
 bancada, o atuador está instrumentado com mais três sensores, visando a obtenção dos níveis de
 vibração da estrutura. Os sensores são acelerômetros, posicionados no eixo do motor do atuador, na
-ponta do sem-fim e na pinça do freio. A \cref{fig:study-case} apresenta a bancada de testes
-utilizada para obtenção dos dados utilizados no estudo de caso enquanto que a
-\cref{fig:sensors-localization} ilustra o posicionamento dos sensores instalados e a estrutura
-interna do atuador elétrico.
+ponta do sem-fim e na pinça do freio. A \cref{fig:sensors-localization} ilustra o posicionamento dos
+sensores instalados e a estrutura interna do atuador elétrico.
 
-\todo[inline]{Modelo do atuador elétrico no SolidWorks.}
-
-\includefiguretmp
+%\includefiguretmp
   %{images/study-case}
-  {Bancada de testes utilizada para obtenção dos dados do estudo de caso.}
-  {fig:study-case}
+  %{Bancada de testes utilizada para obtenção dos dados do estudo de caso.}
+  %{fig:study-case}
 
-\includefiguretmp
-  %{images/sensors-localization}
+\includefigure
+  {images/sensors-localization}
   {Diagrama da localização dos sensores instalados no atuador elétrico.}
   {fig:sensors-localization}
 
@@ -500,9 +523,9 @@ níveis de degradação. No total são três engrenagens, uma em estado normal e
 falha. Das engrenagens com falha, uma está desgastada e a outra possui uma parte quebrada. As três
 engrenagens utilizadas no estudo de caso são ilustradas na \cref{fig:test-gears}.
 
-\includefiguretmp
-  %{images/test-gears}
-  {Engrenagens utilizadas no estudo de caso.}
+\includefigure
+  {images/test-gears}
+  {Engrenagens utilizadas no estudo de caso -- adaptado de \cite{lazzaretti2012avaliacao}.}
   {fig:test-gears}
 
 As engrenagens fazem parte do conjunto de engrenagens satélite do atuador. Este conjunto é
@@ -520,9 +543,6 @@ acionamento do torque e também está identificado na mesma figura.
 %%%
 \subsection{Definição dos dispositivos}
 
-O conjunto utilizado como estudo de caso foi mapeado para a representação de dispositivos da
-arquitetura proposta.
-
 No contexto deste trabalho, um dispositivo é a entidade lógica principal que abstrai um elemento da
 aplicação. Pode representar uma entidade física, como um sensor ou atuador, ou lógica, como uma
 máquina, composta por diversas entidades de hardware mapeadas como entidades lógicas. Cada um dos
@@ -533,29 +553,34 @@ os serviços do segundo, a fim de criar um serviço composto mais complexo para 
 determinada tarefa. A \cref{fig:device-services-overview} ilustra a topologia para os dispositivos
 utilizada neste trabalho. Os clientes utilizam os serviços hospedados pelos dispositivos
 diretamente. Um serviço também pode ser considerado um cliente caso utilize de uma funcionalidade
-remota para prover a sua funcionalidade ou tarefa. Além disso, da mesma forma, um dispositivo também
-pode ser considerado um cliente, o que flexibiliza a integração entre os componentes do sistema.
+remota para prover a sua funcionalidade ou tarefa. Além disso, um dispositivo também pode ser
+considerado um cliente, o que flexibiliza a integração entre os componentes do sistema.
 
 \includefigure
     {images/device-services-overview}
     {Visão geral dos clientes, dispositivos e serviços hospedados.}
     {fig:device-services-overview}
 
-\iffalse
-O modelo de dispositivos empregados neste estudo é apresentado na figura\todo{Incluir figura}. Nela,
-o dispositivo físico é abstraído por um dispositivo lógico, identificado por\textit{XX*}. O
-dispositivo lógico inclui alguns serviços padrão, referenciando funcionalidades que podem ser
-encontradas em todos os dispositivos presentes na arquitetura proposta. Dentre os serviços padrão,
-tem-se o serviço de implantação de novos serviços. Este serviço permite que outros serviços sejam
-adicionados ao dispositivo físico. Além disso, é possível a implantação de novos dispositivos
-lógicos, a fim de abstrair componentes da aplicação, juntamente com serviços do
-usuário\todo{Melhorar o texto com base na imagem que será incluída.}.
-\fi
+O conjunto utilizado como estudo de caso foi mapeado para a representação de dispositivos da
+arquitetura proposta. Foram verificadas algumas propriedades passíveis de serem incluídas em todos
+os dispositivos que integram o sistema. Todas as informações mapeadas são acessíveis em forma de
+serviço. Dessa forma, permitindo a integração do dispositivo com as diversas entidades de software
+projetadas. A \cref{tab:device-metadata} apresenta as informações relativas aos dispositivos da
+arquitetura proposta. Têm-se informações sobre o equipamento, como nome, modelo e número de série, e
+também sobre o seu fabricante.
 
 \includetable
   {tables/device-metadata}
   {Metadados disponíveis para configuração em cada dispositivo.}
   {tab:device-metadata}
+
+Da mesma forma que para os dispositivos, os sensores que compõem o equipamento também possuem
+informações que devem estar disponíveis para a aplicação. Os sensores representam componentes
+importantes no sistema proposto, pois é onde os dados utilizados nas análises são gerados. Como
+exemplo, são utilizados pelo Gerenciador de Análises para definir um plano de análise. As
+informações dos sensores, que estão presentes em todos os elementos deste tipo na arquitetura
+proposta, são apresentadas na \cref{tab:sensor-info}. Dentre as informações, estão o modelo, versão
+e descrição, além do fabricante e a unidade de medida disponibilizada para os dados adquiridos.
 
 \includetable
   {tables/sensor-info}

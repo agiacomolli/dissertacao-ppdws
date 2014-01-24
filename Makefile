@@ -26,11 +26,16 @@ IMAGES = \
 	images/device-services-overview.svg \
 	images/uml-discovery-setup-devices.svg \
 	images/uml-configure-device-acquisition.svg \
+	images/device-topology-visualization.svg \
 	images/uml-send-training-data.svg \
 	images/uml-analysis-management.svg \
+	images/device-create-plan.svg \
 	images/uml-device-analysis.svg \
+	images/analysis-plan-execution.svg \
 	images/uml-health-device-report.svg \
 	images/csr6-device.svg \
+	images/sensors-localization.svg \
+	images/test-gears.svg \
 	images/sattelite-gears-location.svg
 
 TABLES = #\

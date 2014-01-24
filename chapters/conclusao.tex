@@ -1,8 +1,93 @@
 \chapter{Conclusão}
 
-Trabalhos futuros:
+Este trabalho apresentou a proposta de uma arquitetura orientada a serviços para um sistema de
+manutenção inteligente. Na dissertação, foi apresentado o projeto das diversas entidades que fazem
+parte da arquitetura e propostos casos de uso onde o sistema se encaixa. Através dos casos de uso,
+foi possível determinar as funcionalidades que cada entidade de software deveria apresentar. Por
+fim, o sistema foi implementado e verificou-se que a solução proposta é viável, visto que integra um
+ambiente que auxilia na determinação dos coeficientes de degradação de equipamentos de forma
+facilitada.
 
-Modo de aquisição de dados de treinamento.
+Com as entidades propostas, mais especificamente o Gerenciador de Dispositivos, foi apresentado que
+é possível gerenciar e configurar os dispositivos. É ofertado ao operador do sistema um software
+dedicado para a configuração dos dispositivos remotamente. O gerenciador possibilita, entre outras
+funcionalidades, a capacidade de obtenção de todos os dispositivos presentes na rede e a
+apresentação de informações detalhadas sobre cada um deles ao usuário. Além disso, é possível a
+obtenção da topologia encontrada na rede. O gerenciador organiza os dispositivos apresentando-os de
+forma hierárquica, facilitando a verificação da estrutura dos equipamentos. Também no Gerenciador de
+Dispositivos, é disponibilizada a funcionalidade de obtenção de relatórios de análise dos
+equipamentos. Dessa forma, o operador pode verificar o histórico de degradação dos equipamentos e,
+futuramente, utilizar os dados para tarefas de prognóstico.
 
-Com a arquitetura proposta, no caso de um aumento excessivo do número de dispositivos que necessitam
-de análise, é possível a utilização de mais de uma entidade Analisador de Dispositivos.
+Como forma de gerenciar as análises empregadas nos dispositivos, foi proposto o Gerenciador de
+Análises. O gerenciador possibilita a criação de planos de análise para dispositivos individuais ou
+em grupo. Esta entidade integra todo o processo de gerenciamento das análises a que os equipamentos
+estão submetidos. É disponibilizado ao operador do sistema a definição das ferramentas que serão
+utilizadas na análise dos dados, bem como a configuração de comportamentos em função do nível de
+degradação obtido com a análise. Novamente, como no caso anterior, o Gerenciador de Análises é uma
+ferramenta de configuração remota, permitindo, assim, o gerenciamento dos planos de análise de forma
+facilitada.
+
+As análises agendadas pelo operador no Gerenciador de Análises são executadas pela entidade
+Analisador de Dispositivos. A arquitetura proposta dispões desta entidade dedicada para a execução
+dos planos de análise dos equipamentos. O analisador verifica os dados dos dispositivos e executa as
+análises com base no plano definido pelo operador do sistema. Como apresentado, o analisador utiliza
+os algoritmos de análise presentes na ferramenta Watchdog Agent. Porém, levando em conta a forma com
+o que software foi projetado, a extensão do módulo de análise para outras implementações comerciais
+ou específicas é possível de forma facilitada.
+
+Por fim, coma definição do estudo de caso e implementação dos dispositivos, foi possível testar a
+interoperabilidade da solução proposta. O estudo de caso apresentado foi implementado na forma de
+dispositivos \gls{DPWS}. A fim de facilitar os testes da arquitetura, os dados foram obtidos
+anteriormente em situações distintas. Com isso, o dispositivo se comportou como um simulador,
+gerando os dados dos sensores na mesma forma como foram obtidos.
+
+Em relação aos experimentos propostos, verificou-se a vantagem no uso da arquitetura proposta em
+relação a utilização dos métodos tradicionais para verificação da degradação em equipamentos
+utilizando as técnicas de manutenção inteligente. Ficou claro que, nos métodos tradicionais,
+utilizando somente o software Watchdog Agent, por exemplo, é necessário o emprego de um operador
+qualificado para a configuração das ferramentas e obtenção dos resultados. Isso se deve ao fato de
+que, para cada nova análise, o software precisa ser reconfigurado. Com as hipóteses levantadas, foi
+possível concluir que a utilização de planos de análise, empregados nesta proposta, facilitam o
+processo de análise dos dados, visto que, após a criação de um plano, o usuário não necessita
+modificá-lo nem reconfigurar o software de análise. Também foi constatada a facilidade de obtenção
+dos níveis de degradação. Ao passo que, nos métodos tradicionais o operador necessita coordenar a
+análise, com a entidade proposta essas são feitas de maneira automática. O operador do sistema
+necessita somente obter os relatórios com os valores calculados durante o período estipulado.
+
+As vantagens na utilização da proposta são mais evidentes quando comparadas à configuração e análise
+de múltiplos equipamentos. As dificuldades encontradas na utilização do software convencional para
+obtenção dos níveis de degradação de um equipamento são expandidas quando se faz necessária a mesma
+avaliação para um conjunto de dispositivos. Dessa forma, o operador necessita, a cada nova análise,
+iniciar todo o processo de configuração das ferramentas e obtenção dos dados. Com a definição dos
+planos de análise no Gerenciador de Análises, é possível a utilização de um mesmo plano para um
+grupo de dispositivos. Os dispositivo que fazem parte do grupo de análise serão monitorados de forma
+igual pelo Analisador de Dispositivos. Dessa forma, o analisador se encarrega de obter os níveis de
+degradação de forma automática.
+
+Visando a continuidade do desenvolvimento da proposta, pode-se citar alguns pontos verificados como
+passíveis de melhoramento. Um deles diz respeito aos modos de aquisição de dados de treinamento. No
+estado atual, o operador do sistema necessita enviar os dados de treinamento para os dispositivos de
+forma manual. A cada novo treinamento que deseja-se incluir na base de dados, é necessária a
+utilização das funcionalidades empregadas no Gerenciador de Dispositivos para envio dos dados.
+Portanto, com o aumento no número de treinamentos, aumenta também a dificuldade de envio dos dados,
+por representar tarefas repetitivas. Uma melhoria constatada está na utilização da entidade que
+representa o dispositivo configurada em um modo específico de aquisição de dados de treinamento. Ao
+contrário do que é utilizado na implementação atual, o dispositivo poderia ser configurado para
+enviar os dados das aquisições diretamente para a base de dados como dados de treinamento.
+
+O aumento no número de dispositivos também é considerado um problema na visão do Analisador de
+Dispositivos. Se muitos dispositivos estão em processo de análise, o analisador manterá uma fila
+demasiadamente grande. O processamento das análises enfileiradas pode representar atraso
+considerável na obtenção dos valores de degradação. Considerando isso, a proposta de inclusão de
+mais entidades para análise de dispositivos pode solucionar o problema. Uma possibilidade é a
+comunicação ente os processos e verificação da disponibilidade. Dessa forma, evitando que a
+sobrecarga dos planos de análise agendados recaiam sobre somente um ponto de processamento de dados.
+
+Por último, como forma de melhorias, a reimplementação das ferramentas de análise se faz necessário.
+Neste estudo, foram utilizadas as ferramentas que integram o software Watchdog Agent. Essas são
+disponibilizadas em forma de arquivos de \textit{script} para execução no software Matlab. Pelo fato
+de que arquivos deste tipo são interpretados, verificou-se perda considerável no desempenho em
+função do aumento do lote de dados analisado. Dessa forma, propõe-se a reimplementação dos
+algoritmos utilizando linguagem compiladas, como C ou C++, e, em pontos onde for possível,
+processamento paralelo, como CUDA ou OpenCL~\cite{kirk2012programming}.
