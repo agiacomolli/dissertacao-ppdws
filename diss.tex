@@ -34,6 +34,8 @@
 \Crefname{table}{Tabela}{Tabelas}
 \crefname{equation}{equação}{equações}
 \Crefname{equation}{Equação}{Equações}
+\crefname{chapter}{capítulo}{capítulos}
+\Crefname{chapter}{Capítulo}{Capítulos}
 \crefname{section}{seção}{seções}
 \Crefname{section}{Seção}{Seções}
 \crefname{subsection}{subseção}{subseções}
@@ -98,6 +100,17 @@
   \begin{figure}[ht!]
     \centering
     \includegraphics{#1}
+    \caption{#2}
+    \label{#3}
+  \end{figure}
+}
+
+%%
+% Comando para inserção de uma imagem dos softwares.
+\newcommand{\includefiguresoft}[3]{%
+  \begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.5]{#1}
     \caption{#2}
     \label{#3}
   \end{figure}

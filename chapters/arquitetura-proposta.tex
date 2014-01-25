@@ -1,4 +1,5 @@
 \chapter{Arquitetura proposta}
+\label{cha:arquitetura-proposta}
 
 Conforme visto no capítulo anterior, é possível a integração de um sistema de manutenção inteligente
 utilizando uma arquitetura orientada a serviços. Dessa forma, este capítulo apresenta a proposta de
@@ -125,11 +126,10 @@ encontrados.
 \label{sub:proposta-gerenciador-analises}
 
 O Gerenciador de Análises é utilizado para definir o plano que será aplicado a determinado
-equipamento, ou grupo de equipamentos, \todo{Em ou com?}com vista a obter os níveis de degradação.
-Nesta entidade, é possível selecionar e definir a ordem em que serão executadas as ferramentas de
-análise de dados através de um plano. O gerenciador permite o agendamento dos planos e a execução
-periódica em intervalos de tempo. Os planos também podem ser gerenciados, possibilitando alteração
-e/ou exclusão.
+equipamento, ou grupo de equipamentos, tendo em vista obter os níveis de degradação. Nesta entidade,
+é possível selecionar e definir a ordem em que serão executadas as ferramentas de análise de dados
+através de um plano. O gerenciador permite o agendamento dos planos e a execução periódica em
+intervalos de tempo. Os planos também podem ser gerenciados, possibilitando alteração e/ou exclusão.
 
 No plano são definidos os comportamentos a serem adotados com base nos valores de degradação do
 equipamento. O gerenciador obtém os comportamentos previamente definidos para o equipamento a ser
@@ -168,11 +168,10 @@ A entidade Base de Dados é utilizada como uma interface para um banco de dados.
 funcionalidades para  armazenar todos os dados relativos à aplicação. Desde os dados obtidos nas
 análises de degradação dos equipamentos como também os planos de análise agendados pelo usuário. A
 base centraliza as informações, mas não necessariamente faz com que a aplicação seja centralizada.
-Nada impede a utilização de diferentes \todo{Remotas e locais? Alterar figura}bases de dados e o
-compartilhamento de informações entre as entidade do sistema. Por exemplo, o armazenamento dos dados
-de treinamento de um equipamento, necessário para obtenção do nível de degradação, pode ser feito em
-diferentes bases de dados. O Analisador de Dispositivos pode combinar estas informações, a fim de
-melhorar o resultado esperado.
+Nada impede a utilização de diferentes bases de dados e o compartilhamento de informações entre as
+entidade do sistema. Por exemplo, o armazenamento dos dados de treinamento de um equipamento,
+necessário para obtenção do nível de degradação, pode ser feito em diferentes bases de dados. O
+Analisador de Dispositivos pode combinar estas informações, a fim de melhorar o resultado esperado.
 
 Por ser defina como um componente \gls{SOA}, o acesso aos dados é feito através de serviços. A
 inclusão, deleção e modificação de dados são realizadas por serviços especializados. Um dispositivo

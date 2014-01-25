@@ -1,5 +1,120 @@
 \chapter{Introdução}
 
-\cite{lee2006intelligent}
+Atualmente, a importância do emprego de técnicas de manutenção no âmbito industrial está em
+constante ascensão devido a necessidade de aumentar a disponibilidade e segurança dos equipamentos,
+bem como a qualidade do processo produtivo~\cite{muller2008formalisation}. O custo empregado
+anualmente com processos de manutenção está na faixa de 15\% para a indústria de manufatura, entre
+20\% a 30\% para a indústria química e na faixa de 40\% para a indústria do aço e
+siderúrgica~\cite{chu1998predictive, nguyen2008new}. Dessa forma, o desenvolvimento de novas
+técnicas de manutenção para uso nas mais diversas áreas e o correto planejamento dos processos de
+manutenção estão cada vez mais importantes, uma vez que impactam diretamente no fator econômico,
+alterando a disponibilidade do sistema e também a segurança~\cite{zhao2010soabased}.
 
-\Blindtext[5][4]
+Nos últimos anos, tem-se observado um crescimento no uso de um novo paradigma de manutenção
+denominado de manutenção inteligente~\cite{zhang2013performance}. Este novo paradigma visa
+transformar a forma como as técnicas de manutenção são utilizadas. Diferentemente dos métodos
+tradicionais, conhecidos por aplicar o conserto aos equipamento somente após a falha ou por manterem
+processos de manutenção agendados baseado no histórico de falhas dos componentes, o paradigma de
+manutenção inteligente visa predizer a condição do sistema e prevenir uma possível falha.
+Segundo~\cite{bloch2012machinery}, 99\% das falhas em sistemas mecânicos podem ser observadas por
+indicadores perceptíveis. Dessa forma, é possível a utilização de técnicas de manutenção inteligente
+empregadas no monitoramento contínuo da saúde do sistema, de forma a não interromper a operação dos
+equipamentos.
+
+As tecnologias empregadas na manutenção contínua do sistema, bem como diagnóstico de falhas, tiveram
+grande desenvolvimento nas últimas décadas e visam predizer o estado do
+sistema~\cite{heng2009rotating}. Assinatura de sinais de vibração e de emissão acústica puderam ser
+obtidos, processados e analisados através de sensores e softwares computacionais. Novas pesquisas
+nestas áreas estão em constante evolução e, cada vez mais, utilizam técnicas modernas para análise e
+processamento de sinais. Isso se torna possível com os avanços da eletrônica e computação, que cada
+vez mais propiciam ferramentas e técnicas para a resolução de problemas~\cite{zhao2010predictive}.
+Como exemplo, pode-se citar o uso de métodos baseados em redes neurais ou de mapas auto-organizáveis
+para detecção de padrões em sinais~\cite{goncalves2011fault}.
+
+Outra linha de pesquisa também está em constante crescimento: o uso de \gls{SOA} ou Arquiteturas
+Orientadas a Serviços. O uso do padrão \gls{SOA} está evoluindo e cada vez mais presente em
+aplicações nos mais diversos segmentos, sejam eles a nível de dispositivos, na implementação de
+camadas de negócios ou mesmo no setor industrial~\cite{candido2010soa, choi2010impact,
+ragavan2012service, papazoglou2007service}. É um conceito de arquitetura que suporta acoplamento
+mínimo entre componentes, possibilitando ganhos em flexibilidade e interoperabilidade. Dessa forma,
+qualquer tipo de aplicação pode ser representada como um conjunto complexo de serviços.
+
+Com a utilização de \gls{SOA}, um recurso ou componente é identificado como um serviço. Cada
+entidade apresenta comportamento bem definido e é composta por módulos autocontidos, os quais
+permitem que um determinado serviço seja independente do estado ou contexto de outros
+serviços~\cite{papazoglou2007service}. As funcionalidades agregadas a um serviço são publicadas e
+disponibilizadas através de uma interface padrão, o que possibilita a troca de informações ou
+requisição da execução de alguma tarefa entre os componentes~\cite{ragavan2012service}.
+
+O uso de \gls{SOA} no âmbito industrial, como forma de integração dos sistemas, se mostra factível
+pelos sucesso de vários projetos~\cite{karnouskos2010towards, bohn2006sirena, de2006soda,
+colombo2010factory}. Os projetos demonstram a viabilidade na utilização de serviços em sistemas
+embarcados a fim de integrá-los com sistemas \gls{MES} e \gls{ERP}, localizados nos níveis mais
+altos da corporação. A utilização de \gls{SOA} em ambientes industriais possibilita o aumento da
+flexibilidade do sistema, resultado em rápida adaptação para situações onde são impostas demandas do
+mercado~\cite{starke2013flexible}. A configuração de equipamentos de forma flexível utilizando
+\gls{SOA}, possibilita aumento na agilidade como os processos desta natureza são executados.
+
+
+%Motivação
+
+Nesse contexto, um sistema de manutenção inteligente também pode se valer da utilização dos
+conceitos empregados pelo padrão \gls{SOA}. Do ponto de vista da arquitetura \gls{SOA}, o sistema de
+manutenção pode conter serviços para relatórios de saúde e falhas, informações sobre o prognóstico
+do tempo de operação sem necessidade de manutenção, além de serviços de configuração de ferramentas
+de diagnóstico ou dos modos de operação suportados pelo equipamento. O monitoramento remoto do
+sistema também possibilita a integração das informações de saúde dos equipamentos em sistemas
+\gls{MES} e \gls{ERP}, a fim de se obter o correto gerenciamento da cadeia de suprimentos de peças
+de reposição~\cite{oldham2003delivering}
+
+
+%Proposta do trabalho
+
+Mesmo que as pesquisas envolvendo as áreas de sistemas de manutenção e arquiteturas orientadas a
+serviços estejam em constante evolução, as iniciativas para integração das duas tecnologias ainda
+são escassas. Dessa forma, o trabalho em questão apresenta a proposta de uma arquitetura orientada a
+serviços para um sistema de manutenção inteligente. A proposta tem por objetivo possibilitar a
+integração de equipamentos com um sistema de manutenção inteligente de forma facilitada e flexível.
+Portanto, todas as entidades propostas foram construídas obedecendo os padrões definidos pelas
+arquiteturas \gls{SOA}.
+
+A arquitetura proposta engloba diversas entidades, cada uma destinada a um propósito específico. As
+entidades foram construídas conforme a demanda encontrada para a integração entre os sistemas aqui
+descritos. Dentre as principais, estão o Analisador de Dispositivos, que possibilita a análise
+automáticas de equipamentos e o Gerenciador de Análises, o qual permite a criação de planos de
+análise pelo operador do sistema, com a definição da utilização dos dados e ferramentas de análise.
+
+
+%Objetivos
+
+Como objetivos do trabalho, estão a definição da arquitetura proposta e implementação das entidades.
+A validação do sistema é feita com a implementação de um dispositivo que representa um conjunto
+atuador elétrico e válvula, utilizado para controle de fluxo em redes de distribuição de petróleo.
+Com a definição do dispositivo que representa o atuador elétrico, o sistema é posto em
+funcionamento, onde o operador do sistema tem acesso às configurações dos equipamentos e planos de
+análise, podendo criar novos planos e verificar o resultado dos níveis de degradação obtidos com as
+análises.
+
+Por fim, são ilustrados experimentos para determinar a viabilidade da solução proposta. Os
+experimentos tem por objetivo verificar a interoperabilidade entre as entidades propostas, bem como
+determinar o correto funcionamento dos componentes implementados. São analisados pontos positivos em
+relação à utilização do sistema proposto, tendo em vista a comparação com a utilização de métodos
+tradicionais de obtenção dos níveis de degradação em equipamentos. Também são verificadas as
+vantagens na utilização da arquitetura proposta em relação ao aumento do número de dispositivos
+monitorados, levando em conta o gerenciamento de vários dispositivos similares para a obtenção dos
+estados de saúde de todos.
+
+
+% Estrutura
+
+Dando continuidade ao capítulo introdutório, esta dissertação apresenta a seguinte estrutura: no
+\cref{cha:conceituacao-teorica} são apresentados os conteúdos teóricos utilizados ao longo do
+trabalho, divididos nas duas áreas de estudo, sendo elas a de manutenção inteligente e também
+arquiteturas orientadas a serviços; a análise do estado da arte é apresentada no
+\cref{cha:estado-arte}, onde são descritos os estudos atuais envolvendo os dois assuntos
+pertinentes a este trabalho; a proposta de uma arquitetura orientada a serviços faz parte do
+\cref{cha:arquitetura-proposta}, onde é apresentado o projeto dos componentes utilizados no sistema
+proposto, além da definição do estudo de caso e dos experimentos de validação; no
+\cref{cha:implementacao-resultados}, são apresentados os resultados obtidos com a implementação do
+sistema proposto e o resultado dos experimentos definidos no capítulo anterior; por fim, o
+\cref{cha:conclusao} apresenta as conclusões e pontos relevantes para a continuidade do trabalho.

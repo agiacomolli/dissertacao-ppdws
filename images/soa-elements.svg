@@ -13,8 +13,8 @@
    height="340.15747"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="web-service-triangle.svg"
+   inkscape:version="0.48+devel r"
+   sodipodi:docname="soa-elements.svg"
    version="1.0">
   <defs
      id="defs4">
@@ -2264,14 +2264,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.1785437"
-     inkscape:cx="247.11537"
-     inkscape:cy="153.60009"
+     inkscape:zoom="1.540463"
+     inkscape:cx="239.76755"
+     inkscape:cy="190.53927"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
-     inkscape:window-width="1317"
-     inkscape:window-height="744"
-     inkscape:window-x="49"
+     inkscape:window-width="1366"
+     inkscape:window-height="721"
+     inkscape:window-x="-1"
      inkscape:window-y="24"
      width="12.8cm"
      height="9.6cm"
@@ -2351,203 +2351,219 @@
      id="layer1"
      transform="translate(4.149475e-6,-698.0315)">
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 251.65223,768.88247 16.45546,28.50168 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50168 16.45546,-28.50169 z"
+       inkscape:randomized="0"
+       inkscape:rounded="0"
+       inkscape:flatsided="true"
+       sodipodi:arg2="-0.52359878"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:r2="28.50169"
+       sodipodi:r1="32.910915"
+       sodipodi:cy="797.38416"
+       sodipodi:cx="235.19678"
+       sodipodi:sides="6"
+       id="path4662"
+       style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="star" />
+    <path
+       d="m 175.29432,871.71053 16.45546,28.50169 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50169 16.45546,-28.50169 z"
+       inkscape:randomized="0"
+       inkscape:rounded="0"
+       inkscape:flatsided="true"
+       sodipodi:arg2="-0.52359878"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:r2="28.50169"
+       sodipodi:r1="32.910915"
+       sodipodi:cy="900.21222"
+       sodipodi:cx="158.83887"
+       sodipodi:sides="6"
+       id="path4664"
+       style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="star" />
+    <path
+       sodipodi:type="star"
+       style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4666"
+       sodipodi:sides="6"
+       sodipodi:cx="311.55466"
+       sodipodi:cy="900.21222"
+       sodipodi:r1="32.910915"
+       sodipodi:r2="28.50169"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:arg2="-0.52359878"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 328.01011,871.71053 16.45546,28.50169 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50169 16.45546,-28.50169 z" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
        d="m 189.74979,200.18071 86.89396,0"
        id="path19427"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(-4.149475e-6,698.0315)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
        d="M 156.83887,171.67902 208.51359,111.6035"
        id="path19429"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(-4.149475e-6,698.0315)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
        d="m 257.87996,111.6035 51.67471,60.07552"
        id="path19431"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(-4.149475e-6,698.0315)" />
-    <g
-       id="g18975"
-       transform="translate(0,136.19225)" />
-    <g
-       id="g19371"
-       transform="translate(108.78982,10.098489)">
-      <path
-         transform="matrix(5.7423428,0,0,5.7423428,-301.94391,444.4741)"
-         d="m 77.112484,54.387187 2.865635,4.963425 -2.865635,4.963426 -5.73127,0 -2.865635,-4.963425 2.865635,-4.963425 z"
-         inkscape:randomized="0"
-         inkscape:rounded="0"
-         inkscape:flatsided="true"
-         sodipodi:arg2="-0.52359878"
-         sodipodi:arg1="-1.0471976"
-         sodipodi:r2="4.9634252"
-         sodipodi:r1="5.7312698"
-         sodipodi:cy="59.350613"
-         sodipodi:cx="74.246849"
-         sodipodi:sides="6"
-         id="path19347"
-         style="fill:#ff0000;fill-opacity:1;stroke:none"
-         sodipodi:type="star" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text19349"
-         y="785.28564"
-         x="123.29758"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-         xml:space="preserve"><tspan
-           y="785.28564"
-           x="124.40695"
-           id="tspan19351"
-           sodipodi:role="line">Registro de </tspan><tspan
-           id="tspan19361"
-           y="795.28564"
-           x="123.29758"
-           sodipodi:role="line">serviço</tspan></text>
-    </g>
-    <g
-       id="g19416">
-      <g
-         transform="translate(10.098489,50.492447)"
-         id="g19377">
-        <path
-           sodipodi:type="star"
-           style="fill:#ff0000;fill-opacity:1;stroke:none"
-           id="path19369"
-           sodipodi:sides="6"
-           sodipodi:cx="74.246849"
-           sodipodi:cy="59.350613"
-           sodipodi:r1="5.7312698"
-           sodipodi:r2="4.9634252"
-           sodipodi:arg1="-1.0471976"
-           sodipodi:arg2="-0.52359878"
-           inkscape:flatsided="true"
-           inkscape:rounded="0"
-           inkscape:randomized="0"
-           d="m 77.112484,54.387187 2.865635,4.963425 -2.865635,4.963426 -5.73127,0 -2.865635,-4.963425 2.865635,-4.963425 z"
-           transform="matrix(5.7423428,0,0,5.7423428,-279.61048,506.9082)" />
-        <text
-           xml:space="preserve"
-           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-           x="146.70914"
-           y="152.55154"
-           id="text19363"
-           sodipodi:linespacing="125%"
-           transform="translate(-4.149475e-6,698.0315)"><tspan
-             sodipodi:role="line"
-             id="tspan19365"
-             x="146.70914"
-             y="152.55154">Cliente</tspan></text>
-      </g>
-      <g
-         transform="translate(13.770667,87.934057)"
-         id="g19382">
-        <path
-           transform="matrix(5.7423428,0,0,5.7423428,-130.56686,469.46659)"
-           d="m 77.112484,54.387187 2.865635,4.963425 -2.865635,4.963426 -5.73127,0 -2.865635,-4.963425 2.865635,-4.963425 z"
-           inkscape:randomized="0"
-           inkscape:rounded="0"
-           inkscape:flatsided="true"
-           sodipodi:arg2="-0.52359878"
-           sodipodi:arg1="-1.0471976"
-           sodipodi:r2="4.9634252"
-           sodipodi:r1="5.7312698"
-           sodipodi:cy="59.350613"
-           sodipodi:cx="74.246849"
-           sodipodi:sides="6"
-           id="path19367"
-           style="fill:#ff0000;fill-opacity:1;stroke:none"
-           sodipodi:type="star" />
-        <text
-           xml:space="preserve"
-           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-           x="295.64337"
-           y="807.35822"
-           id="text19353"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan19355"
-             x="295.64337"
-             y="807.35822">Provedor de</tspan><tspan
-             sodipodi:role="line"
-             x="295.64337"
-             y="817.35822"
-             id="tspan19359">serviço</tspan></text>
-      </g>
-    </g>
-    <g
-       id="g20848"
-       transform="translate(85.493971,13.543984)">
-      <rect
-         y="820.97974"
-         x="77.137695"
-         height="10.298079"
-         width="40.089119"
-         id="rect20846"
-         style="fill:#ffffff;fill-opacity:1;stroke:none" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text19396"
-         y="828.19714"
-         x="97.045532"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           y="828.19714"
-           x="97.045532"
-           id="tspan19398"
-           sodipodi:role="line">Pesquisa</tspan></text>
-    </g>
-    <g
-       transform="translate(186.50771,13.497109)"
-       id="g20853">
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:none"
-         id="rect20855"
-         width="40.089119"
-         height="10.298079"
-         x="77.165039"
-         y="821.02661" />
-      <text
-         xml:space="preserve"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-         x="97.045532"
-         y="828.19714"
-         id="text20857"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           id="tspan20859"
-           x="97.045532"
-           y="828.19714">Registro</tspan></text>
-    </g>
-    <g
-       id="g20861"
-       transform="translate(5.2890739,-42.611398)">
-      <rect
-         y="930.51495"
-         x="205.21231"
-         height="20.617321"
-         width="45.390766"
-         id="rect20842"
-         style="fill:#ffffff;fill-opacity:1;stroke:none" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text19388"
-         y="937.95251"
-         x="227.87645"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           y="937.95251"
-           x="227.87645"
-           id="tspan19390"
-           sodipodi:role="line">Conexão e</tspan><tspan
-           id="tspan20840"
-           y="947.95251"
-           x="227.87645"
-           sodipodi:role="line">invocação</tspan></text>
-    </g>
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path19347"
+       sodipodi:sides="6"
+       sodipodi:cx="233.19678"
+       sodipodi:cy="795.38416"
+       sodipodi:r1="32.910915"
+       sodipodi:r2="28.50169"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:arg2="-0.52359878"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 249.65223,766.88247 16.45546,28.50168 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50168 16.45546,-28.50169 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="232.0874"
+       y="795.38416"
+       id="text19349"
+       sodipodi:linespacing="125%"><tspan
+         style="font-weight:normal"
+         sodipodi:role="line"
+         id="tspan19351"
+         x="233.19678"
+         y="795.38416">Registro de </tspan><tspan
+         style="font-weight:normal"
+         sodipodi:role="line"
+         x="232.0874"
+         y="805.38416"
+         id="tspan19361">serviço</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path19369"
+       sodipodi:sides="6"
+       sodipodi:cx="156.83887"
+       sodipodi:cy="898.21222"
+       sodipodi:r1="32.910915"
+       sodipodi:r2="28.50169"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:arg2="-0.52359878"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 173.29432,869.71053 16.45546,28.50169 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50169 16.45546,-28.50169 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="156.80762"
+       y="901.0755"
+       id="text19363"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan19365"
+         x="156.80762"
+         y="901.0755"
+         style="font-weight:normal">Cliente</tspan></text>
+    <path
+       d="m 326.01011,869.71053 16.45546,28.50169 -16.45545,28.50169 -32.91092,0 -16.45546,-28.50169 16.45546,-28.50169 z"
+       inkscape:randomized="0"
+       inkscape:rounded="0"
+       inkscape:flatsided="true"
+       sodipodi:arg2="-0.52359878"
+       sodipodi:arg1="-1.0471976"
+       sodipodi:r2="28.50169"
+       sodipodi:r1="32.910915"
+       sodipodi:cy="898.21222"
+       sodipodi:cx="309.55466"
+       sodipodi:sides="6"
+       id="path19367"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="star" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="309.41403"
+       y="895.2923"
+       id="text19353"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan19355"
+         x="309.41403"
+         y="895.2923"
+         style="font-weight:normal">Provedor de</tspan><tspan
+         sodipodi:role="line"
+         x="309.41403"
+         y="905.2923"
+         id="tspan19359"
+         style="font-weight:normal">serviço</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect20846"
+       width="40.089119"
+       height="10.298079"
+       x="162.63167"
+       y="834.52374" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="182.53951"
+       y="841.74115"
+       id="text19396"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan19398"
+         x="182.53951"
+         y="841.74115">Pesquisa</tspan></text>
+    <rect
+       y="834.52374"
+       x="263.67276"
+       height="10.298079"
+       width="40.089119"
+       id="rect20855"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text20857"
+       y="841.69427"
+       x="283.55325"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="841.69427"
+         x="283.55325"
+         id="tspan20859"
+         sodipodi:role="line">Registro</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect20842"
+       width="45.390766"
+       height="20.617321"
+       x="210.50139"
+       y="887.90356" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="233.16553"
+       y="895.34113"
+       id="text19388"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan19390"
+         x="233.16553"
+         y="895.34113">Conexão e</tspan><tspan
+         sodipodi:role="line"
+         x="233.16553"
+         y="905.34113"
+         id="tspan20840">invocação</tspan></text>
   </g>
 </svg>

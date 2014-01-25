@@ -20,6 +20,9 @@ IMAGES = \
 	images/data-processing-plot.svg \
 	images/confidence-value-concept.svg \
 	images/osa-cbm-model.svg \
+	images/wavelet-time-frequency-representation.svg \
+	images/wavelet-decompose-representation.svg \
+	images/logistic-regression-representation.svg \
 	images/soa-elements.svg \
 	images/dpws-stack.svg \
 	images/soa-proposed-architecture.svg \
@@ -36,7 +39,9 @@ IMAGES = \
 	images/csr6-device.svg \
 	images/sensors-localization.svg \
 	images/test-gears.svg \
-	images/sattelite-gears-location.svg
+	images/sattelite-gears-location.svg \
+	images/analyzer-matlab-interface.svg \
+	images/class-matlab-interface.svg
 
 TABLES = #\
 
