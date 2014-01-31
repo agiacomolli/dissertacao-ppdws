@@ -31,7 +31,7 @@
 % Definição dos campos das entradas
 %==============================================================================
 ENTRY
-{ 
+{
 	author
 	editor
 	title
@@ -67,18 +67,18 @@ STRINGS {s t last.label last.year.char current.letter names new.pages}
 %==============================================================================
 % Definicao dos nomes dos meses
 %==============================================================================
-MACRO {jan} {"Jan."}
-MACRO {feb} {"Feb."}
-MACRO {mar} {"Mar."}
-MACRO {apr} {"Apr."}
-MACRO {may} {"May"}
-MACRO {jun} {"June"}
-MACRO {jul} {"July"}
-MACRO {aug} {"Aug."}
-MACRO {sep} {"Sept."}
-MACRO {oct} {"Oct."}
-MACRO {nov} {"Nov."}
-MACRO {dec} {"Dec."}
+MACRO {jan} {"jan."}
+MACRO {feb} {"feb."}
+MACRO {mar} {"mar."}
+MACRO {apr} {"abr."}
+MACRO {may} {"mai."}
+MACRO {jun} {"jun."}
+MACRO {jul} {"jul."}
+MACRO {aug} {"ago."}
+MACRO {sep} {"set."}
+MACRO {oct} {"out."}
+MACRO {nov} {"nov."}
+MACRO {dec} {"dez."}
 
 %==============================================================================
 % Definicao de strings usados na elaboracao das referencias
@@ -466,7 +466,7 @@ FUNCTION {format.entrytitle}
 {
 	#0 title format.title
 	extract.first.word "u" change.case$
-	swap$ * 
+	swap$ *
 }
 
 %==============================================================================
@@ -981,7 +981,7 @@ FUNCTION {incollection}
 		editor empty$
 			'skip$
 			{format.editor add.to.item}
-		if$ 
+		if$
 		#1 booktitle format.title add.to.item add.to.item
 	format.edition add.to.item
 	format.publication add.to.item
@@ -1030,13 +1030,26 @@ FUNCTION {mastersthesis}
 	#1 title format.title add.to.item
 	format.year add.to.item
 	format.totalpages add.to.item
-	str:mastersthesis format.type " --- " * format.publisher *
-		add.address add.to.item
-	format.note add.to.item
-	format.parenthised.number add.to.item
+	type format.type " --- " * format.publisher *
+			add.address add.year add.to.item
 
 	write.item
 }
+
+%FUNCTION {mastersthesis}
+%{
+%	""
+%	format.author add.to.item
+%	#1 title format.title add.to.item
+%	format.year add.to.item
+%	format.totalpages add.to.item
+%	str:mastersthesis format.type " --- " * format.publisher *
+%		add.address add.to.item
+%	format.note add.to.item
+%	format.parenthised.number add.to.item
+%
+%	write.item
+%}
 
 FUNCTION {misc}
 {
@@ -1073,13 +1086,26 @@ FUNCTION {phdthesis}
 	#1 title format.title add.to.item
 	format.year add.to.item
 	format.totalpages add.to.item
-	str:phdthesis format.type " --- " * format.publisher *
-		add.address add.to.item
-	format.note add.to.item
-	format.parenthised.number add.to.item
+		type format.type " --- " * format.publisher *
+			add.address add.year add.to.item
 
 	write.item
 }
+
+%FUNCTION {phdthesis}
+%{
+%	""
+%	format.author add.to.item
+%	#1 title format.title add.to.item
+%	format.year add.to.item
+%	format.totalpages add.to.item
+%	str:phdthesis format.type " --- " * format.publisher *
+%		add.address add.to.item
+%	format.note add.to.item
+%	format.parenthised.number add.to.item
+%
+%	write.item
+%}
 
 FUNCTION {proceedings}
 {
@@ -1110,6 +1136,17 @@ FUNCTION {techreport}
 FUNCTION {booklet} {misc}
 FUNCTION {unpublished} {misc}
 FUNCTION {default.type} {misc}
+
+FUNCTION {online}
+{
+	""
+	format.author add.to.item
+	#1 title format.title add.to.item
+	" Disponivel em: \textless\url{" * howpublished * "}\textgreater" add.to.item
+	" Acesso em: " * format.month.year add.to.item
+
+	write.item
+}
 
 %==============================================================================
 % Inicializa algumas variaveis globais
