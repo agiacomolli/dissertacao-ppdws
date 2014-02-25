@@ -39,6 +39,7 @@ ENTRY
 	chapter
 	pages
 	address
+	location
 	publisher
 	year
 	journal
@@ -54,6 +55,8 @@ ENTRY
 	series
 	type
 	volume
+	course
+	department
 }
 {}
 {
@@ -67,18 +70,18 @@ STRINGS {s t last.label last.year.char current.letter names new.pages}
 %==============================================================================
 % Definicao dos nomes dos meses
 %==============================================================================
-MACRO {jan} {"jan."}
-MACRO {feb} {"feb."}
-MACRO {mar} {"mar."}
-MACRO {apr} {"abr."}
-MACRO {may} {"mai."}
-MACRO {jun} {"jun."}
-MACRO {jul} {"jul."}
-MACRO {aug} {"ago."}
-MACRO {sep} {"set."}
-MACRO {oct} {"out."}
-MACRO {nov} {"nov."}
-MACRO {dec} {"dez."}
+MACRO {jan} {"Jan."}
+MACRO {feb} {"Feb."}
+MACRO {mar} {"Mar."}
+MACRO {apr} {"Apr."}
+MACRO {may} {"May."}
+MACRO {jun} {"Jun."}
+MACRO {jul} {"Jul."}
+MACRO {aug} {"Aug."}
+MACRO {sep} {"Set."}
+MACRO {oct} {"Oct."}
+MACRO {nov} {"Nov."}
+MACRO {dec} {"Dec."}
 
 %==============================================================================
 % Definicao de strings usados na elaboracao das referencias
@@ -533,7 +536,7 @@ FUNCTION {format.edition}
 {
 	edition empty$
 		{""}
-		{edition convert.to.number ".ed." *}
+		{edition convert.to.number " .ed." *}
 	if$
 }
 
@@ -569,6 +572,14 @@ FUNCTION {format.address}
 	if$
 }
 
+FUNCTION {format.location}
+{
+	location empty$
+		{""}
+		{location}
+	if$
+}
+
 FUNCTION {format.publisher}
 {
 	type$ "mastersthesis" =
@@ -586,6 +597,14 @@ FUNCTION {format.publisher}
 	} if$
 	} if$
 	} if$
+}
+
+FUNCTION {format.department}
+{
+	department empty$
+		{""}
+		{department ", " *}
+	if$
 }
 
 FUNCTION {format.year}
@@ -613,7 +632,7 @@ FUNCTION {format.chapter}
 FUNCTION {format.pages}
 {
 	pages empty$
-		{""}
+		{"N{\~a}o paginado"}
 		{"p." get.adjusted.pages *}
 	if$
 }
@@ -623,6 +642,14 @@ FUNCTION {format.totalpages}
 	pages empty$
 		{""}
 		{pages "p." *}
+	if$
+}
+
+FUNCTION {format.course}
+{
+	course empty$
+		{""}
+		{course}
 	if$
 }
 
@@ -869,6 +896,19 @@ FUNCTION {format.publication}
 	if$
 }
 
+FUNCTION {format.proceedings.publication.delet}
+{
+	publisher empty$
+		{"[S.l.:~s.n.]"}
+		{
+			location empty$
+				{"[S.l.]:~" publisher comma.to.colon *}
+				{location ": " * publisher comma.to.colon *}
+			if$
+		}
+	if$	add.year
+}
+
 FUNCTION {format.proceedings.publication}
 {
 	publisher empty$
@@ -997,7 +1037,7 @@ FUNCTION {inproceedings}
 	format.author add.to.item
 	#0 title format.title add.to.item
 	" In: " booktitle format.proceedings.booktitle * *
-	format.proceedings.publication add.to.item
+	format.proceedings.publication.delet add.to.item
 	format.complementary.data.with.page.range add.to.item
 	format.note add.to.item
 
@@ -1142,7 +1182,7 @@ FUNCTION {online}
 	""
 	format.author add.to.item
 	#1 title format.title add.to.item
-	" Disponivel em: \textless\url{" * howpublished * "}\textgreater" add.to.item
+	" Disponivel em: \textless\href{" * howpublished * "}{" * howpublished * "}\textgreater" add.to.item
 	" Acesso em: " * format.month.year add.to.item
 
 	write.item
