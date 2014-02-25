@@ -1182,7 +1182,7 @@ FUNCTION {online}
 	""
 	format.author add.to.item
 	#1 title format.title add.to.item
-	" Disponivel em: \textless\href{" * howpublished * "}{" * howpublished * "}\textgreater" add.to.item
+	" Dispon{\'i}vel em: \textless\href{" * howpublished * "}{" * howpublished * "}\textgreater" add.to.item
 	" Acesso em: " * format.month.year add.to.item
 
 	write.item
