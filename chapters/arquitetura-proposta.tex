@@ -99,7 +99,7 @@ manutenção \textit{in loco} possa ser realizada.
 
 Grupos de dispositivos podem ser criados e gerenciados. O Gerenciador de Dispositivos permite a
 criação de grupos, a fim de facilitar a alteração simultânea de vários dispositivos. Supondo que a
-aplicação é inerentemente escalável, o número de dispositivos tente a aumentar, o que dificulta o
+aplicação é inerentemente escalável, o número de dispositivos tende a aumentar, o que dificulta o
 gerenciamento ou configuração de dispositivos similares. Considerando que as configurações aplicadas
 a uma mesma classe de dispositivos é muito parecida, o gerenciador permite que um grupo receba os
 mesmos parâmetros, automatizando o processo de customização dos dispositivos.
@@ -126,10 +126,12 @@ encontrados.
 \label{sub:proposta-gerenciador-analises}
 
 O Gerenciador de Análises é utilizado para definir o plano que será aplicado a determinado
-equipamento, ou grupo de equipamentos, tendo em vista obter os níveis de degradação. Nesta entidade,
-é possível selecionar e definir a ordem em que serão executadas as ferramentas de análise de dados
-através de um plano. O gerenciador permite o agendamento dos planos e a execução periódica em
-intervalos de tempo. Os planos também podem ser gerenciados, possibilitando alteração e/ou exclusão.
+equipamento, ou grupo de equipamentos, tendo em vista obter os níveis de degradação. No contexto
+deste trabalho, um plano de análise é uma estrutura que armazena as informações necessárias para que
+uma análise possa ser executada corretamente. Cada plano armazena as ferramentas que serão
+utilizadas para análise de dados, bem como a ordem em que serão executadas. O gerenciador permite o
+agendamento dos planos e a execução periódica em intervalos de tempo. Os planos também podem ser
+gerenciados, possibilitando alteração e/ou exclusão.
 
 No plano são definidos os comportamentos a serem adotados com base nos valores de degradação do
 equipamento. O gerenciador obtém os comportamentos previamente definidos para o equipamento a ser
@@ -137,11 +139,21 @@ analisado, os quais podem ser mapeados pelo usuário para diferentes níveis de 
 forma, o equipamento pode ser adaptado a diferentes condições, por exemplo, evitando o aumento da
 degradação até que uma manutenção possa ser realizada.
 
-Esta entidade também coordena as análises realizadas em um grupo de equipamentos similares. O
-processo de obtenção dos valores de confiança de um conjunto de equipamentos pode ser simplificado
-pelo fato de que, se são similares, o nível de degradação de um equipamento pode ser aproximado para
-o nível de degradação do grupo. Dessa maneira, é possível elaborar um plano de análise que seja
-aplicável a vários equipamentos.
+No geral, informações como nome, descrição e dispositivos afetados fazem parte do plano de análise.
+Estas informações permitem ao operador do sistema identificar os planos criados e onde estão
+empregados. Como o plano armazena os dispositivos que serão analisados, também é possível
+identificar a origem dos dados utilizados. Dessa forma, pode-se mapear os sensores dos equipamentos
+como fonte de dados para alimentar as ferramentas de análise. Portanto, a origem dos dados
+utilizados também está contida no plano. Outra informação que faz parte desta estrutura é referente
+às ferramentas utilizadas na análise. Além delas, o plano armazena a ordem em que serão utilizadas,
+a qual é definida pelo operador do sistema.
+
+
+O Gerenciador de Análises também coordena as análises realizadas em um grupo de equipamentos
+similares. Em alguns casos, o processo de obtenção dos valores de confiança de um conjunto de
+equipamentos pode ser simplificado pelo fato de que, se são similares, o nível de degradação de um
+equipamento pode ser aproximado para o nível de degradação do grupo. Dessa maneira, é possível
+elaborar um plano de análise que seja aplicável a vários equipamentos.
 
 
 %%%
@@ -155,9 +167,9 @@ utilizando os algoritmos necessários para obtenção do resultado esperado. A e
 plano é feita de forma automática.
 
 O analisador permite verificar quais planos estão sendo executados ou na fila para execução. Sempre
-que um novo plano é gerado, o analisador o coloca na fila de execução, a fim de que seja
-finalizado o mais breve possível. A entidade permite o monitoramento destes planos pelo usuário, o
-qual pode verificar se a execução está de acordo com o esperado.
+que um novo plano é gerado, o analisador o coloca na fila de execução, a fim de que seja finalizado
+o mais breve possível. A entidade permite o monitoramento destes planos pelo usuário, o qual pode
+verificar se a execução está de acordo com o esperado.
 
 
 %%%
@@ -173,11 +185,11 @@ entidade do sistema. Por exemplo, o armazenamento dos dados de treinamento de um
 necessário para obtenção do nível de degradação, pode ser feito em diferentes bases de dados. O
 Analisador de Dispositivos pode combinar estas informações, a fim de melhorar o resultado esperado.
 
-Por ser defina como um componente \gls{SOA}, o acesso aos dados é feito através de serviços. A
-inclusão, deleção e modificação de dados são realizadas por serviços especializados. Um dispositivo
-remoto pode acessar a base de dados a fim de obter o histórico dos últimos valores de confiança
-calculados ou valores de testes intermediários para determinado equipamento, utilizando-os para um
-novo tipo de análise.
+A Base de Dados é defina como um componente \gls{SOA}, portanto o acesso aos dados é feito através
+de serviços. A inclusão, deleção e modificação de dados são realizadas por serviços especializados.
+Um dispositivo remoto pode acessar a base de dados a fim de obter o histórico dos últimos valores de
+confiança calculados ou valores de testes intermediários para determinado equipamento, utilizando-os
+para um novo tipo de análise.
 
 
 %%%
@@ -277,21 +289,61 @@ como subdispositivos de outros dispositivos.
 Tomando de exemplo a \cref{fig:device-topology-visualization}, os identificadores de cada
 dispositivo poderiam ser construídos com um dispositivo pai englobando outros dois subdispositivos.
 Tanto o dispositivo pai como os subdispositivos estão definidos dentro de escopos ou áreas e essas
-informações estão incluídas no identificador.
+informações estão incluídas no identificador. Por exemplo, os dispositivos sensores~(\emph{Sensor
+freio}, \emph{Sensor engrenagem}, \emph{Sensor motor}) logicamente fazem parte do dispositivo
+\emph{Atuador elétrico}. Dessa forma, é possível a construção de um identificador para cada um
+deles, como segue:
+
+\begin{outline}
+  \1 Atuador elétrico:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator}
+
+  \1 Sensor freio:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator/BrakeSensor}
+
+  \1 Sensor engrenagem:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator/GearSensor}
+
+  \1 Sensor motor:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator/MotorSensor}
+\end{outline}
+
+Com o exemplo, fica claro como os componentes são distribuídos hierarquicamente no sistema. Através
+do endereço lógico, os sensores são agrupados em um nível hierárquico abaixo do dispositivo
+\emph{Atuador elétrico}. Ao incluir mais dispositivos neste nível, o padrão de organização do
+identificador deve seguir o mesmo formato. Também é possível que dispositivos abaixo do nível
+hierárquico dos sensores sejam adicionados. Dessa forma, ao final do endereço do sensor deve-se
+adicionar um separador e o novo identificador.
+
+Outra forma de organizar hierarquicamente os dispositivos é através de grupos. Ainda referente ao
+exemplo do atuador elétrico, caso fosse composto por sensores e atuadores, novos separadores de
+grupos, definidos como \emph{sensors} e \emph{actuators}, poderiam ser adicionados ao endereço das
+entidades. Dessa forma, os dispositivos distribuídos logicamente no nível hierárquico mais baixo
+estariam organizados da seguinte maneira:
+
+\begin{outline}
+  \1 Sensores do atuador elétrico:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator/sensors}
+
+  \1 Atuadores do atuador elétrico:
+    \2[] {\ttfamily\small http://system.com/equipment/ElectricActuator/actuators}
+\end{outline}
 
 % TODO: Talvez não seja necessária a inclusão de outra figura.
 %\includefiguretmp
 %  {Identificação dos dispositivos na topologia hierárquica.}
 %  {fig:device-topology-identification}
 
-Cada dispositivo pode armazenar diferentes comportamentos. Os comportamentos dizem respeito ao modo
-de operação que o equipamento vai assumir perante determinada situação, sendo definidos pelo
-operador do sistema. São diferentes tarefas que podem ser executadas pelo equipamento em situações
-específicas. No caso de verificação de degradação excessiva de um equipamento, é possível alterar o
-comportamento de funcionamento para outro que priorize a manutenção do estado de saúde atual,
-evitando o aumento da degradação. Dessa forma, o equipamento pode operar por um período maior de
-tempo até que uma manutenção possa ser realizada. Contudo, medidas que alteram o comportamento podem
-levar a perda de desempenho nas tarefas executadas.
+Quanto à configuração, cada dispositivo pode armazenar diferentes comportamentos, os quais dizem
+respeito ao modo de operação que o equipamento vai assumir perante determinada situação. Os
+comportamentos são definidos pelo operador do sistema. São diferentes tarefas que podem ser
+executadas pelo equipamento em situações específicas. No caso de verificação de degradação excessiva
+de um equipamento, é possível alterar o comportamento de funcionamento para outro que priorize a
+manutenção do estado de saúde atual, evitando o aumento da degradação. Dessa forma, o equipamento
+pode operar por um período maior de tempo até que uma manutenção possa ser realizada. Contudo,
+medidas que alteram o comportamento podem levar à perda de desempenho nas tarefas executadas.
+Portanto, o operador do sistema deve ponderar a escolha e utilização adequada de cada um, visando
+manter a qualidade do nível de operação desejado.
 
 %A \cref{fig:device-send-behavior} ilustra o envio de novos comportamentos pelo operador do sistema
 %para um dispositivo. O dispositivo mantém uma lista de comportamentos e seleciona qual o mais
@@ -330,9 +382,9 @@ envio de dados de treinamento a um dispositivo.
 O gerenciamento de análises é feito pelo operador do sistema utilizando a entidade Gerenciador de
 Análises. As análises são definidas em planos, os quais apresentam informações sobre o dispositivo
 analisado, quais dados serão utilizados e as ferramentas empregadas na manipulação dos dados. É
-permitido o gerenciamento dos planos, como a criação, edição ou remoção, pelo operador do sistema.
-Como os planos são armazenadas em uma base de dados, facilmente podem ser compartilhados com outras
-instâncias do Gerenciador de Análises e utilizados por outros operadores do sistema.
+permitido o gerenciamento dos planos, tendo em vista a edição ou remoção, por parte do operador do
+sistema. Como os planos são armazenadas em uma base de dados, facilmente podem ser compartilhados
+com outras instâncias do Gerenciador de Análises e utilizados por outros operadores do sistema.
 
 As informações contidas em um plano de análise ditam como determinado equipamento será analisado. Em
 um primeiro momento, o operador do sistema faz a busca pelos dispositivos utilizando o Gerenciador
@@ -459,7 +511,7 @@ Como parte do trabalho, o atuador é definido como um dispositivo da arquitetura
 mapeadas as informações pertinentes e traduzidas para o projeto de um cliente. O cliente será um
 software para simulação de dados, não sendo embarcado no equipamento físico.
 
-Para o projeto do software de simulação do atuador, foram utilizados dados de funcionamento do
+Para o projeto do software de simulação do atuador, foram utilizados dados de operação do
 equipamento real. Os dados foram obtidos através de instrumentação feita nos trabalhos anteriores
 de~\cite{boesch2011deteccao} e \cite{faccin2011manutencao}. Com os dados reais, o software deve
 utilizá-los para simular a aquisição de dados do equipamento em funcionamento.
@@ -496,7 +548,7 @@ detecção de falhas. Uma das causas é a baixa resolução com que os dados sã
 \SI{1}{\newton\meter} e a cada 5\% de abertura para um fundo de escala de \SI{60}{\newton\meter}.
 Além disso, como forma de detectar facilmente o início e o fim do movimento do atuador, o torque é
 truncado para \SI{10}{\newton\meter} quando os valores forem menores que \SI{10}{\newton\meter} e,
-quando não há movimento, assume o valor de \SI{0}{\newton\meter}~\cite{lazzaretti2012avaliacao}.
+quando não há movimento, assume-se o valor de \SI{0}{\newton\meter}~\cite{lazzaretti2012avaliacao}.
 
 O atuador foi montado em uma bancada de testes onde é possível a simulação das condições de desgaste
 do conjunto e a instrumentação de partes que não são verificadas por padrão. Dessa forma, na
@@ -625,7 +677,7 @@ anteriormente. De acordo com os trabalhos de~\cite{boesch2011deteccao}
 e~\cite{faccin2011manutencao}, o acelerômetro acoplado ao eixo do motor é o que apresenta melhores
 resultados para a detecção na degradação das engrenagens do atuador. Como apresentado
 em~\cite{lazzaretti2012avaliacao}, os dados que apresentam melhores resultados para a obtenção dos
-níveis de degradação são as curvas de abertura da válvula, devido a maior força que é exercida na
+níveis de degradação são as curvas de abertura da válvula, devido à maior força que é exercida na
 sede da válvula.
 
 Os sinais de vibração não são estacionários. Para analisá-los, obtendo as características variantes
@@ -666,7 +718,7 @@ avaliar o impacto da utilização do sistema proposto para resolução deste tip
 
 Além da comparação com os métodos tradicionais, é possível a verificação do comportamento do sistema
 proposto com o aumento do número de dispositivos monitorados por parte do operador do sistema. Por
-premissa, pelo sistema apresentar entidade que possibilitam a configuração e análise automática dos
+premissa, pelo sistema apresentar entidades que possibilitam a configuração e análise automática dos
 dados dos dispositivos, tem-se que o aumento de estações monitoradas não dificulta o processo de
 análise. Porém, o aumento excessivo pode ocasionar outros problemas, como indisponibilidade da rede
 ou das entidades de configuração e análise de dados.

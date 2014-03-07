@@ -41,6 +41,7 @@ IMAGES = \
 	images/test-gears.svg \
 	images/sattelite-gears-location.svg \
 	images/analyzer-matlab-interface.svg \
+	images/class-behavior-interface.svg \
 	images/class-matlab-interface.svg
 
 TABLES = #\
@@ -86,9 +87,11 @@ images: $(IMAGES:.svg=.pdf)
 	@echo Convertendo imagem $^ para $@
 	@inkscape -D $^ -A $@
 
-clean:
-	@rm -rf $(IMAGES:.svg=.pdf)
+clear:
 	@find $(OUTPUT_DIR) -type f -not -name "$(OUTPUT).pdf" | xargs rm -f
+
+clean: clear
+	@rm -rf $(IMAGES:.svg=.pdf)
 
 distclean: clean
 	@rm -rf $(OUTPUT_DIR)

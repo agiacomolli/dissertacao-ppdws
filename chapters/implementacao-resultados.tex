@@ -60,8 +60,8 @@ tela principal do Gerenciador de Dispositivos.
 \subsubsection{Obtenção da lista de dispositivos e serviços}
 
 Uma das funcionalidades do gerenciador é a obtenção da lista de dispositivos presentes na rede. O
-conjunto de ferramentas \gls{JMEDS}~\cite{jmeds2013homepage} implementa a especificação
-{WS-Discovery}, permitindo a descoberta de serviços através de um protocolo padronizado. Dessa forma,
+conjunto de ferramentas \gls{JMEDS}~\cite{jmeds2013homepage} implementa a especificação {WS-
+Discovery}, permitindo a descoberta de serviços através de um protocolo padronizado. Dessa forma,
 toda a busca e troca de mensagens para a descoberta e identificação dos serviços é disponibilizada
 de forma transparente para o desenvolvedor da aplicação.
 
@@ -80,7 +80,7 @@ o número do modelo e outra para o endereço eletrônico do fabricante. A fim de
 informações, o operador do sistema poderá editá-las utilizando outro botão. Ao ser pressionado, um
 novo diálogo é aberto, possibilitando a inserção, edição ou atualização de todas as informações do
 dispositivo selecionado. A \cref{fig:device-manager-sensors-dialog} ilustra a janela de diálogo
-contendo as informações do dispositivo, a lista de sensores e os botões mencionados anteriormente.
+contendo as informações do dispoistivo, a lista de sensores e os botões mencionados anteriormente.
 
 \includefiguresoft
   {images/device-manager-sensors-dialog}
@@ -170,12 +170,43 @@ ainda o gerenciamento dos comportamentos, como o envio ou exclusão de um elemen
 é feito através de um botão, que, quando acionado, abre um novo diálogo para a criação de um
 comportamento. O operador deverá definir um nome para o novo comportamento e anexar um arquivo
 contendo o código executável no formato \gls{JAR}. Dessa forma, o comportamento é enviado para o
-dispositivo e poderá ser executado em alguma situação, dependendo do tipo de degradação observado.
+dispositivo e poderá ser executado em alguma situação, dependendo do tipo de degradação
+observado.
+
+Os comportamentos seguem uma interface padronizada. A \cref{lst:behavior-plugin-interface}, presente
+no apêndice~A, ilustra a interface utilizada para a construção de novos comportamentos. Na
+implementação do sistema de carregamento dinâmico de códigos executáveis, utilizou-se a biblioteca
+\emph{jspf}, versão~1.0.2~\cite{jspf2013homepage}. A biblioteca permite a definição de
+\textit{plugins}, o que facilita a implementação das funcionalidades desejadas. Na listagem em
+questão, são definidos métodos para armazenar o nome~(\emph{name}) e a
+descrição~(\emph{description}) do comportamento, além de um método onde a lógica do comportamento
+deve ser implementada~(\emph{execute}). O método de execução é invocado cada vez que as condições
+para as quais o comportamento foi configurado forem satisfeitas, o que representa o valor calculado
+do valor de confiança estar entre os limites estipulados pelo operador do sistema. Em cada invocação
+do método de execução, o último resultado do valor de confiança é informado, possibilitando que seja
+utilizado como critério conjunto para a tomada de decisão.
 
 \includefiguresoft
   {images/device-config-behavior-dialog}
   {Diálogo para configuração dos comportamentos do dispositivo.}
   {fig:device-config-behavior-dialog}
+
+A implementação de um comportamento é apresentada na \cref{lst:normal-behavior-implementation},
+também presente no apêndice~A. O comportamento desta implementação visa que o sistema assuma uma
+situação, indicada pelo resultado da análise, como normal. A listagem contém a definição do nome,
+descrição e a ação que será executada pelo comportamento. O método de execução deve conter a lógica
+necessária para que o dispositivo assuma a condição desejada frente ao valor de confiança obtido
+através da análise dos dados. Na compilação do arquivo, será gerada uma biblioteca de código no
+formato \gls{JAR}. A \cref{fig:class-behavior-interface} ilustra o diagrama de classes contendo a
+interface para a criação dos comportamentos e a definição de alguns comportamentos
+(\emph{NormalBehavior}, \emph{FaultBehavior}, \emph{PreFaultBehavior}). Um arquivo de biblioteca de
+código no formato \gls{JAR} é gerado para cada comportamento, os quais podem ser enviados para os
+dispositivos pelo operador do sistema.
+
+\includefigure
+  {images/class-behavior-interface}
+  {Diagrama de classes da interface para criação de novos comportamentos.}
+  {fig:class-behavior-interface}
 
 Os dados de treinamento são acessíveis pelo mesmo diálogo de configuração dos dispositivos, conforme
 \cref{fig:device-manager-sensors-dialog}. No diálogo de dados de treinamento, o operador poderá
@@ -201,8 +232,8 @@ através da criação de grupos de dispositivos. Dessa forma, dispositivos podem
 tendo em comum o modelo ou fabricante, por exemplo. A configuração dos grupos é acessível através do
 diálogo de configuração do Gerenciador de Dispositivos, ilustrado na
 \cref{fig:device-manager-config-dialog}. A interface para configuração e gerenciamento dos grupos de
-dispositivos é apresentada na \cref{fig:device-config-groups-dialog}. Nela estão presentes a lista de
-grupos criados pelo operador do sistema e as possibilidades de gerenciamento (criar, editar e/ou
+dispositivos é apresentada na \cref{fig:device-config-groups-dialog}. Nela estão presentes a lista
+de grupos criados pelo operador do sistema e as possibilidades de gerenciamento (criar, editar e/ou
 excluir). Ao selecionar um grupo existente, na lista à esquerda da figura em questão, os
 dispositivos que o compõe são apresentados. Pode-se adicionar ou remover dispositivos através da
 funcionalidade de edição de grupos.
@@ -225,7 +256,7 @@ grupos, um mesmo comportamento é enviado para um conjunto de dispositivos.
 
 O envio de dados de treinamento também segue o mesmo padrão apresentado anteriormente na descrição
 da configuração de somente um dispositivo. O caso particular se encontra no que diz respeito a
-escolha do sensor que usufruirá dos novos dados. O Gerenciador de Dispositivos agrupa
+escolha do sensor para o qual os novos dados serão mapeados. O Gerenciador de Dispositivos agrupa
 automaticamente os sensores de mesmo nome, dessa forma, o envio de dados de treinamento é feito com
 base no nome do sensor. Ao acessar o diálogo de envio de dados de comportamento, os sensores de
 todos os dispositivos do grupo estarão disponíveis. Será ignorado o sensor escolhido para envio dos
@@ -251,7 +282,7 @@ relatório é fornecido ao operador do sistema em arquivo texto no formato \gls{
 \subsection{Implementação do Gerenciador de Análises}
 
 Como apresentado na \cref{sub:proposta-gerenciador-analises}, o Gerenciador de Análises é um dos
-componentes de software presentes na arquitetura proposta que auxilia no processo de criação de
+componentes de software presente na arquitetura proposta que auxilia no processo de criação de
 planos de análise para os diversos dispositivos presentes no sistema. Através dele, o operador do
 sistema pode gerenciar o processo de análise de um equipamento, definindo as ferramentas utilizadas
 para manipulação dos dados, bem como a origem dos dados utilizados. Além disso, é possível que o
@@ -280,7 +311,10 @@ O operador do sistema poderá definir novas análises ou gerenciar as existentes
 descrição para o plano de análise, bem como quais dispositivos e sensores farão parte dela. Também
 deve definir as ferramentas computacionais utilizadas e, se pertinente, configurar quais
 comportamentos os dispositivos devem assumir frente a diferentes situações de degradação. A
-periodicidade da execução da análise também pode ser configurada.
+periodicidade da execução da análise também pode ser configurada. O diálogo segue as definições
+encontradas na \cref{sub:proposta-gerenciador-analises}.\todo[color=green]{explicação está muito
+suscinta e deve ser ampliada (deves explicar melhor capítulo anterior e neste capítulo basicamente
+referenciar a explicação já feita). Esta é uma parte importante da tua dissertação}
 
 \includefiguresoft
   {images/analysis-create-dialog}
@@ -371,11 +405,12 @@ operador através da seleção do elemento na lista da tela principal.
     fornecedores}
 
 As ferramentas de análise dos dados disponíveis no analisador são construídas em forma de interface
-para os algoritmos presentes no software Watchdog Agent, versão 3.3\todo{referencia}. Os algoritmos
-são distribuídos na forma de \textit{scripts} integrados em um software que executa em ambiente
-MATLAB. A solução empregada no desenvolvimento do analisador foi a de isolar os \textit{scripts} que
-implementam as ferramentas desejadas e executá-los individualmente através do novo software. Dessa
-forma, não foi necessária a reescrita dos algoritmos utilizando a linguagem Java.
+para os algoritmos presentes no software Watchdog Agent, versão 3.3\todo[color=green]{referencia}.
+Os algoritmos são distribuídos na forma de \textit{scripts} integrados em um software que executa em
+ambiente MATLAB. A solução empregada no desenvolvimento do analisador foi a de isolar os
+\textit{scripts} que implementam as ferramentas desejadas e executá-los individualmente através do
+novo software. Dessa forma, não foi necessária a reescrita dos algoritmos utilizando a linguagem
+Java.
 
 A execução dos \textit{scripts} MATLAB foi possível utilizando a biblioteca
 \emph{matlabcontrol}~\cite{matlabcontrol2013homepage}, versão 4.1.0. A biblioteca possibilita uma
@@ -406,12 +441,12 @@ de ferramentas disponibilizadas por diferentes fornecedores, desde que uma nova 
 provida. A \cref{fig:class-matlab-interface} ilustra o diagrama de classes utilizado na definição da
 interface de abstração entre as ferramentas. A interface \emph{IMSTools} é utilizada como base para
 a construção das ferramentas de análise. Nela, estão definidas todas as interfaces para os
-algoritmos necessários para o processamento de dados. Já a classe de interface \emph{WatchdogAgent}
-estende a interface principal para prover uma abstração para a implementação das funcionalidades da
-classe principal pelas ferramentas do Watchdog Agent. As outras duas subclasses, que utilizam a
-interface anterior, implementam as as ferramentas para manipulação dos dados. Dessa forma, o exemplo
-ilustra que é possível a extensão do sistema, simplesmente fornecendo uma interface para a
-implementação das ferramentas de análise.
+algoritmos necessários ao processamento de dados. Já a classe de interface \emph{WatchdogAgent}
+estende a interface principal provendo uma nova abstração para a implementação das funcionalidades
+da classe principal utilizando os algoritmos presentes na ferramenta Watchdog Agent. As outras duas
+subclasses, que utilizam a interface anterior, implementam as ferramentas para manipulação dos
+dados. Dessa forma, o exemplo ilustra que é possível a extensão do sistema, simplesmente fornecendo
+uma interface para a implementação das ferramentas de análise.
 
 \includefigure
   {images/class-matlab-interface}
@@ -437,7 +472,7 @@ utilizar.
 \subsection{Implementação da camada de acesso a base de dados e definição da estrutura interna}
 
 Como apresentado na \cref{sub:proposta-base-dados}, é necessária a implementação de uma entidade de
-software para abstrair o acesso a base de dados através de serviços. O software implementa, para
+software para abstrair o acesso à base de dados através de serviços. O software implementa, para
 cada componente que necessite de persistência de dados, serviços com operações pertinentes. Por
 exemplo, a busca ou manipulação de dispositivos pode ser feita com o uso de serviços especializados
 que manipulam a tabela onde estão armazenadas as informações destes elementos. No entanto, a fim de
@@ -556,7 +591,7 @@ equipamentos.
 
 Em um primeiro momento, todas as entidades foram executadas para verificar a interoperabilidade
 entre elas conforme sugerido na \cref{sub:experimentos-interoperabilidade}. O Gerenciador de
-Dispositivos foi iniciado e colocado em modo de monitoramento. Colocado em mondo de monitoração da
+Dispositivos foi iniciado e colocado em modo de monitoramento. Colocado em modo de monitoração da
 rede, o gerenciador verifica quando novos dispositivos são iniciados, possibilitando obter maiores
 informações sobre cada um.
 
@@ -606,6 +641,11 @@ qual registra as variações de vibração.
 
 %%%
 \subsection{Comparação da proposta com métodos tradicionais}
+
+\todo[inline, color=green]{antes de iniciar esta sub-seção creio que seria importante apresentares
+algumas métricas de implementação, tais como número e tamanho dos programas criados, eventualmente
+apresentar o código de alguns módulos (e creio que poderia colocar mais códigos nos anexos, para que
+aqueles "curiosos" em ver como isto foi implementado possam ter acesso)}
 
 A proposta de comparação com os métodos tradicionais é apresentada e ilustrada na
 \cref{sub:experimentos-metodos-tradicionais}. São levantadas hipóteses sobre a facilidade de

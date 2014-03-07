@@ -2,12 +2,15 @@
 \label{cha:conclusao}
 
 Este trabalho apresentou a proposta de uma arquitetura orientada a serviços para um sistema de
-manutenção inteligente. Na dissertação, foi apresentado o projeto das diversas entidades que fazem
-parte da arquitetura e propostos casos de uso onde o sistema se encaixa. Através dos casos de uso,
-foi possível determinar as funcionalidades que cada entidade de software deveria apresentar. Por
-fim, o sistema foi implementado e verificou-se que a solução proposta é viável, visto que integra um
-ambiente que auxilia na determinação dos coeficientes de degradação de equipamentos de forma
-facilitada.
+manutenção inteligente. Na dissertação foi apresentado o projeto das diversas entidades que fazem
+parte da arquitetura e propostos alguns casos de uso onde o sistema pode ser empregado. Através dos
+casos de uso, foi possível determinar as funcionalidades que cada entidade de software deveria
+apresentar. Por fim, o sistema foi implementado e verificou-se que a solução proposta é viável,
+visto que integra um ambiente que auxilia na determinação dos coeficientes de degradação de
+equipamentos de forma facilitada.
+
+\todo[inline]{esta conclusão está mais descrevendo o que foi feito do que efetivamente concluindo
+algo. Tens que melhorar isto}
 
 Com as entidades propostas, mais especificamente o Gerenciador de Dispositivos, foi apresentado que
 é possível gerenciar e configurar os dispositivos. É ofertado ao operador do sistema um software
@@ -29,6 +32,8 @@ degradação obtido com a análise. Novamente, como no caso anterior, o Gerencia
 ferramenta de configuração remota, permitindo, assim, o gerenciamento dos planos de análise de forma
 facilitada.
 
+\todo[inline]{ok}
+
 As análises agendadas pelo operador no Gerenciador de Análises são executadas pela entidade
 Analisador de Dispositivos. A arquitetura proposta dispões desta entidade dedicada para a execução
 dos planos de análise dos equipamentos. O analisador verifica os dados dos dispositivos e executa as
@@ -37,7 +42,7 @@ os algoritmos de análise presentes na ferramenta Watchdog Agent. Porém, levand
 o que software foi projetado, a extensão do módulo de análise para outras implementações comerciais
 ou específicas é possível de forma facilitada.
 
-Por fim, coma definição do estudo de caso e implementação dos dispositivos, foi possível testar a
+Por fim, como definição do estudo de caso e implementação dos dispositivos, foi possível testar a
 interoperabilidade da solução proposta. O estudo de caso apresentado foi implementado na forma de
 dispositivos \gls{DPWS}. A fim de facilitar os testes da arquitetura, os dados foram obtidos
 anteriormente em situações distintas. Com isso, o dispositivo se comportou como um simulador,
@@ -90,5 +95,5 @@ Neste estudo, foram utilizadas as ferramentas que integram o software Watchdog A
 disponibilizadas em forma de arquivos de \textit{script} para execução no software Matlab. Pelo fato
 de que arquivos deste tipo são interpretados, verificou-se perda considerável no desempenho em
 função do aumento do lote de dados analisado. Dessa forma, propõe-se a reimplementação dos
-algoritmos utilizando linguagem compiladas, como C ou C++, e, em pontos onde for possível,
+algoritmos utilizando linguagens compiladas, como C ou C++, e, em pontos onde for possível,
 processamento paralelo, como CUDA ou OpenCL~\cite{kirk2012programming}.

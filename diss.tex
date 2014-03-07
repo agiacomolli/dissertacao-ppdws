@@ -3,22 +3,25 @@
 \usepackage[latin1]{inputenc}
 \usepackage{parskip}
 \usepackage{float}
+\usepackage{outlines}
+\usepackage{listings}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{mathptmx}
-\usepackage{cleveref}
 \usepackage[acronym,nonumberlist,sort=def]{glossaries}
 \usepackage{setspace}
 \usepackage{caption}
 \usepackage[portuguese,shadow,textsize=footnotesize,backgroundcolor=yellow,bordercolor=black!50,
-    linecolor=red]{todonotes}
+    linecolor=red,disable]{todonotes}
 \usepackage{booktabs}
 \usepackage{colortbl}
+\usepackage{chngcntr}
 \usepackage{blindtext}
-
-\definecolor{table-green}{rgb}{0.07,0.5,0.18}
+\usepackage{hyperref}
+\usepackage{cleveref}
+%\usepackage[]{appendix}
 
 \setlength{\parindent}{0.7cm}
 \setlength{\parskip}{1.5pt plus0mm minus0mm}
@@ -34,6 +37,8 @@
 \Crefname{table}{Tabela}{Tabelas}
 \crefname{equation}{equação}{equações}
 \Crefname{equation}{Equação}{Equações}
+\crefname{listing}{listagem}{listagens}
+\Crefname{listing}{Listagem}{Listagens}
 \crefname{chapter}{capítulo}{capítulos}
 \Crefname{chapter}{Capítulo}{Capítulos}
 \crefname{section}{seção}{seções}
@@ -45,8 +50,10 @@
 \newcommand{\disstitle}{Proposta de arquitetura orientada a serviços para um sistema de manutenção
     inteligente}
 \newcommand{\dissauthor}{Anderson Antônio Giacomolli}
-\newcommand{\disssubject}{Resumo}
-\newcommand{\disskeywords}{Palavra-chave 1, Palavra-chave 2...}
+\newcommand{\disssubject}{Proposta e desenvolvimento de uma arquitetura orientada a serviços para
+    integração de equipamentos e sistemas de manutenção inteligente}
+\newcommand{\disskeywords}{Sistema de Manutenção Inteligente, Arquitetura Orientada a Serviços,
+    Integração de Sistemas, Automação Industrial}
 
 %%
 % Configuração do pacote para criação de links no PDF.
@@ -58,7 +65,7 @@
   pdfkeywords={\disskeywords},
   bookmarks=true,
   pdfmenubar=true,
-  pdfborder={0,0,0}
+  hidelinks=true
 }
 
 %%
@@ -67,6 +74,41 @@
   detect-all,
   output-decimal-marker={,},
   inter-unit-product=\ensuremath{{}}
+}
+
+%%
+% Configuração do pacote para inclusão das listagens.
+% Configura o título da lista de listagens.
+\renewcommand{\lstlistlistingname}{Listagens}
+
+% Configura a legenda das listagens.
+\renewcommand{\lstlistingname}{Listagem}
+
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{Listagem #1}{#2}}
+\makeatother
+
+% Define um estilo para códigos Java.
+\lstdefinestyle{javacodestyle}{
+  language=java,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{black}\ttfamily\bfseries,
+  backgroundcolor=\color{gray!10},
+  captionpos=t,
+  %float=!h,
+  numberbychapter=false,
+  showstringspaces=false,
+  %columns=fullflexible
+}
+
+% Comando para inserir um bloco de codigo Java com legenda.
+\newcommand{\includejavacode}[3]{%
+  \lstinputlisting[%
+      style=javacodestyle,%
+      caption={#2},%
+      label={#3}]{%
+    #1
+  }
 }
 
 \newglossary{symbols}{sym}{sbl}{List of symbols}
@@ -130,18 +172,13 @@
 %%
 % Comando para inserção de uma tabela.
 \newcommand{\includetable}[3]{%
-  \begin{table}[H]
+  \begin{table}[ht!]
     \centering
     \caption{#2}
     \input{#1}
     \label{#3}
   \end{table}
 }
-
-
-%%
-% Comando para inserção de uma tabela.
-% TODO
 
 %%
 % Título e autor do documento.
@@ -156,15 +193,14 @@
 
 %%
 % Banca examinadora
-\examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
-  Cidade, País)}
-\examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
-  Cidade, País)}
-\examiner[Prof.~Dr.]{do professor)}{(nome}
-\examinerinfo{sigla da Instituição onde atual}{Doutor pela (Instituição onde obteve o título --
-  Cidade, País)}
+\examiner[Prof.~Dr.]{Antônio Barata de Oliveira}{José}
+\examinerinfo{UNINOVA}{Doutor pela Universidade Nova de Lisboa -- Lisboa, Portugal}
+
+\examiner[Prof.~Dr.]{Ventura Bayan Henriques}{Renato}
+\examinerinfo{UFRGS}{Doutor pela Universidade Federal de Minas Gerais -- Belo Horizonte, Brasil}
+
+\examiner[Prof.~Dr.]{João Brusamarello}{Valner}
+\examinerinfo{UFRGS}{Doutor pela Universidade Federal de Santa Catarina -- Florianópolis, Brasil}
 
 %%
 % Data da defesa.
@@ -176,10 +212,10 @@
 
 %%
 % Palavras-chave.
-\keyword{Engenharia Elétrica}
-\keyword{Processamento de Sinais}
-\keyword{Automação e Controle}
-\keyword{Eletrônica e Instrumentação}
+\keyword{Sistema de Manutenção Inteligente}
+\keyword{Arquitetura Orientada a Serviços}
+\keyword{Integração de Sistemas}
+\keyword{Automação Industrial}
 
 %%
 % Cria os glossários.
@@ -193,6 +229,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+
+\counterwithout{lstlisting}{chapter}
 
 % O comando \maketile gera a capa, a folha de rosto e a folha de aprovacao
 % (se for o caso)
@@ -219,8 +257,8 @@
 \end{abstract}
 
 % Abstract em inglês.
-\begin{englishabstract}{Electrical Engineering, Signal Processing, Automation and Control,
-    Electronic and Instrumentation}
+\begin{englishabstract}{Intelligent Maintenance Systems, Service-Oriented Architectures, Systems
+    Integration, Industrial Automation}
   \input{others/abstract}
 \end{englishabstract}
 
@@ -229,6 +267,9 @@
 
 % Lista de tabelas.
 \listoftables
+
+% Lista de códigos.
+%\lstlistoflistings
 
 % Lista de abreviaturas e siglas.
 %\begin{listofabbrv}{OSA-CBM}
@@ -270,5 +311,10 @@
 
 \bibliographystyle{abnt}
 \bibliography{bibliography/biblio}
+
+\begin{onehalfspace}
+  \appendix
+  \input{appendices/java-codes}
+\end{onehalfspace}
 
 \end{document}

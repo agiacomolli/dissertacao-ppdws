@@ -23,22 +23,22 @@ Manutenção, no âmbito geral, consiste em uma série de medidas de prevenção
 falhas~\cite{lee2006intelligent}. Durante o uso, equipamentos ou máquinas tendem a deteriorar e
 alterar o seu padrão de funcionamento devido a diversos fatores, como, por exemplo, desgaste,
 rachaduras, corrosão e sujeira. Nestas condições, a restauração do sistema é de suma importância,
-visto que, com o passar do tempo, podem apresentar defeitos e levar à falhas e indisponibilidades.
+visto que, com o passar do tempo, podem apresentar defeitos e levar a falhas e indisponibilidades.
 De acordo com~\cite{marcal2005detectando}, manutenção pode ser definida como todas as atividades
 técnicas e organizacionais que garantam a operação das máquinas e equipamentos dentro da
 confiabilidade esperada.
 
-Tradicionalmente, são encontrados na literatura três\todo{verificar} tipos de estratégias de
-manutenção: corretiva, preventiva e preditiva~\cite{goncalves2011desenvolvimento}. A manutenção
-corretiva visa reestabelecer os sistemas danificados; a preventiva tem por objetivo manter os
-sistemas em funcionamento, realizando pequenas correções; e a manutenção preditiva tem por base o
-monitoramento do estado do sistema, detectando falhas insipientes e fornecendo subsídios para o
-planejamento de ações de prevenção ou correção. Em termos gerais, a manutenção corretiva é aplicada
-somente quando há falha e o sistema necessita de reposição de peças ou componentes para continuar
-operando corretamente, enquanto que a manutenção preventiva visa o agendamento programado de
-intervenções no sistema, afim de manter o funcionamento pelo maior tempo possível. Por outro lado, a
-manutenção preditiva tem como foco o monitoramento do sistema continuamente e, desta forma, a
-intervenção é feita somente quando necessário.
+Tradicionalmente, são encontrados na literatura três tipos de estratégias de manutenção: corretiva,
+preventiva e preditiva~\cite{marcal2005detectando}. A manutenção corretiva visa reestabelecer os
+sistemas danificados; a preventiva tem por objetivo manter os sistemas em funcionamento, realizando
+pequenas correções; e a manutenção preditiva tem por base o monitoramento do estado do sistema,
+detectando falhas insipientes e fornecendo subsídios para o planejamento de ações de prevenção ou
+correção. Em termos gerais, a manutenção corretiva é aplicada somente quando há falha e o sistema
+necessita de reposição de peças ou componentes para continuar operando corretamente, enquanto que a
+manutenção preventiva visa o agendamento programado de intervenções no sistema, afim de manter o
+funcionamento pelo maior tempo possível. Por outro lado, a manutenção preditiva tem como foco o
+monitoramento do sistema continuamente e, desta forma, a intervenção é feita somente quando
+necessário.
 
 Nas três estratégias, pode-se citar vantagens e desvantagens. Na manutenção corretiva, a principal
 vantagem está na dispensabilidade de realização de acompanhamentos ou inspeções no sistema. Isso
@@ -47,7 +47,7 @@ verificação do sistema, além da parada da linha de produção em intervalos a
 a parada inesperada da linha de produção para uma manutenção emergencial pode gerar transtornos e
 custos não programados. A manutenção preventiva visa sanar os problemas de paradas inesperadas,
 utilizando-se de um modelo de agendamento das inspeções. O que para muitas situações é considerado
-suficiente, se não for bem planejado, pode acarretar em custos excessivos devido às paradas
+suficiente, se não for bem planejado, usualmente acarreta em custos excessivos devido às paradas
 programadas e alocação de equipes de manutenção. Nesta situação, a estratégia de manutenção
 preditiva busca o meio termo, utilizando-se da predição do estado do sistema, como análise de
 tendências ou avaliações probabilísticas do estado de degradação dos equipamentos, para os
@@ -70,19 +70,19 @@ forma de regras e utilizá-las para construir um novo sistema baseado nestas reg
 ocorrência de algum defeito. Como exemplo, em~\cite{shikari2004automation} o padrão de vibração de
 uma máquina de indução, de um atuador e de uma prensa são analisados e, realizado o diagnóstico
 automático através de um sistema de manutenção inteligente, é determinado o motivo da falha, podendo
-ser os rolamentos ou desalinhamentos.
+ser os rolamentos ou desalinhamentos. As três estratégias clássicas de manutenção juntamente com a
+de manutenção inteligente são apresentadas na \cref{fig:maintenance-strategies}.
 
 \includefigure
     {images/maintenance-strategies}
     {Classificação das estratégias de manutenção.}
     {fig:maintenance-strategies}
-\todo{Referenciar figura no texto.}
 
 Com o intuito de auxiliar na migração do paradigma de conserto após falha para o paradigma de
 predição e prevenção, foi criado, nos Estados Unidos, um centro de parceria entre universidades e
 empresas, denominado \gls{IMSCenter}. Dentre as empresas integrantes da parceria \gls{IMSCenter},
 pode-se citar, por exemplo, Boeing, Siemens, AMD, Toyota e Caterpillar. Entre as universidades,
-fazem parte do consórcio a de Cincinnatti, Missouri-Rolla e Michigan.
+fazem parte do consórcio a de Cincinnatti, Missouri-Rolla e Michigan~\cite{ims2014homepage}.
 
 
 %%%
@@ -105,7 +105,7 @@ são ilustradas na \cref{fig:data-processing-plot}.
     {Processamento das informações utilizando a estratégia proposta pelo IMS~Center.}
     {fig:data-processing-plot}
 
-A medida que o equipamento degrada, o índice de desempenho é alterado em comparação com o mesmo
+À medida que o equipamento degrada, o índice de desempenho é alterado em comparação com o mesmo
 indicador obtido com o equipamento em funcionamento normal. Um indicador normalmente utilizado para
 identificação do estado de um equipamento é o valor de confiança. Este indicador é definido como uma
 grandeza que varia no intervalo~${[0; 1]}$. Valores próximos a~\num{1} representam funcionamento
@@ -127,7 +127,9 @@ sistema aumenta~\cite{djurdjanovic2003watchdog}.
 
 Em comparação com estratégias de manutenção preventiva, um ponto importante a ser citado é aumento
 da vida útil de peças de equipamentos~\cite{lazzaretti2012avaliacao}. Peças que poderiam ser
-descartadas em função de uma intervenção preventiva\todo{terminar}.
+descartadas em função de uma intervenção preventiva podem ser utilizadas por um período maior de
+tempo, até que, devido a desgastes ou outros fatores, a redução no desempenho do sistema seja
+afetada.
 
 
 %%%
@@ -141,11 +143,9 @@ sistema de manutenção inteligente. A \cref{fig:osa-cbm-model} apresenta uma vi
 do modelo juntamente com as suas interações. As camadas são numeradas de 1~(aquisição de dados) a
 7~(apresentação).
 
-%\todo[color=yellow, inline]{Outro todo.}
-
 \includefigure
     {images/osa-cbm-model}
-    {Modelo OSA-CBM.}
+    {Modelo OSA-CBM -- adaptado de \cite{mimosa2014homepage}}
     {fig:osa-cbm-model}
 
 A definição das funcionalidades de cada camada é apresentada por~\cite{thurston2001open}. Na camada
@@ -173,14 +173,17 @@ prognóstico, informações de restrições externas, requisitos de funcionalida
 sistema, condições financeiras, entre outros. No nível mais alto do modelo, está a camada de
 aplicação. Definida como a interface homem-máquina do sistema, visa a apresentação dos dados obtidos
 no processamento das informações. Nesta camada também podem ser utilizadas técnicas de realidade
-aumentada~\cite{espindola2011realidade}.
+aumentada como, por exemplo, proposto em~\cite{espindola2011realidade}.
 
 
 %%%
 \subsection{Algoritmos de processamento da ferramenta Watchdog Agent}
 
 Como mencionado anteriormente, o Watchdog Agent é um conjunto de algoritmos para processamento de
-sinais e extração de características\todo{Terminar}.
+sinais e extração de características. A ferramenta é dividida em módulos seguindo o modelo
+\gls{OSACBM} e possui implementações nas camadas de manipulação dos dados, detecção do estado e
+avaliação da saúde dos sistema. As ferramentas descritas a seguir fazem referência às utilizadas
+neste trabalho.
 
 
 %%%%
@@ -338,10 +341,10 @@ Originalmente desenvolvido e utilizado para integração de sistemas no meio ger
 logo teve aceitação entre diversos segmentos, como plataformas de negócio, telecomunicações,
 transportes e na automação industrial.
 
-O termo \gls{SOA} ainda possui uma definição concisa e única, diferindo conforme os conhecimentos
-técnicos e a bagagem acumulada durante o desenvolvimento de diferentes aplicações por parte dos
-autores~\cite{candido2013soa}. Ainda segundo \cite{candido2013soa}, a definição que mais se encaixa
-no contexto de um trabalho que envolve integração em meio industrial é a
+O termo \gls{SOA} ainda não possui uma definição concisa e única, diferindo conforme os
+conhecimentos técnicos e a bagagem acumulada durante o desenvolvimento de diferentes aplicações por
+parte dos autores~\cite{candido2013soa}. Ainda segundo \cite{candido2013soa}, a definição que mais
+se encaixa no contexto de um trabalho que envolve integração em meio industrial é a
 de~\cite{jammes2005service}, o qual expressa que "\gls{SOA} é um conjunto de princípios ou doutrinas
 para a construção de sistemas interoperáveis e também autônomos". Esta percepção também descreve o
 contexto deste trabalho, no qual os componentes envolvidos podem ser considerados peças
@@ -362,7 +365,7 @@ determinada tarefa.
 Em se tratando do contexto da aplicação, os serviços oferecidos, para que possam ser utilizados,
 precisam ser encontrados ou expostos~\cite{papazoglou2007service}. Mesmo que, segundo a definição
 adotada, serviços possam ser utilizados independentemente, a abordagem de utilizar um conjunto de
-serviços trabalhando de forma cooperativa na resolução de um problema, é muito mais interessante.
+serviços trabalhando de forma cooperativa na resolução de um problema é muito mais interessante.
 Portanto, uma aplicação \gls{SOA} deve prover meios para que os serviços possam ser comunicar e
 trocar informações via mensagens padronizadas. Dessa forma, é necessário que existam alguns
 conceitos a serem cumpridos por todos os componentes de uma arquitetura
@@ -417,7 +420,7 @@ protocolo pode ser utilizado sobre diferentes protocolos de transporte, como, po
 
 A descrição das interfaces de cada serviço é normalmente definida por \gls{WSDL}. Documentos
 \gls{WSDL} também são baseados em \gls{XML} e contém toda a informação necessária para a utilização
-do serviço em questão. No documento, são especificadas todas as operações que o serviço possibilita,
+do serviço em questão. No documento são especificadas todas as operações que o serviço possibilita,
 bem como os tipos de dados suportados. Também é possível estender o documento definindo novos tipos
 de dados para troca de mensagens.
 
@@ -445,13 +448,45 @@ descrição, geração de eventos e autenticação para a utilização de web se
 recursos computacionais limitados. O \gls{DPWS} permite a integração destes clientes com outros, com
 recursos mais flexíveis.
 
-O \gls{DPWS} implementa um conjunto restrito dos padrões {WS-*}. A \cref{fig:dpws-stack} ilustra o
-diagrama contendo a pilha de protocolos suportados pelo \gls{DPWS}. Dentre os padrões, é possível
-destacar o WS-Adressing, utilizado para transferência de mensagens, WS-Security\todo{alterar a
-figura}, para suprir as necessidades de autenticação nos web services, WS-Discovery, que possibilita
-a descoberta de serviços em uma rede local, e WS-Eventing, que permite a utilização de eventos.
+O \gls{DPWS} implementa um conjunto restrito dos padrões {WS-*}. Dentre as especificações
+utilizadas, estão definidos formatos para o envio de mensagens de descoberta, descrição e
+notificação de eventos. Dos padrões, é possível destacar o {WS-Adressing}, utilizado para
+transferência de mensagens, {WS-Discovery}, que possibilita a descoberta de serviços em uma rede
+local, e {WS-Eventing}, para utilização de eventos. Além das especificações {WS-*}, o \gls{DPWS}
+utiliza os protocolos \gls{TCP} e \gls{HTTP} para a transmissão de dados. A \cref{fig:dpws-stack}
+ilustra o diagrama contendo a pilha de protocolos suportados pelo \gls{DPWS}.
 
 \includefigure
   {images/dpws-stack}
   {Pilha de protocolos suportados pelo DPWS.}
   {fig:dpws-stack}
+
+O anúncio de entrada de novos dispositivos na rede é feita com o uso do {WS-Discovery}. Cada
+dispositivo que ingressa na rede pode anunciar a sua entrada através de mensagens de \emph{Hello}.
+Da mesma forma, também é possível informar aos clientes a saída do dispositivo utilizando uma
+mensagem de \emph{Bye}. Com a especificação {WS-Discovery} os clientes também podem realizar a
+descoberta de dispositivos na rede. Após a descoberta de um dispositivo de interesse, o cliente pode
+recuperar os endereços dos serviços suportados. O \gls{DPWS} permite que qualquer dispositivo na
+rede possa enviar mensagens para a descoberta de novos dispositivos.
+
+Um identificador único (\gls{UDDI}) para cada entidade presente em uma rede \gls{DPWS}, dispositivos
+ou serviços, é fornecido pela especificação {WS-Addressing}. Os identificadores únicos são
+denominados de \textit{endpoints}. Através desta especificação, é possível a utilização de
+diferentes protocolos de transporte sem que haja necessidade de alteração na implementação do web
+service.
+
+O modo como as informações de cada serviço são fornecidas aos clientes é definido através das
+especificações {WS-MetadataExchange} e {WS-Transfer}. As especificações permitem ao cliente buscar
+os metadados dos serviços disponibilizados pelos \textit{endpoints}, como a descrição dos serviços
+hospedados e hospedeiros. Dentre as informações de metadados disponíveis estão o
+\emph{FriendlyName}, \emph{SerialNumber}, \emph{FirmwareVersion}, \emph{Manufacturer},
+\emph{ManufacturerURL}, \emph{ModelName}, \emph{ModelNumber}, \emph{ModelURL} e
+\emph{PresentationURL}.
+
+A troca de informações entre dispositivos e clientes pode ser realizada através de eventos. O
+\gls{DPWS} proporciona esta funcionalidade utilizando a especificação {WS-Eventing}. O mecanismo do
+tipo produtor/consumidor permite que cada cliente se inscreva em eventos de interesse providos por
+dispositivos distintos. Após a inscrição em determinado evento, o cliente é notificado a cada
+alteração por parte do dispositivo. Cada inscrição, por parte do cliente, possui um tempo definido
+para expiração. É de responsabilidade do cliente renová-la antes deste período, a fim de continuar a
+receber as notificações do evento.
