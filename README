@@ -1,0 +1,38 @@
+======================================================================================
+PROPOSTA DE ARQUITETURA ORIENTADA A SERVIÇOS PARA UM SISTEMA DE MANUTENÇÃO INTELIGENTE
+======================================================================================
+
+Published on Amazon (Paperback) and UFRGS (digital):
+
+https://www.amazon.com/Sistemas-manuten%C3%A7%C3%A3o-inteligente-arquitetura-Portuguese/dp/3639834135
+
+https://lume.ufrgs.br/handle/10183/103819
+
+
+ABSTRACT
+========
+
+In the industrial field, the costs associated with equipment's maintenace still represents a large
+portion of the resources available to a company. Therefore, new researches in maintenance systems,
+and the correct task planning, are growing, since they impact directly on the economic side of the
+companies. Thus, current work presents an service-oriented architecture for maintenance systems
+integration. The proposed architecture intends to facilitate the integration of equipments and
+degradation analysis tools. The architecture is comprised of several entities, where each one is
+responsible for executing a given task in order to keep the system running properly. In this work,
+all the entities are implemented and experiments are performed in order to validate the proposed
+system.
+
+
+RESUMO
+======
+
+No âmbito industrial, o custo empregado na manutenção de equipamentos ainda representa uma grande
+parcela dos investimentos. Dessa forma, o desenvolvimento de técnicas de manutenção, e o seu correto
+planejamento, cada vez mais estão assumindo papeis de grande importância nesse setor, visto que
+impactam diretamente no fator econômico das empresas. Neste sentido, o trabalho em questão apresenta
+a proposta de uma arquitetura orientada a serviços para um sistema de manutenção inteligente, a fim
+de possibilitar a integração de forma facilitada entre equipamentos e as ferramentas de análise de
+degradação. A arquitetura é composta por diferentes entidades, cada uma responsável por determinada
+tarefa para o funcionamento do sistema. No trabalho, as entidades são implementadas e experimentos
+são realizados a fim de validar a solução proposta.
+
